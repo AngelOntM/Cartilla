@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { countUsuarios, createUsuario, deleteUsuario, getUsuario, getUsuarios, updateUsuario } from '../controllers/Usuario'
+import { createPropietario, createProveedor, deletePropietario, deleteProveedor, getPropietario, getPropietarios, getProveedor, getProveedores, loginUsuario, updatePropietario, updateProveedor } from '../controllers/Usuario'
 
 const router = Router()
 
@@ -12,56 +12,102 @@ const router = Router()
 
 /**
  * @swagger
- * /Usuarios:
+ * /usuario/propietario:
  *  get:
- *      summary: Get all Usuarios
+ *      summary: Get all Propietarios
  *      tags: [Usuarios]
  */
-router.get('/usuario', getUsuarios)
+router.get('/usuario/propietario', getPropietarios)
 
 /**
  * @swagger
- * /Usuarios/count:
+ * /usuario/proveedor:
  *  get:
- *      summary: Get total Usuarios count
+ *      summary: Get all Proveedores
  *      tags: [Usuarios]
  */
-router.get('/usuario/count', countUsuarios)
+router.get('/usuario/proveedor', getProveedores)
 
 /**
  * @swagger
- * /Usuarios/id:
+ * /usuario/proveedor/id:
  *  get:
- *      summary: Get all Usuarios
+ *      summary: Get a Proveedor
  *      tags: [Usuarios]
  */
-router.get('/usuario/:id', getUsuario)
+router.get('/usuario/proveedor/:id', getProveedor)
 
 /**
  * @swagger
- * /Usuarios:
+ * /usuario/propietario/id:
+ *  get:
+ *      summary: Get a Propietario
+ *      tags: [Usuarios]
+ */
+router.get('/usuario/propietario/:id', getPropietario)
+
+/**
+ * @swagger
+ * /usuario/proveedor/register:
  *  post:
- *      summary: Create a new Usuario
+ *      summary: Register a new Proveedor
  *      tags: [Usuarios]
  */
-router.post('/usuario', createUsuario)
+router.post('/usuario/proveedor/register', createProveedor)
 
 /**
  * @swagger
- * /Usuarios/id:
+ * /usuario/propietario/register:
+ *  post:
+ *      summary: Register a new Propietario
+ *      tags: [Usuarios]
+ */
+router.post('/usuario/propietario/register', createPropietario)
+
+/**
+ * @swagger
+ * /usuarios/login:
+ *  post:
+ *      summary: Login a Usuario
+ *      tags: [Usuarios]
+ */
+router.post('/usuario/login', loginUsuario)
+
+/**
+ * @swagger
+ * /usuario/propietario/id:
  *  put:
- *      summary: Update a Usuario
+ *      summary: Update a Propietario
  *      tags: [Usuarios]
  */
-router.put('/usuario/:id', updateUsuario)
+router.put('/usuario/propietario/:id', updatePropietario)
 
 /**
  * @swagger
- * /Usuarios/id:
- *  delete:
- *      summary: Delete a Usuario
+ * /usuario/proveedor/id:
+ *  put:
+ *      summary: Update a Proveedor
  *      tags: [Usuarios]
  */
-router.delete('/usuario/:id', deleteUsuario)
+router.put('/usuario/proveedor/:id', updateProveedor)
+
+/**
+ * @swagger
+ * /usuario/proveedor/id:
+ *  delete:
+ *      summary: Delete a Proveedor
+ *      tags: [Usuarios]
+ */
+router.delete('/usuario/proveedor/:id', deleteProveedor)
+
+/**
+ * @swagger
+ * /usuario/propietario/id:
+ *  delete:
+ *      summary: Delete a Propietario
+ *      tags: [Usuarios]
+ */
+router.delete('/usuario/propietario/:id', deletePropietario)
+
 
 export default router

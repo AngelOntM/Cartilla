@@ -5,7 +5,7 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.updateVacuna = exports.getVacunas = exports.getVacuna = exports.deleteVacuna = exports.createVacuna = exports.countVacunas = void 0;
+exports.updateTipo = exports.getTipos = exports.getTipo = exports.deleteTipo = exports.createTipo = exports.countTipos = void 0;
 
 var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
 
@@ -21,7 +21,7 @@ function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (O
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2["default"])(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 
-var getVacunas = /*#__PURE__*/function () {
+var getTipos = /*#__PURE__*/function () {
   var _ref = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee(req, res) {
     var connection, _yield$connection$que, _yield$connection$que2, rows;
 
@@ -35,7 +35,7 @@ var getVacunas = /*#__PURE__*/function () {
           case 2:
             connection = _context.sent;
             _context.next = 5;
-            return connection.query('SELECT * FROM vacuna');
+            return connection.query('SELECT * FROM tipo');
 
           case 5:
             _yield$connection$que = _context.sent;
@@ -51,14 +51,14 @@ var getVacunas = /*#__PURE__*/function () {
     }, _callee);
   }));
 
-  return function getVacunas(_x, _x2) {
+  return function getTipos(_x, _x2) {
     return _ref.apply(this, arguments);
   };
 }();
 
-exports.getVacunas = getVacunas;
+exports.getTipos = getTipos;
 
-var getVacuna = /*#__PURE__*/function () {
+var getTipo = /*#__PURE__*/function () {
   var _ref2 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee2(req, res) {
     var connection, _yield$connection$que3, _yield$connection$que4, rows;
 
@@ -72,7 +72,7 @@ var getVacuna = /*#__PURE__*/function () {
           case 2:
             connection = _context2.sent;
             _context2.next = 5;
-            return connection.query('SELECT * FROM vacuna WHERE VAC_NUMCTRL = ?', [req.params.id]);
+            return connection.query('SELECT * FROM tipo WHERE TIP_NUMCTRL = ?', [req.params.id]);
 
           case 5:
             _yield$connection$que3 = _context2.sent;
@@ -88,14 +88,14 @@ var getVacuna = /*#__PURE__*/function () {
     }, _callee2);
   }));
 
-  return function getVacuna(_x3, _x4) {
+  return function getTipo(_x3, _x4) {
     return _ref2.apply(this, arguments);
   };
 }();
 
-exports.getVacuna = getVacuna;
+exports.getTipo = getTipo;
 
-var countVacunas = /*#__PURE__*/function () {
+var countTipos = /*#__PURE__*/function () {
   var _ref3 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee3(req, res) {
     var connection, _yield$connection$que5, _yield$connection$que6, rows;
 
@@ -109,7 +109,7 @@ var countVacunas = /*#__PURE__*/function () {
           case 2:
             connection = _context3.sent;
             _context3.next = 5;
-            return connection.query('SELECT COUNT(*) FROM vacuna');
+            return connection.query('SELECT COUNT(*) FROM tipo');
 
           case 5:
             _yield$connection$que5 = _context3.sent;
@@ -125,14 +125,14 @@ var countVacunas = /*#__PURE__*/function () {
     }, _callee3);
   }));
 
-  return function countVacunas(_x5, _x6) {
+  return function countTipos(_x5, _x6) {
     return _ref3.apply(this, arguments);
   };
 }();
 
-exports.countVacunas = countVacunas;
+exports.countTipos = countTipos;
 
-var createVacuna = /*#__PURE__*/function () {
+var createTipo = /*#__PURE__*/function () {
   var _ref4 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee4(req, res) {
     var connection, _yield$connection$que7, _yield$connection$que8, rows;
 
@@ -146,7 +146,7 @@ var createVacuna = /*#__PURE__*/function () {
           case 2:
             connection = _context4.sent;
             _context4.next = 5;
-            return connection.query("INSERT INTO vacuna(VAC_NOMBRE, VAC_DESC) VALUES (?, ?)", [req.body.VAC_NOMBRE, req.body.VAC_DESC]);
+            return connection.query("INSERT INTO tipo(TIP_NOMBRE) VALUES (?)", [req.body.TIP_NOMBRE]);
 
           case 5:
             _yield$connection$que7 = _context4.sent;
@@ -164,14 +164,14 @@ var createVacuna = /*#__PURE__*/function () {
     }, _callee4);
   }));
 
-  return function createVacuna(_x7, _x8) {
+  return function createTipo(_x7, _x8) {
     return _ref4.apply(this, arguments);
   };
 }();
 
-exports.createVacuna = createVacuna;
+exports.createTipo = createTipo;
 
-var deleteVacuna = /*#__PURE__*/function () {
+var deleteTipo = /*#__PURE__*/function () {
   var _ref5 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee5(req, res) {
     var connection, _yield$connection$que9, _yield$connection$que10, rows;
 
@@ -185,7 +185,7 @@ var deleteVacuna = /*#__PURE__*/function () {
           case 2:
             connection = _context5.sent;
             _context5.next = 5;
-            return connection.query('DELETE FROM vacuna WHERE VAC_NUMCTRL = ?', [req.params.id]);
+            return connection.query('DELETE FROM tipo WHERE TIP_NUMCTRL = ?', [req.params.id]);
 
           case 5:
             _yield$connection$que9 = _context5.sent;
@@ -201,14 +201,14 @@ var deleteVacuna = /*#__PURE__*/function () {
     }, _callee5);
   }));
 
-  return function deleteVacuna(_x9, _x10) {
+  return function deleteTipo(_x9, _x10) {
     return _ref5.apply(this, arguments);
   };
 }();
 
-exports.deleteVacuna = deleteVacuna;
+exports.deleteTipo = deleteTipo;
 
-var updateVacuna = /*#__PURE__*/function () {
+var updateTipo = /*#__PURE__*/function () {
   var _ref6 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee6(req, res) {
     var connection, _yield$connection$que11, _yield$connection$que12, rows;
 
@@ -222,7 +222,7 @@ var updateVacuna = /*#__PURE__*/function () {
           case 2:
             connection = _context6.sent;
             _context6.next = 5;
-            return connection.query('UPDATE vacuna SET ? WHERE VAC_NUMCTRL = ?', [req.body, req.params.id]);
+            return connection.query('UPDATE tipo SET ? WHERE TIP_NUMCTRL = ?', [req.body, req.params.id]);
 
           case 5:
             _yield$connection$que11 = _context6.sent;
@@ -238,9 +238,9 @@ var updateVacuna = /*#__PURE__*/function () {
     }, _callee6);
   }));
 
-  return function updateVacuna(_x11, _x12) {
+  return function updateTipo(_x11, _x12) {
     return _ref6.apply(this, arguments);
   };
 }();
 
-exports.updateVacuna = updateVacuna;
+exports.updateTipo = updateTipo;

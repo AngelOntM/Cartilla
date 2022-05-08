@@ -1,5 +1,7 @@
 "use strict";
 
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -15,13 +17,15 @@ var _swaggerJsdoc = _interopRequireDefault(require("swagger-jsdoc"));
 
 var _swaggerUiExpress = _interopRequireDefault(require("swagger-ui-express"));
 
-var _vacuna = _interopRequireDefault(require("./routes/vacuna"));
-
 var _usuario = _interopRequireDefault(require("./routes/usuario"));
 
-var _swaggerOptions = require("./swaggerOptions");
+var _menu = _interopRequireDefault(require("./routes/menu"));
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+var _programa = _interopRequireDefault(require("./routes/programa"));
+
+var _raza = _interopRequireDefault(require("./routes/raza"));
+
+var _swaggerOptions = require("./swaggerOptions");
 
 var specs = (0, _swaggerJsdoc["default"])(_swaggerOptions.options);
 var app = (0, _express["default"])();
@@ -36,8 +40,10 @@ app.use(_express["default"].json());
  * Routes
  */
 
-app.use(_vacuna["default"]);
 app.use(_usuario["default"]);
+app.use(_menu["default"]);
+app.use(_programa["default"]);
+app.use(_raza["default"]);
 /**
  * Create Documentation
  */

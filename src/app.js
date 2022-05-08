@@ -5,8 +5,10 @@ import swaggerJsDoc from "swagger-jsdoc";
 import swaggerUI from "swagger-ui-express";
 
 
-import vacunaRoutes from "./routes/vacuna"
-import usuarioRoutes from "./routes/usuario"
+import usuario from "./routes/usuario"
+import menu from "./routes/menu"
+import programa from "./routes/programa"
+import raza from "./routes/raza"
 
 
 import { options } from './swaggerOptions'
@@ -22,12 +24,13 @@ app.use(cors());
 app.use(morgan("dev"));
 app.use(express.json());
 
-
 /**
  * Routes
  */
-app.use(vacunaRoutes);
-app.use(usuarioRoutes)
+app.use(usuario)
+app.use(menu)
+app.use(programa)
+app.use(raza)
 
 
 /**

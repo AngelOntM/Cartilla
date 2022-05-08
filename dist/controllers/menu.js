@@ -5,7 +5,7 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.updateVacuna = exports.getVacunas = exports.getVacuna = exports.deleteVacuna = exports.createVacuna = exports.countVacunas = void 0;
+exports.updateMenu = exports.getMenus = exports.getMenu = exports.deleteMenu = exports.createMenu = exports.countMenus = void 0;
 
 var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
 
@@ -21,7 +21,7 @@ function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (O
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2["default"])(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 
-var getVacunas = /*#__PURE__*/function () {
+var getMenus = /*#__PURE__*/function () {
   var _ref = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee(req, res) {
     var connection, _yield$connection$que, _yield$connection$que2, rows;
 
@@ -29,36 +29,44 @@ var getVacunas = /*#__PURE__*/function () {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            _context.next = 2;
+            _context.prev = 0;
+            _context.next = 3;
             return (0, _database.connect)();
 
-          case 2:
+          case 3:
             connection = _context.sent;
-            _context.next = 5;
-            return connection.query('SELECT * FROM vacuna');
+            _context.next = 6;
+            return connection.query('SELECT * FROM menu');
 
-          case 5:
+          case 6:
             _yield$connection$que = _context.sent;
             _yield$connection$que2 = (0, _slicedToArray2["default"])(_yield$connection$que, 1);
             rows = _yield$connection$que2[0];
             res.json(rows);
+            _context.next = 15;
+            break;
 
-          case 9:
+          case 12:
+            _context.prev = 12;
+            _context.t0 = _context["catch"](0);
+            res.sendStatus(400);
+
+          case 15:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee);
+    }, _callee, null, [[0, 12]]);
   }));
 
-  return function getVacunas(_x, _x2) {
+  return function getMenus(_x, _x2) {
     return _ref.apply(this, arguments);
   };
 }();
 
-exports.getVacunas = getVacunas;
+exports.getMenus = getMenus;
 
-var getVacuna = /*#__PURE__*/function () {
+var getMenu = /*#__PURE__*/function () {
   var _ref2 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee2(req, res) {
     var connection, _yield$connection$que3, _yield$connection$que4, rows;
 
@@ -66,36 +74,44 @@ var getVacuna = /*#__PURE__*/function () {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
-            _context2.next = 2;
+            _context2.prev = 0;
+            _context2.next = 3;
             return (0, _database.connect)();
 
-          case 2:
+          case 3:
             connection = _context2.sent;
-            _context2.next = 5;
-            return connection.query('SELECT * FROM vacuna WHERE VAC_NUMCTRL = ?', [req.params.id]);
+            _context2.next = 6;
+            return connection.query('SELECT * FROM menu WHERE MEN_NUMCTRL = ?', [req.params.id]);
 
-          case 5:
+          case 6:
             _yield$connection$que3 = _context2.sent;
             _yield$connection$que4 = (0, _slicedToArray2["default"])(_yield$connection$que3, 1);
             rows = _yield$connection$que4[0];
             res.json(rows[0]);
+            _context2.next = 15;
+            break;
 
-          case 9:
+          case 12:
+            _context2.prev = 12;
+            _context2.t0 = _context2["catch"](0);
+            res.sendStatus(400);
+
+          case 15:
           case "end":
             return _context2.stop();
         }
       }
-    }, _callee2);
+    }, _callee2, null, [[0, 12]]);
   }));
 
-  return function getVacuna(_x3, _x4) {
+  return function getMenu(_x3, _x4) {
     return _ref2.apply(this, arguments);
   };
 }();
 
-exports.getVacuna = getVacuna;
+exports.getMenu = getMenu;
 
-var countVacunas = /*#__PURE__*/function () {
+var countMenus = /*#__PURE__*/function () {
   var _ref3 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee3(req, res) {
     var connection, _yield$connection$que5, _yield$connection$que6, rows;
 
@@ -103,36 +119,44 @@ var countVacunas = /*#__PURE__*/function () {
       while (1) {
         switch (_context3.prev = _context3.next) {
           case 0:
-            _context3.next = 2;
+            _context3.prev = 0;
+            _context3.next = 3;
             return (0, _database.connect)();
 
-          case 2:
+          case 3:
             connection = _context3.sent;
-            _context3.next = 5;
-            return connection.query('SELECT COUNT(*) FROM vacuna');
+            _context3.next = 6;
+            return connection.query('SELECT COUNT(*) FROM menu');
 
-          case 5:
+          case 6:
             _yield$connection$que5 = _context3.sent;
             _yield$connection$que6 = (0, _slicedToArray2["default"])(_yield$connection$que5, 1);
             rows = _yield$connection$que6[0];
             res.json(rows[0]['COUNT(*)']);
+            _context3.next = 15;
+            break;
 
-          case 9:
+          case 12:
+            _context3.prev = 12;
+            _context3.t0 = _context3["catch"](0);
+            res.sendStatus(400);
+
+          case 15:
           case "end":
             return _context3.stop();
         }
       }
-    }, _callee3);
+    }, _callee3, null, [[0, 12]]);
   }));
 
-  return function countVacunas(_x5, _x6) {
+  return function countMenus(_x5, _x6) {
     return _ref3.apply(this, arguments);
   };
 }();
 
-exports.countVacunas = countVacunas;
+exports.countMenus = countMenus;
 
-var createVacuna = /*#__PURE__*/function () {
+var createMenu = /*#__PURE__*/function () {
   var _ref4 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee4(req, res) {
     var connection, _yield$connection$que7, _yield$connection$que8, rows;
 
@@ -140,38 +164,46 @@ var createVacuna = /*#__PURE__*/function () {
       while (1) {
         switch (_context4.prev = _context4.next) {
           case 0:
-            _context4.next = 2;
+            _context4.prev = 0;
+            _context4.next = 3;
             return (0, _database.connect)();
 
-          case 2:
+          case 3:
             connection = _context4.sent;
-            _context4.next = 5;
-            return connection.query("INSERT INTO vacuna(VAC_NOMBRE, VAC_DESC) VALUES (?, ?)", [req.body.VAC_NOMBRE, req.body.VAC_DESC]);
+            _context4.next = 6;
+            return connection.query("INSERT INTO menu(MEN_CLAVE,MEN_NOMBRE) VALUES (?, ?)", [req.body.MEN_CLAVE, req.body.MEN_NOMBRE]);
 
-          case 5:
+          case 6:
             _yield$connection$que7 = _context4.sent;
             _yield$connection$que8 = (0, _slicedToArray2["default"])(_yield$connection$que7, 1);
             rows = _yield$connection$que8[0];
             res.json(_objectSpread({
               id: rows.insertId
             }, req.body));
+            _context4.next = 15;
+            break;
 
-          case 9:
+          case 12:
+            _context4.prev = 12;
+            _context4.t0 = _context4["catch"](0);
+            res.sendStatus(400);
+
+          case 15:
           case "end":
             return _context4.stop();
         }
       }
-    }, _callee4);
+    }, _callee4, null, [[0, 12]]);
   }));
 
-  return function createVacuna(_x7, _x8) {
+  return function createMenu(_x7, _x8) {
     return _ref4.apply(this, arguments);
   };
 }();
 
-exports.createVacuna = createVacuna;
+exports.createMenu = createMenu;
 
-var deleteVacuna = /*#__PURE__*/function () {
+var deleteMenu = /*#__PURE__*/function () {
   var _ref5 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee5(req, res) {
     var connection, _yield$connection$que9, _yield$connection$que10, rows;
 
@@ -179,36 +211,44 @@ var deleteVacuna = /*#__PURE__*/function () {
       while (1) {
         switch (_context5.prev = _context5.next) {
           case 0:
-            _context5.next = 2;
+            _context5.prev = 0;
+            _context5.next = 3;
             return (0, _database.connect)();
 
-          case 2:
+          case 3:
             connection = _context5.sent;
-            _context5.next = 5;
-            return connection.query('DELETE FROM vacuna WHERE VAC_NUMCTRL = ?', [req.params.id]);
+            _context5.next = 6;
+            return connection.query('DELETE FROM menu WHERE MEN_NUMCTRL = ?', [req.params.id]);
 
-          case 5:
+          case 6:
             _yield$connection$que9 = _context5.sent;
             _yield$connection$que10 = (0, _slicedToArray2["default"])(_yield$connection$que9, 1);
             rows = _yield$connection$que10[0];
             res.sendStatus(204);
+            _context5.next = 15;
+            break;
 
-          case 9:
+          case 12:
+            _context5.prev = 12;
+            _context5.t0 = _context5["catch"](0);
+            res.sendStatus(400);
+
+          case 15:
           case "end":
             return _context5.stop();
         }
       }
-    }, _callee5);
+    }, _callee5, null, [[0, 12]]);
   }));
 
-  return function deleteVacuna(_x9, _x10) {
+  return function deleteMenu(_x9, _x10) {
     return _ref5.apply(this, arguments);
   };
 }();
 
-exports.deleteVacuna = deleteVacuna;
+exports.deleteMenu = deleteMenu;
 
-var updateVacuna = /*#__PURE__*/function () {
+var updateMenu = /*#__PURE__*/function () {
   var _ref6 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee6(req, res) {
     var connection, _yield$connection$que11, _yield$connection$que12, rows;
 
@@ -216,31 +256,39 @@ var updateVacuna = /*#__PURE__*/function () {
       while (1) {
         switch (_context6.prev = _context6.next) {
           case 0:
-            _context6.next = 2;
+            _context6.prev = 0;
+            _context6.next = 3;
             return (0, _database.connect)();
 
-          case 2:
+          case 3:
             connection = _context6.sent;
-            _context6.next = 5;
-            return connection.query('UPDATE vacuna SET ? WHERE VAC_NUMCTRL = ?', [req.body, req.params.id]);
+            _context6.next = 6;
+            return connection.query('UPDATE menu SET MEN_CLAVE = ?, MEN_NOMBRE = ? WHERE MEN_NUMCTRL = ?', [req.body.MEN_CLAVE, rea.body.MEN_NOMBRE, req.params.id]);
 
-          case 5:
+          case 6:
             _yield$connection$que11 = _context6.sent;
             _yield$connection$que12 = (0, _slicedToArray2["default"])(_yield$connection$que11, 1);
             rows = _yield$connection$que12[0];
             res.json(rows);
+            _context6.next = 15;
+            break;
 
-          case 9:
+          case 12:
+            _context6.prev = 12;
+            _context6.t0 = _context6["catch"](0);
+            res.sendStatus(400);
+
+          case 15:
           case "end":
             return _context6.stop();
         }
       }
-    }, _callee6);
+    }, _callee6, null, [[0, 12]]);
   }));
 
-  return function updateVacuna(_x11, _x12) {
+  return function updateMenu(_x11, _x12) {
     return _ref6.apply(this, arguments);
   };
 }();
 
-exports.updateVacuna = updateVacuna;
+exports.updateMenu = updateMenu;

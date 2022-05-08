@@ -1,8 +1,15 @@
-import { Router } from 'express';
-import { countTipos, createTipo, deleteTipo, getTipo, getTipos, updateTipo } from '../controllers/Tipo'
+"use strict";
 
-const router = Router()
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
 
+var _express = require("express");
+
+var _Tipo = require("../controllers/Tipo");
+
+var router = (0, _express.Router)();
 /**
  * @swagger
  * tags:
@@ -17,8 +24,8 @@ const router = Router()
  *      summary: Get all Tipos
  *      tags: [Tipos]
  */
-router.get('/tipo', getTipos)
 
+router.get('/tipo', _Tipo.getTipos);
 /**
  * @swagger
  * /Tipos/count:
@@ -26,8 +33,8 @@ router.get('/tipo', getTipos)
  *      summary: Get total Tipos count
  *      tags: [Tipos]
  */
-router.get('/tipo/count', countTipos)
 
+router.get('/tipo/count', _Tipo.countTipos);
 /**
  * @swagger
  * /Tipos/id:
@@ -35,8 +42,8 @@ router.get('/tipo/count', countTipos)
  *      summary: Get all Tipos
  *      tags: [Tipos]
  */
-router.get('/tipo/:id', getTipo)
 
+router.get('/tipo/:id', _Tipo.getTipo);
 /**
  * @swagger
  * /Tipos:
@@ -44,8 +51,8 @@ router.get('/tipo/:id', getTipo)
  *      summary: Create a new Tipo
  *      tags: [Tipos]
  */
-router.post('/tipo', createTipo)
 
+router.post('/tipo', _Tipo.createTipo);
 /**
  * @swagger
  * /Tipos/id:
@@ -53,8 +60,8 @@ router.post('/tipo', createTipo)
  *      summary: Update a Tipo
  *      tags: [Tipos]
  */
-router.put('/tipo/:id', updateTipo)
 
+router.put('/tipo/:id', _Tipo.updateTipo);
 /**
  * @swagger
  * /Tipos/id:
@@ -62,6 +69,7 @@ router.put('/tipo/:id', updateTipo)
  *      summary: Delete a Tipo
  *      tags: [Tipos]
  */
-router.delete('/tipo/:id', deleteTipo)
 
-export default router
+router["delete"]('/tipo/:id', _Tipo.deleteTipo);
+var _default = router;
+exports["default"] = _default;

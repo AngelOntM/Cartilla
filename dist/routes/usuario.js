@@ -19,57 +19,102 @@ var router = (0, _express.Router)();
 
 /**
  * @swagger
- * /Usuarios:
+ * /usuario/propietario:
  *  get:
- *      summary: Get all Usuarios
+ *      summary: Get all Propietarios
  *      tags: [Usuarios]
  */
 
-router.get('/usuario', _Usuario.getUsuarios);
+router.get('/usuario/propietario', _Usuario.getPropietarios);
 /**
  * @swagger
- * /Usuarios/count:
+ * /usuario/proveedor:
  *  get:
- *      summary: Get total Usuarios count
+ *      summary: Get all Proveedores
  *      tags: [Usuarios]
  */
 
-router.get('/usuario/count', _Usuario.countUsuarios);
+router.get('/usuario/proveedor', _Usuario.getProveedores);
 /**
  * @swagger
- * /Usuarios/id:
+ * /usuario/proveedor/id:
  *  get:
- *      summary: Get all Usuarios
+ *      summary: Get a Proveedor
  *      tags: [Usuarios]
  */
 
-router.get('/usuario/:id', _Usuario.getUsuario);
+router.get('/usuario/proveedor/:id', _Usuario.getProveedor);
 /**
  * @swagger
- * /Usuarios:
+ * /usuario/propietario/id:
+ *  get:
+ *      summary: Get a Propietario
+ *      tags: [Usuarios]
+ */
+
+router.get('/usuario/propietario/:id', _Usuario.getPropietario);
+/**
+ * @swagger
+ * /usuario/proveedor/register:
  *  post:
- *      summary: Create a new Usuario
+ *      summary: Register a new Proveedor
  *      tags: [Usuarios]
  */
 
-router.post('/usuario', _Usuario.createUsuario);
+router.post('/usuario/proveedor/register', _Usuario.createProveedor);
 /**
  * @swagger
- * /Usuarios/id:
+ * /usuario/propietario/register:
+ *  post:
+ *      summary: Register a new Propietario
+ *      tags: [Usuarios]
+ */
+
+router.post('/usuario/propietario/register', _Usuario.createPropietario);
+/**
+ * @swagger
+ * /usuarios/login:
+ *  post:
+ *      summary: Login a Usuario
+ *      tags: [Usuarios]
+ */
+
+router.post('/usuario/login', _Usuario.loginUsuario);
+/**
+ * @swagger
+ * /usuario/propietario/id:
  *  put:
- *      summary: Update a Usuario
+ *      summary: Update a Propietario
  *      tags: [Usuarios]
  */
 
-router.put('/usuario/:id', _Usuario.updateUsuario);
+router.put('/usuario/propietario/:id', _Usuario.updatePropietario);
 /**
  * @swagger
- * /Usuarios/id:
- *  delete:
- *      summary: Delete a Usuario
+ * /usuario/proveedor/id:
+ *  put:
+ *      summary: Update a Proveedor
  *      tags: [Usuarios]
  */
 
-router["delete"]('/usuario/:id', _Usuario.deleteUsuario);
+router.put('/usuario/proveedor/:id', _Usuario.updateProveedor);
+/**
+ * @swagger
+ * /usuario/proveedor/id:
+ *  delete:
+ *      summary: Delete a Proveedor
+ *      tags: [Usuarios]
+ */
+
+router["delete"]('/usuario/proveedor/:id', _Usuario.deleteProveedor);
+/**
+ * @swagger
+ * /usuario/propietario/id:
+ *  delete:
+ *      summary: Delete a Propietario
+ *      tags: [Usuarios]
+ */
+
+router["delete"]('/usuario/propietario/:id', _Usuario.deletePropietario);
 var _default = router;
 exports["default"] = _default;
