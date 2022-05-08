@@ -63,10 +63,9 @@ export const deleteProxmen = async (req, res) => {
 export const updateProxmen = async (req, res) => {
     try {
         const connection = await connect()
-        const [rows] = await connection.query('UPDATE proxmen SET PRG_NUMCTRL = ?, MEN_NUMCTRL = ? WHERE PXM_NUMCTRL = ?',
+        const [rows] = await connection.query('UPDATE proxmen SET ? WHERE PXM_NUMCTRL = ?',
             [
-                req.body.PRG_NUMCTRL,
-                req.body.MEN_NUMCTRL,
+                req.body,
                 req.params.id
             ])
         res.json(rows)

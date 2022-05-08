@@ -63,10 +63,9 @@ export const deletePrograma = async (req, res) => {
 export const updatePrograma = async (req, res) => {
     try {
         const connection = await connect()
-        const [rows] = await connection.query('UPDATE programa SET PRG_CLAVE = ?, PRG_NOMBRE = ? WHERE PRG_NUMCTRL = ?',
+        const [rows] = await connection.query('UPDATE programa SET ? WHERE PRG_NUMCTRL = ?',
             [
-                req.body.PRG_CLAVE,
-                req.body.PRG_NOMBRE,
+                req.body,
                 req.params.id
             ])
         res.json(rows)

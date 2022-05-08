@@ -62,9 +62,9 @@ export const deleteRaza = async (req, res) => {
 export const updateRaza = async (req, res) => {
     try {
         const connection = await connect()
-        const [rows] = await connection.query('UPDATE raza SET RAZ_NOMBRE = ? WHERE RAZ_NUMCTRL = ?',
+        const [rows] = await connection.query('UPDATE raza SET ? WHERE RAZ_NUMCTRL = ?',
             [
-                req.body.RAZ_NOMBRE,
+                req.body,
                 req.params.id
             ])
         res.json(rows)

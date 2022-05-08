@@ -63,10 +63,9 @@ export const deleteMenu = async (req, res) => {
 export const updateMenu = async (req, res) => {
     try {
         const connection = await connect()
-        const [rows] = await connection.query('UPDATE menu SET MEN_CLAVE = ?, MEN_NOMBRE = ? WHERE MEN_NUMCTRL = ?',
+        const [rows] = await connection.query('UPDATE menu SET ? WHERE MEN_NUMCTRL = ?',
             [
-                req.body.MEN_CLAVE,
-                rea.body.MEN_NOMBRE,
+                req.body,
                 req.params.id
             ])
         res.json(rows)
