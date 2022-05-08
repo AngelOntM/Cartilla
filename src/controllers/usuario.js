@@ -139,30 +139,36 @@ export const updatePropietario = async (req, res) => {
 export const loginUsuario = async (req, res) => {
     try {
         const connection = await connect()
-        const [rows] = await connection.query('SELECT * FROM proveedor WHERE PRV_CORREO = ? AND PRV_CONTRA = ?',
+        var datos = null
+        var [rows] = await connection.query('SELECT * FROM proveedor WHERE PRV_CORREO = ? AND PRV_CONTRA = ?',
             [
                 req.body.correo,
                 req.body.password
             ])
-        var [rows2] = rows
-        if (rows[0] == null) {
-            const [rows1] = await connection.query('SELECT * FROM propietario WHERE PRO_CORREO = ? AND PRO_CONTRA = ?',
+        if (rows[0] != null) {
+            datos = rows[0]
+            rows = await connection.query('SELECT menu.MEN_NOMBRE, programa.PRG_NOMBRE FROM menu inner join proxmen on menu.MEN_NUMCTRL= proxmen.MEN_NUMCTRL INNER JOIN programa ON programa.PRG_NUMCTRL= proxmen.PRG_NUMCTRL INNER JOIN proxusu on proxusu.PRG_NUMCTRL=programa.PRG_NUMCTRL INNER JOIN tipousu on tipousu.TIU_NUMCTRL= proxusu.TIU_NUMCTRL inner JOIN proveedor on proveedor.TIU_NUMCTRL=tipousu.TIU_NUMCTRL WHERE proveedor.TIU_NUMCTRL = 1')
+            datos = { datos, rows }
+        }
+        else {
+            [rows] = await connection.query('SELECT * FROM propietario WHERE PRO_CORREO = ? AND PRO_CONTRA = ?',
                 [
                     req.body.correo,
                     req.body.password
                 ])
-            res.json(rows1)
+            if (rows[0] != null) {
+                datos = rows[0]
+                rows = await connection.query('SELECT menu.MEN_NOMBRE, programa.PRG_NOMBRE FROM menu inner join proxmen on menu.MEN_NUMCTRL= proxmen.MEN_NUMCTRL INNER JOIN programa ON programa.PRG_NUMCTRL= proxmen.PRG_NUMCTRL INNER JOIN proxusu on proxusu.PRG_NUMCTRL=programa.PRG_NUMCTRL INNER JOIN tipousu on tipousu.TIU_NUMCTRL= proxusu.TIU_NUMCTRL inner JOIN propietario on propietario.TIU_NUMCTRL=tipousu.TIU_NUMCTRL WHERE propietario.TIU_NUMCTRL = 2')
+                datos = { datos, rows }
+            }
+        }
+        if (datos != null) {
+            res.json(datos)
         }
         else {
-            rows2 = await connection.query('SELECT menu.MEN_NOMBRE, programa.PRG_NOMBRE FROM menu inner join proxmen on menu.MEN_NUMCTRL= proxmen.MEN_NUMCTRL INNER JOIN programa ON programa.PRG_NUMCTRL= proxmen.PRG_NUMCTRL INNER JOIN proxusu on proxusu.PRG_NUMCTRL=programa.PRG_NUMCTRL INNER JOIN tipousu on tipousu.TIU_NUMCTRL= proxusu.TIU_NUMCTRL inner JOIN proveedor on proveedor.TIU_NUMCTRL=tipousu.TIU_NUMCTRL WHERE proveedor.TIU_NUMCTRL = 1')
+            res.sendStatus(400)
         }
-        var datos = {
-            usuario: rows,
-            menu: rows2
-        }
-        res.json(datos)
     } catch (error) {
-        console.log(error)
         res.sendStatus(400)
     }
 
