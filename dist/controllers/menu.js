@@ -263,7 +263,7 @@ var updateMenu = /*#__PURE__*/function () {
           case 3:
             connection = _context6.sent;
             _context6.next = 6;
-            return connection.query('UPDATE menu SET MEN_CLAVE = ?, MEN_NOMBRE = ? WHERE MEN_NUMCTRL = ?', [req.body.MEN_CLAVE, rea.body.MEN_NOMBRE, req.params.id]);
+            return connection.query('UPDATE menu SET ? WHERE MEN_NUMCTRL = ?', [req.body, req.params.id]);
 
           case 6:
             _yield$connection$que11 = _context6.sent;

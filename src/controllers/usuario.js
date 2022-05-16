@@ -20,6 +20,16 @@ export const getProveedores = async (req, res) => {
     }
 }
 
+export const getSupervisores = async (req, res) => {
+    try {
+        const connection = await connect()
+        const [rows] = await connection.query('SELECT * FROM supervisor')
+        res.json(rows)
+    } catch (error) {
+        res.sendStatus(400)
+    }
+}
+
 export const getPropietario = async (req, res) => {
     try {
         const connection = await connect()
@@ -34,6 +44,16 @@ export const getProveedor = async (req, res) => {
     try {
         const connection = await connect()
         const [rows] = await connection.query('SELECT * FROM proveedor WHERE PRV_NUMCTRL = ?', [req.params.id,])
+        res.json(rows[0])
+    } catch (error) {
+        res.sendStatus(400)
+    }
+}
+
+export const getSupervisor = async (req, res) => {
+    try {
+        const connection = await connect()
+        const [rows] = await connection.query('SELECT * FROM proveedor WHERE SUP_NUMCTRL = ?', [req.params.id,])
         res.json(rows[0])
     } catch (error) {
         res.sendStatus(400)
@@ -82,6 +102,25 @@ export const createProveedor = async (req, res) => {
     }
 }
 
+export const createSupervisor = async (req, res) => {
+    try {
+        const connection = await connect()
+        const [rows] = await connection.query("INSERT INTO supervisor (SUP_NOMBRE, SUP_CORREO, SUP_CONTRA, TIU_NUMCTRL) VALUES (?, ?, ?, ?)",
+            [
+                req.body.SUP_NOMBRE,
+                req.body.SUP_CORREO,
+                req.body.SUP_CONTRA,
+                3
+            ])
+        res.json({
+            id: rows.insertId,
+            ...req.body
+        })
+    } catch (error) {
+        res.sendStatus(400)
+    }
+}
+
 export const deleteProveedor = async (req, res) => {
     try {
         const connection = await connect()
@@ -99,6 +138,19 @@ export const deletePropietario = async (req, res) => {
     try {
         const connection = await connect()
         const [rows] = await connection.query('DELETE FROM propietario WHERE PRO_NUMCTRL = ?',
+            [
+                req.params.id
+            ])
+        res.sendStatus(204)
+    } catch (error) {
+        res.sendStatus(400)
+    }
+}
+
+export const deleteSupervisor = async (req, res) => {
+    try {
+        const connection = await connect()
+        const [rows] = await connection.query('DELETE FROM supervisor WHERE SUP_NUMCTRL = ?',
             [
                 req.params.id
             ])
@@ -136,10 +188,25 @@ export const updatePropietario = async (req, res) => {
     }
 }
 
+export const updateSupervisor = async (req, res) => {
+    try {
+        const connection = await connect()
+        const [rows] = await connection.query('UPDATE supervisor SET ? WHERE SUP_NUMCTRL = ?',
+            [
+                req.body,
+                req.params.id
+            ])
+        res.json(rows)
+    } catch (error) {
+        res.sendStatus(400)
+    }
+}
+
 export const loginUsuario = async (req, res) => {
     try {
         const connection = await connect()
         var datos = null
+        var menu = null
         var [rows] = await connection.query('SELECT * FROM proveedor WHERE PRV_CORREO = ? AND PRV_CONTRA = ?',
             [
                 req.body.correo,
@@ -147,8 +214,9 @@ export const loginUsuario = async (req, res) => {
             ])
         if (rows[0] != null) {
             datos = rows[0]
-            rows = await connection.query('SELECT menu.MEN_NOMBRE, programa.PRG_NOMBRE FROM menu inner join proxmen on menu.MEN_NUMCTRL= proxmen.MEN_NUMCTRL INNER JOIN programa ON programa.PRG_NUMCTRL= proxmen.PRG_NUMCTRL INNER JOIN proxusu on proxusu.PRG_NUMCTRL=programa.PRG_NUMCTRL INNER JOIN tipousu on tipousu.TIU_NUMCTRL= proxusu.TIU_NUMCTRL inner JOIN proveedor on proveedor.TIU_NUMCTRL=tipousu.TIU_NUMCTRL WHERE proveedor.TIU_NUMCTRL = 1')
-            datos = { datos, rows }
+            rows = await connection.query('SELECT programa.PRG_CLAVE, programa.PRG_NOMBRE, programa.PRG_RUTA FROM menu inner join proxmen on menu.MEN_NUMCTRL = proxmen.MEN_NUMCTRL INNER JOIN programa ON programa.PRG_NUMCTRL = proxmen.PRG_NUMCTRL INNER JOIN proxusu on proxusu.PRG_NUMCTRL = programa.PRG_NUMCTRL INNER JOIN tipousu on tipousu.TIU_NUMCTRL = proxusu.TIU_NUMCTRL WHERE menu.MEN_NUMCTRL = ? AND tipousu.TIU_NUMCTRL = ?', [rows[0].TIU_NUMCTRL, rows[0].TIU_NUMCTRL])
+            menu = rows[0]
+            datos = { datos, menu }
         }
         else {
             [rows] = await connection.query('SELECT * FROM propietario WHERE PRO_CORREO = ? AND PRO_CONTRA = ?',
@@ -158,8 +226,23 @@ export const loginUsuario = async (req, res) => {
                 ])
             if (rows[0] != null) {
                 datos = rows[0]
-                rows = await connection.query('SELECT menu.MEN_NOMBRE, programa.PRG_NOMBRE FROM menu inner join proxmen on menu.MEN_NUMCTRL= proxmen.MEN_NUMCTRL INNER JOIN programa ON programa.PRG_NUMCTRL= proxmen.PRG_NUMCTRL INNER JOIN proxusu on proxusu.PRG_NUMCTRL=programa.PRG_NUMCTRL INNER JOIN tipousu on tipousu.TIU_NUMCTRL= proxusu.TIU_NUMCTRL inner JOIN propietario on propietario.TIU_NUMCTRL=tipousu.TIU_NUMCTRL WHERE propietario.TIU_NUMCTRL = 2')
-                datos = { datos, rows }
+                rows = await connection.query('SELECT programa.PRG_CLAVE, programa.PRG_NOMBRE, programa.PRG_RUTA FROM menu inner join proxmen on menu.MEN_NUMCTRL = proxmen.MEN_NUMCTRL INNER JOIN programa ON programa.PRG_NUMCTRL = proxmen.PRG_NUMCTRL INNER JOIN proxusu on proxusu.PRG_NUMCTRL = programa.PRG_NUMCTRL INNER JOIN tipousu on tipousu.TIU_NUMCTRL = proxusu.TIU_NUMCTRL WHERE menu.MEN_NUMCTRL = ? AND tipousu.TIU_NUMCTRL = ?', [rows[0].TIU_NUMCTRL, rows[0].TIU_NUMCTRL])
+                menu = rows[0]
+                datos = { datos, menu }
+            }
+            else {
+                [rows] = await connection.query('SELECT * FROM supervisor WHERE SUP_CORREO = ? AND SUP_CONTRA = ?',
+                    [
+                        req.body.correo,
+                        req.body.password
+                    ])
+                if (rows[0] != null) {
+                    datos = rows[0]
+                    rows = await connection.query('SELECT programa.PRG_CLAVE, programa.PRG_NOMBRE, programa.PRG_RUTA FROM menu inner join proxmen on menu.MEN_NUMCTRL = proxmen.MEN_NUMCTRL INNER JOIN programa ON programa.PRG_NUMCTRL = proxmen.PRG_NUMCTRL INNER JOIN proxusu on proxusu.PRG_NUMCTRL = programa.PRG_NUMCTRL INNER JOIN tipousu on tipousu.TIU_NUMCTRL = proxusu.TIU_NUMCTRL WHERE menu.MEN_NUMCTRL = ? AND tipousu.TIU_NUMCTRL = ?', [rows[0].TIU_NUMCTRL, rows[0].TIU_NUMCTRL])
+                    menu = rows[0]
+                    datos = { datos, menu }
+                }
+
             }
         }
         if (datos != null) {
@@ -171,5 +254,4 @@ export const loginUsuario = async (req, res) => {
     } catch (error) {
         res.sendStatus(400)
     }
-
 }

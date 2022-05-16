@@ -9,7 +9,9 @@ import usuario from "./routes/usuario"
 import menu from "./routes/menu"
 import programa from "./routes/programa"
 import raza from "./routes/raza"
-
+import tipousu from "./routes/tipousu"
+import proxmen from "./routes/proxmen"
+import proxusu from "./routes/proxusu"
 
 import { options } from './swaggerOptions'
 
@@ -31,7 +33,9 @@ app.use(usuario)
 app.use(menu)
 app.use(programa)
 app.use(raza)
-
+app.use(tipousu)
+app.use(proxmen)
+app.use(proxusu)
 
 /**
  * Create Documentation

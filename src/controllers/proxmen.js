@@ -3,7 +3,7 @@ import { connect } from '../database'
 export const getProxmens = async (req, res) => {
     try {
         const connection = await connect()
-        const [rows] = await connection.query('SELECT programa.PRG_NOMBRE, MEN_NOMBRE FROM proxmen INNER JOIN programa ON programa.PRG_NUMCTRL = proxmen.PRG_NUMCTRL inner join menu ON menu.MEN_NUMCTRL = proxmen.MEN_NUMCTRL')
+        const [rows] = await connection.query('SELECT proxmen.PXM_NUMCTRL, proxmen.PRG_NUMCTRL, programa.PRG_NOMBRE, proxmen.MEN_NUMCTRL, menu.MEN_NOMBRE FROM proxmen INNER JOIN programa ON programa.PRG_NUMCTRL = proxmen.PRG_NUMCTRL inner join menu ON menu.MEN_NUMCTRL = proxmen.MEN_NUMCTRL')
         res.json(rows)
     } catch (error) {
         res.sendStatus(400)
@@ -13,7 +13,7 @@ export const getProxmens = async (req, res) => {
 export const getProxmen = async (req, res) => {
     try {
         const connection = await connect()
-        const [rows] = await connection.query('SELECT programa.PRG_NOMBRE, MEN_NOMBRE FROM proxmen INNER JOIN programa ON programa.PRG_NUMCTRL = proxmen.PRG_NUMCTRL inner join menu ON menu.MEN_NUMCTRL = proxmen.MEN_NUMCTRL WHERE PXM_NUMCTRL = ?', [req.params.id,])
+        const [rows] = await connection.query('SELECT proxmen.PXM_NUMCTRL, proxmen.PRG_NUMCTRL, programa.PRG_NOMBRE, proxmen.MEN_NUMCTRL, menu.MEN_NOMBRE FROM proxmen INNER JOIN programa ON programa.PRG_NUMCTRL = proxmen.PRG_NUMCTRL inner join menu ON menu.MEN_NUMCTRL = proxmen.MEN_NUMCTRL WHERE PXM_NUMCTRL = ?', [req.params.id,])
         res.json(rows[0])
     } catch (error) {
         res.sendStatus(400)

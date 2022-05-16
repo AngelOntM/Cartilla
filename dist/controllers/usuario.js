@@ -400,7 +400,7 @@ var updateProveedor = /*#__PURE__*/function () {
           case 3:
             connection = _context9.sent;
             _context9.next = 6;
-            return connection.query('UPDATE usuario SET PRV_NOMBRE = ?, PRV_PROPIETARIO = ?, PRV_CELULAR = ?, PRV_TELOFICINA = ?, PRV_CORREO = ?, PRV_CONTRA = ? WHERE PRV_NUMCTRL = ?', [req.body.PRV_NOMBRE, req.body.PRV_PROPIETARIO, req.body.PRO_CELULAR, req.body.PRV_TELOFICINA, req.body.PRO_CORREO, req.body.PRO_CONTRA, req.params.id]);
+            return connection.query('UPDATE usuario SET ? WHERE PRV_NUMCTRL = ?', [req.body, req.params.id]);
 
           case 6:
             _yield$connection$que17 = _context9.sent;
@@ -445,7 +445,7 @@ var updatePropietario = /*#__PURE__*/function () {
           case 3:
             connection = _context10.sent;
             _context10.next = 6;
-            return connection.query('UPDATE propietario SET PRO_NOMBRE = ?, PRO_CELULAR = ?, PRO_CORREO = ?, PRO_CONTRA = ? WHERE PRO_NUMCTRL = ?', [req.body.PRO_NOMBRE, req.body.PRO_CELULAR, req.body.PRO_CORREO, req.body.PRO_CONTRA, req.params.id]);
+            return connection.query('UPDATE propietario SET ? WHERE PRO_NUMCTRL = ?', [req.body, req.params.id]);
 
           case 6:
             _yield$connection$que19 = _context10.sent;
@@ -477,7 +477,7 @@ exports.updatePropietario = updatePropietario;
 
 var loginUsuario = /*#__PURE__*/function () {
   var _ref11 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee11(req, res) {
-    var connection, _yield$connection$que21, _yield$connection$que22, rows, _yield$connection$que23, _yield$connection$que24, rows1;
+    var connection, datos, _yield$connection$que21, _yield$connection$que22, rows, _yield$connection$que23, _yield$connection$que24;
 
     return _regenerator["default"].wrap(function _callee11$(_context11) {
       while (1) {
@@ -489,44 +489,79 @@ var loginUsuario = /*#__PURE__*/function () {
 
           case 3:
             connection = _context11.sent;
-            _context11.next = 6;
+            datos = null;
+            _context11.next = 7;
             return connection.query('SELECT * FROM proveedor WHERE PRV_CORREO = ? AND PRV_CONTRA = ?', [req.body.correo, req.body.password]);
 
-          case 6:
+          case 7:
             _yield$connection$que21 = _context11.sent;
             _yield$connection$que22 = (0, _slicedToArray2["default"])(_yield$connection$que21, 1);
             rows = _yield$connection$que22[0];
 
-            if (!(rows[0] == null)) {
-              _context11.next = 16;
+            if (!(rows[0] != null)) {
+              _context11.next = 18;
               break;
             }
 
-            _context11.next = 12;
-            return connection.query('SELECT * FROM propietario WHERE PRO_CORREO = ? AND PRO_CONTRA = ?', [req.body.correo, req.body.password]);
+            datos = rows[0];
+            _context11.next = 14;
+            return connection.query('SELECT menu.MEN_NOMBRE, programa.PRG_NOMBRE FROM menu inner join proxmen on menu.MEN_NUMCTRL= proxmen.MEN_NUMCTRL INNER JOIN programa ON programa.PRG_NUMCTRL= proxmen.PRG_NUMCTRL INNER JOIN proxusu on proxusu.PRG_NUMCTRL=programa.PRG_NUMCTRL INNER JOIN tipousu on tipousu.TIU_NUMCTRL= proxusu.TIU_NUMCTRL inner JOIN proveedor on proveedor.TIU_NUMCTRL=tipousu.TIU_NUMCTRL WHERE proveedor.TIU_NUMCTRL = 1');
 
-          case 12:
-            _yield$connection$que23 = _context11.sent;
-            _yield$connection$que24 = (0, _slicedToArray2["default"])(_yield$connection$que23, 1);
-            rows1 = _yield$connection$que24[0];
-            res.json(rows1);
-
-          case 16:
-            res.json(rows[0]);
-            _context11.next = 22;
+          case 14:
+            rows = _context11.sent;
+            datos = {
+              datos: datos,
+              rows: rows
+            };
+            _context11.next = 29;
             break;
 
-          case 19:
-            _context11.prev = 19;
+          case 18:
+            _context11.next = 20;
+            return connection.query('SELECT * FROM propietario WHERE PRO_CORREO = ? AND PRO_CONTRA = ?', [req.body.correo, req.body.password]);
+
+          case 20:
+            _yield$connection$que23 = _context11.sent;
+            _yield$connection$que24 = (0, _slicedToArray2["default"])(_yield$connection$que23, 1);
+            rows = _yield$connection$que24[0];
+
+            if (!(rows[0] != null)) {
+              _context11.next = 29;
+              break;
+            }
+
+            datos = rows[0];
+            _context11.next = 27;
+            return connection.query('SELECT menu.MEN_NOMBRE, programa.PRG_NOMBRE FROM menu inner join proxmen on menu.MEN_NUMCTRL= proxmen.MEN_NUMCTRL INNER JOIN programa ON programa.PRG_NUMCTRL= proxmen.PRG_NUMCTRL INNER JOIN proxusu on proxusu.PRG_NUMCTRL=programa.PRG_NUMCTRL INNER JOIN tipousu on tipousu.TIU_NUMCTRL= proxusu.TIU_NUMCTRL inner JOIN propietario on propietario.TIU_NUMCTRL=tipousu.TIU_NUMCTRL WHERE propietario.TIU_NUMCTRL = 2');
+
+          case 27:
+            rows = _context11.sent;
+            datos = {
+              datos: datos,
+              rows: rows
+            };
+
+          case 29:
+            if (datos != null) {
+              res.json(datos);
+            } else {
+              res.sendStatus(400);
+            }
+
+            _context11.next = 35;
+            break;
+
+          case 32:
+            _context11.prev = 32;
             _context11.t0 = _context11["catch"](0);
             res.sendStatus(400);
 
-          case 22:
+          case 35:
           case "end":
             return _context11.stop();
         }
       }
-    }, _callee11, null, [[0, 19]]);
+    }, _callee11, null, [[0, 32]]);
   }));
 
   return function loginUsuario(_x21, _x22) {

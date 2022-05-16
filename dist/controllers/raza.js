@@ -263,7 +263,7 @@ var updateRaza = /*#__PURE__*/function () {
           case 3:
             connection = _context6.sent;
             _context6.next = 6;
-            return connection.query('UPDATE raza SET RAZ_NOMBRE = ? WHERE RAZ_NUMCTRL = ?', [req.body.RAZ_NOMBRE, req.params.id]);
+            return connection.query('UPDATE raza SET ? WHERE RAZ_NUMCTRL = ?', [req.body, req.params.id]);
 
           case 6:
             _yield$connection$que11 = _context6.sent;

@@ -5,7 +5,7 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.updatePrograma = exports.getProgramas = exports.getPrograma = exports.deletePrograma = exports.createPrograma = exports.countProgramas = void 0;
+exports.updateTipousu = exports.getTipousus = exports.getTipousu = exports.deleteTipousu = exports.createTipousu = exports.countTipousus = void 0;
 
 var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
 
@@ -21,7 +21,7 @@ function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (O
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2["default"])(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 
-var getProgramas = /*#__PURE__*/function () {
+var getTipousus = /*#__PURE__*/function () {
   var _ref = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee(req, res) {
     var connection, _yield$connection$que, _yield$connection$que2, rows;
 
@@ -36,7 +36,7 @@ var getProgramas = /*#__PURE__*/function () {
           case 3:
             connection = _context.sent;
             _context.next = 6;
-            return connection.query('SELECT * FROM programa');
+            return connection.query('SELECT * FROM Tipousu');
 
           case 6:
             _yield$connection$que = _context.sent;
@@ -59,14 +59,14 @@ var getProgramas = /*#__PURE__*/function () {
     }, _callee, null, [[0, 12]]);
   }));
 
-  return function getProgramas(_x, _x2) {
+  return function getTipousus(_x, _x2) {
     return _ref.apply(this, arguments);
   };
 }();
 
-exports.getProgramas = getProgramas;
+exports.getTipousus = getTipousus;
 
-var getPrograma = /*#__PURE__*/function () {
+var getTipousu = /*#__PURE__*/function () {
   var _ref2 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee2(req, res) {
     var connection, _yield$connection$que3, _yield$connection$que4, rows;
 
@@ -81,7 +81,7 @@ var getPrograma = /*#__PURE__*/function () {
           case 3:
             connection = _context2.sent;
             _context2.next = 6;
-            return connection.query('SELECT * FROM programa WHERE PRG_NUMCTRL = ?', [req.params.id]);
+            return connection.query('SELECT * FROM Tipousu WHERE MEN_NUMCTRL = ?', [req.params.id]);
 
           case 6:
             _yield$connection$que3 = _context2.sent;
@@ -104,14 +104,14 @@ var getPrograma = /*#__PURE__*/function () {
     }, _callee2, null, [[0, 12]]);
   }));
 
-  return function getPrograma(_x3, _x4) {
+  return function getTipousu(_x3, _x4) {
     return _ref2.apply(this, arguments);
   };
 }();
 
-exports.getPrograma = getPrograma;
+exports.getTipousu = getTipousu;
 
-var countProgramas = /*#__PURE__*/function () {
+var countTipousus = /*#__PURE__*/function () {
   var _ref3 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee3(req, res) {
     var connection, _yield$connection$que5, _yield$connection$que6, rows;
 
@@ -126,7 +126,7 @@ var countProgramas = /*#__PURE__*/function () {
           case 3:
             connection = _context3.sent;
             _context3.next = 6;
-            return connection.query('SELECT COUNT(*) FROM programa');
+            return connection.query('SELECT COUNT(*) FROM Tipousu');
 
           case 6:
             _yield$connection$que5 = _context3.sent;
@@ -149,14 +149,14 @@ var countProgramas = /*#__PURE__*/function () {
     }, _callee3, null, [[0, 12]]);
   }));
 
-  return function countProgramas(_x5, _x6) {
+  return function countTipousus(_x5, _x6) {
     return _ref3.apply(this, arguments);
   };
 }();
 
-exports.countProgramas = countProgramas;
+exports.countTipousus = countTipousus;
 
-var createPrograma = /*#__PURE__*/function () {
+var createTipousu = /*#__PURE__*/function () {
   var _ref4 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee4(req, res) {
     var connection, _yield$connection$que7, _yield$connection$que8, rows;
 
@@ -171,7 +171,7 @@ var createPrograma = /*#__PURE__*/function () {
           case 3:
             connection = _context4.sent;
             _context4.next = 6;
-            return connection.query("INSERT INTO programa(PRG_CLAVE, PRG_NOMBRE, PRG_RUTA) VALUES (?, ?, ?)", [req.body.PRG_CLAVE, req.body.PRG_NOMBRE, req.body.PRG_RUTA]);
+            return connection.query("INSERT INTO Tipousu(MEN_CLAVE,MEN_NOMBRE) VALUES (?, ?)", [req.body.MEN_CLAVE, req.body.MEN_NOMBRE]);
 
           case 6:
             _yield$connection$que7 = _context4.sent;
@@ -196,14 +196,14 @@ var createPrograma = /*#__PURE__*/function () {
     }, _callee4, null, [[0, 12]]);
   }));
 
-  return function createPrograma(_x7, _x8) {
+  return function createTipousu(_x7, _x8) {
     return _ref4.apply(this, arguments);
   };
 }();
 
-exports.createPrograma = createPrograma;
+exports.createTipousu = createTipousu;
 
-var deletePrograma = /*#__PURE__*/function () {
+var deleteTipousu = /*#__PURE__*/function () {
   var _ref5 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee5(req, res) {
     var connection, _yield$connection$que9, _yield$connection$que10, rows;
 
@@ -218,7 +218,7 @@ var deletePrograma = /*#__PURE__*/function () {
           case 3:
             connection = _context5.sent;
             _context5.next = 6;
-            return connection.query('DELETE FROM programa WHERE PRG_NUMCTRL = ?', [req.params.id]);
+            return connection.query('DELETE FROM Tipousu WHERE MEN_NUMCTRL = ?', [req.params.id]);
 
           case 6:
             _yield$connection$que9 = _context5.sent;
@@ -241,14 +241,14 @@ var deletePrograma = /*#__PURE__*/function () {
     }, _callee5, null, [[0, 12]]);
   }));
 
-  return function deletePrograma(_x9, _x10) {
+  return function deleteTipousu(_x9, _x10) {
     return _ref5.apply(this, arguments);
   };
 }();
 
-exports.deletePrograma = deletePrograma;
+exports.deleteTipousu = deleteTipousu;
 
-var updatePrograma = /*#__PURE__*/function () {
+var updateTipousu = /*#__PURE__*/function () {
   var _ref6 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee6(req, res) {
     var connection, _yield$connection$que11, _yield$connection$que12, rows;
 
@@ -263,7 +263,7 @@ var updatePrograma = /*#__PURE__*/function () {
           case 3:
             connection = _context6.sent;
             _context6.next = 6;
-            return connection.query('UPDATE programa SET ? WHERE PRG_NUMCTRL = ?', [req.body, req.params.id]);
+            return connection.query('UPDATE Tipousu SET ? WHERE MEN_NUMCTRL = ?', [req.body, req.params.id]);
 
           case 6:
             _yield$connection$que11 = _context6.sent;
@@ -286,9 +286,9 @@ var updatePrograma = /*#__PURE__*/function () {
     }, _callee6, null, [[0, 12]]);
   }));
 
-  return function updatePrograma(_x11, _x12) {
+  return function updateTipousu(_x11, _x12) {
     return _ref6.apply(this, arguments);
   };
 }();
 
-exports.updatePrograma = updatePrograma;
+exports.updateTipousu = updateTipousu;
