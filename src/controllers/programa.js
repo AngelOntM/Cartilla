@@ -33,11 +33,12 @@ export const countProgramas = async (req, res) => {
 export const createPrograma = async (req, res) => {
     try {
         const connection = await connect()
-        const [rows] = await connection.query("INSERT INTO programa(PRG_CLAVE, PRG_NOMBRE, PRG_RUTA) VALUES (?, ?, ?)",
+        const [rows] = await connection.query("INSERT INTO programa(PRG_CLAVE, PRG_NOMBRE, PRG_RUTA, PRG_DESC) VALUES (?, ?, ?, ?)",
             [
                 req.body.PRG_CLAVE,
                 req.body.PRG_NOMBRE,
-                req.body.PRG_RUTA
+                req.body.PRG_RUTA,
+                req.body.PRG_DESC
             ])
         res.json({
             id: rows.insertId,
