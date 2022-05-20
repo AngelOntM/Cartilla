@@ -37,6 +37,15 @@ router.get('/usuario/propietario', _Usuario.getPropietarios);
 router.get('/usuario/proveedor', _Usuario.getProveedores);
 /**
  * @swagger
+ * /usuario/supervisor:
+ *  get:
+ *      summary: Get all Supervisores
+ *      tags: [Usuarios]
+ */
+
+router.get('/usuario/supervisor', _Usuario.getSupervisores);
+/**
+ * @swagger
  * /usuario/proveedor/id:
  *  get:
  *      summary: Get a Proveedor
@@ -55,6 +64,15 @@ router.get('/usuario/proveedor/:id', _Usuario.getProveedor);
 router.get('/usuario/propietario/:id', _Usuario.getPropietario);
 /**
  * @swagger
+ * /usuario/supervisor/id:
+ *  get:
+ *      summary: Get a Supervisor
+ *      tags: [Usuarios]
+ */
+
+router.get('/usuario/supervisor/:id', _Usuario.getSupervisor);
+/**
+ * @swagger
  * /usuario/proveedor/register:
  *  post:
  *      summary: Register a new Proveedor
@@ -71,6 +89,15 @@ router.post('/usuario/proveedor/register', _Usuario.createProveedor);
  */
 
 router.post('/usuario/propietario/register', _Usuario.createPropietario);
+/**
+ * @swagger
+ * /usuario/supervisor/register:
+ *  post:
+ *      summary: Register a new Supervisor
+ *      tags: [Usuarios]
+ */
+
+router.post('/usuario/supervisor/register', _Usuario.createSupervisor);
 /**
  * @swagger
  * /usuarios/login:
@@ -100,6 +127,15 @@ router.put('/usuario/propietario/:id', _Usuario.updatePropietario);
 router.put('/usuario/proveedor/:id', _Usuario.updateProveedor);
 /**
  * @swagger
+ * /usuario/supervisor/id:
+ *  put:
+ *      summary: Update a Proveedor
+ *      tags: [Usuarios]
+ */
+
+router.put('/usuario/supervisor/:id', _Usuario.updateSupervisor);
+/**
+ * @swagger
  * /usuario/proveedor/id:
  *  delete:
  *      summary: Delete a Proveedor
@@ -116,5 +152,14 @@ router["delete"]('/usuario/proveedor/:id', _Usuario.deleteProveedor);
  */
 
 router["delete"]('/usuario/propietario/:id', _Usuario.deletePropietario);
+/**
+ * @swagger
+ * /usuario/propietario/id:
+ *  delete:
+ *      summary: Delete a Propietario
+ *      tags: [Usuarios]
+ */
+
+router["delete"]('/usuario/supervisor/:id', _Usuario.deleteSupervisor);
 var _default = router;
 exports["default"] = _default;

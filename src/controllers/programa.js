@@ -2,8 +2,28 @@ import { connect } from '../database'
 
 export const getProgramas = async (req, res) => {
     try {
+        var sql = 'SELECT * FROM programa'
+        if (req.body.PRG_CLAVE) {
+            sql += ' WHERE PRG_CLAVE LIKE "%' + req.body.PRG_CLAVE + '%"'
+        }
+        if (req.body.PRG_NOMBRE) {
+            sql += ' WHERE PRG_NOMBRE LIKE "%' + req.body.PRG_NOMBRE + '%"'
+        }
+        if (req.body.PRG_RUTA) {
+            sql += ' WHERE PRG_RUTA LIKE "%' + req.body.PRG_RUTA + '%"'
+        }
+        if (req.body.PRG_DESC) {
+            sql += ' WHERE PRG_DESC LIKE "%' + req.body.PRG_DESC + '%"'
+        }
+        if (req.body.ORDER) {
+            sql += ' ORDER BY ' + req.body.ORDER + ' '
+        }
+        if (req.body.BY) {
+            sql += req.body.BY
+        }
+        sql += ' LIMIT ' + req.body.LIMIT1 + ', ' + req.body.LIMIT2
         const connection = await connect()
-        const [rows] = await connection.query('SELECT * FROM programa')
+        const [rows] = await connection.query(sql)
         res.json(rows)
     } catch (error) {
         res.sendStatus(400)

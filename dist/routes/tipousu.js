@@ -25,7 +25,7 @@ var router = (0, _express.Router)();
  *      tags: [Tipousus]
  */
 
-router.get('/Tipousu', _Tipousu.getTipousus);
+router.get('/tipousu', _Tipousu.getTipousus);
 /**
  * @swagger
  * /Tipousus/count:
@@ -34,7 +34,7 @@ router.get('/Tipousu', _Tipousu.getTipousus);
  *      tags: [Tipousus]
  */
 
-router.get('/Tipousu/count', _Tipousu.countTipousus);
+router.get('/tipousu/count', _Tipousu.countTipousus);
 /**
  * @swagger
  * /Tipousus/id:
@@ -43,7 +43,7 @@ router.get('/Tipousu/count', _Tipousu.countTipousus);
  *      tags: [Tipousus]
  */
 
-router.get('/Tipousu/:id', _Tipousu.getTipousu);
+router.get('/tipousu/:id', _Tipousu.getTipousu);
 /**
  * @swagger
  * /Tipousus:
@@ -52,7 +52,7 @@ router.get('/Tipousu/:id', _Tipousu.getTipousu);
  *      tags: [Tipousus]
  */
 
-router.post('/Tipousu', _Tipousu.createTipousu);
+router.post('/tipousu', _Tipousu.createTipousu);
 /**
  * @swagger
  * /Tipousus/id:
@@ -61,7 +61,7 @@ router.post('/Tipousu', _Tipousu.createTipousu);
  *      tags: [Tipousus]
  */
 
-router.put('/Tipousu/:id', _Tipousu.updateTipousu);
+router.put('/tipousu/:id', _Tipousu.updateTipousu);
 /**
  * @swagger
  * /Tipousus/id:
@@ -70,6 +70,6 @@ router.put('/Tipousu/:id', _Tipousu.updateTipousu);
  *      tags: [Tipousus]
  */
 
-router["delete"]('/Tipousu/:id', _Tipousu.deleteTipousu);
+router["delete"]('/tipousu/:id', _Tipousu.deleteTipousu);
 var _default = router;
 exports["default"] = _default;

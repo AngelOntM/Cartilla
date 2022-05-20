@@ -36,7 +36,7 @@ var getProxmens = /*#__PURE__*/function () {
           case 3:
             connection = _context.sent;
             _context.next = 6;
-            return connection.query('SELECT programa.PRG_NOMBRE, MEN_NOMBRE FROM proxmen INNER JOIN programa ON programa.PRG_NUMCTRL = proxmen.PRG_NUMCTRL inner join menu ON menu.MEN_NUMCTRL = proxmen.MEN_NUMCTRL');
+            return connection.query('SELECT proxmen.PXM_NUMCTRL, proxmen.PRG_NUMCTRL, programa.PRG_NOMBRE, proxmen.MEN_NUMCTRL, menu.MEN_NOMBRE FROM proxmen INNER JOIN programa ON programa.PRG_NUMCTRL = proxmen.PRG_NUMCTRL inner join menu ON menu.MEN_NUMCTRL = proxmen.MEN_NUMCTRL');
 
           case 6:
             _yield$connection$que = _context.sent;
@@ -81,7 +81,7 @@ var getProxmen = /*#__PURE__*/function () {
           case 3:
             connection = _context2.sent;
             _context2.next = 6;
-            return connection.query('SELECT programa.PRG_NOMBRE, MEN_NOMBRE FROM proxmen INNER JOIN programa ON programa.PRG_NUMCTRL = proxmen.PRG_NUMCTRL inner join menu ON menu.MEN_NUMCTRL = proxmen.MEN_NUMCTRL WHERE PXM_NUMCTRL = ?', [req.params.id]);
+            return connection.query('SELECT proxmen.PXM_NUMCTRL, proxmen.PRG_NUMCTRL, programa.PRG_NOMBRE, proxmen.MEN_NUMCTRL, menu.MEN_NOMBRE FROM proxmen INNER JOIN programa ON programa.PRG_NUMCTRL = proxmen.PRG_NUMCTRL inner join menu ON menu.MEN_NUMCTRL = proxmen.MEN_NUMCTRL WHERE PXM_NUMCTRL = ?', [req.params.id]);
 
           case 6:
             _yield$connection$que3 = _context2.sent;

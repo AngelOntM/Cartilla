@@ -81,7 +81,7 @@ var getTipousu = /*#__PURE__*/function () {
           case 3:
             connection = _context2.sent;
             _context2.next = 6;
-            return connection.query('SELECT * FROM Tipousu WHERE MEN_NUMCTRL = ?', [req.params.id]);
+            return connection.query('SELECT * FROM Tipousu WHERE TIU_NUMCTRL = ?', [req.params.id]);
 
           case 6:
             _yield$connection$que3 = _context2.sent;
@@ -171,7 +171,7 @@ var createTipousu = /*#__PURE__*/function () {
           case 3:
             connection = _context4.sent;
             _context4.next = 6;
-            return connection.query("INSERT INTO Tipousu(MEN_CLAVE,MEN_NOMBRE) VALUES (?, ?)", [req.body.MEN_CLAVE, req.body.MEN_NOMBRE]);
+            return connection.query("INSERT INTO Tipousu(TIU_NOMBRE) VALUES (?)", [req.body.TIU_NOMBRE]);
 
           case 6:
             _yield$connection$que7 = _context4.sent;
@@ -218,7 +218,7 @@ var deleteTipousu = /*#__PURE__*/function () {
           case 3:
             connection = _context5.sent;
             _context5.next = 6;
-            return connection.query('DELETE FROM Tipousu WHERE MEN_NUMCTRL = ?', [req.params.id]);
+            return connection.query('DELETE FROM Tipousu WHERE TIU_NUMCTRL = ?', [req.params.id]);
 
           case 6:
             _yield$connection$que9 = _context5.sent;
@@ -263,7 +263,7 @@ var updateTipousu = /*#__PURE__*/function () {
           case 3:
             connection = _context6.sent;
             _context6.next = 6;
-            return connection.query('UPDATE Tipousu SET ? WHERE MEN_NUMCTRL = ?', [req.body, req.params.id]);
+            return connection.query('UPDATE Tipousu SET ? WHERE TIU_NUMCTRL = ?', [req.body, req.params.id]);
 
           case 6:
             _yield$connection$que11 = _context6.sent;

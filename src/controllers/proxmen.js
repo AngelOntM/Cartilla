@@ -2,8 +2,22 @@ import { connect } from '../database'
 
 export const getProxmens = async (req, res) => {
     try {
+        var sql = 'SELECT proxmen.PXM_NUMCTRL, proxmen.PRG_NUMCTRL, programa.PRG_NOMBRE, proxmen.MEN_NUMCTRL, menu.MEN_NOMBRE FROM proxmen INNER JOIN programa ON programa.PRG_NUMCTRL = proxmen.PRG_NUMCTRL inner join menu ON menu.MEN_NUMCTRL = proxmen.MEN_NUMCTRL'
+        if (req.body.PRG_NOMBRE) {
+            sql += ' WHERE PRG_NOMBRE LIKE "%' + req.body.PRG_NOMBRE + '%"'
+        }
+        if (req.body.MEN_NOMBRE) {
+            sql += ' WHERE MEN_NOMBRE LIKE "%' + req.body.MEN_NOMBRE + '%"'
+        }
+        if (req.body.ORDER) {
+            sql += ' ORDER BY ' + req.body.ORDER + ' '
+        }
+        if (req.body.BY) {
+            sql += req.body.BY
+        }
+        sql += ' LIMIT ' + req.body.LIMIT1 + ', ' + req.body.LIMIT2
         const connection = await connect()
-        const [rows] = await connection.query('SELECT proxmen.PXM_NUMCTRL, proxmen.PRG_NUMCTRL, programa.PRG_NOMBRE, proxmen.MEN_NUMCTRL, menu.MEN_NOMBRE FROM proxmen INNER JOIN programa ON programa.PRG_NUMCTRL = proxmen.PRG_NUMCTRL inner join menu ON menu.MEN_NUMCTRL = proxmen.MEN_NUMCTRL')
+        const [rows] = await connection.query(sql)
         res.json(rows)
     } catch (error) {
         res.sendStatus(400)

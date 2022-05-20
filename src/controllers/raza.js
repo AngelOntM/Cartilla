@@ -2,8 +2,19 @@ import { connect } from '../database'
 
 export const getRazas = async (req, res) => {
     try {
+        var sql = 'SELECT * FROM raza'
+        if (req.body.RAZ_NOMBRE) {
+            sql += ' WHERE RAZ_NOMBRE LIKE "%' + req.body.RAZ_NOMBRE + '%"'
+        }
+        if (req.body.ORDER) {
+            sql += ' ORDER BY ' + req.body.ORDER + ' '
+        }
+        if (req.body.BY) {
+            sql += req.body.BY
+        }
+        sql += ' LIMIT ' + req.body.LIMIT1 + ', ' + req.body.LIMIT2
         const connection = await connect()
-        const [rows] = await connection.query('SELECT * FROM raza')
+        const [rows] = await connection.query(sql)
         res.json(rows)
     } catch (error) {
         res.sendStatus(400)

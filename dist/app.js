@@ -27,6 +27,10 @@ var _raza = _interopRequireDefault(require("./routes/raza"));
 
 var _tipousu = _interopRequireDefault(require("./routes/tipousu"));
 
+var _proxmen = _interopRequireDefault(require("./routes/proxmen"));
+
+var _proxusu = _interopRequireDefault(require("./routes/proxusu"));
+
 var _swaggerOptions = require("./swaggerOptions");
 
 var specs = (0, _swaggerJsdoc["default"])(_swaggerOptions.options);
@@ -47,6 +51,8 @@ app.use(_menu["default"]);
 app.use(_programa["default"]);
 app.use(_raza["default"]);
 app.use(_tipousu["default"]);
+app.use(_proxmen["default"]);
+app.use(_proxusu["default"]);
 /**
  * Create Documentation
  */

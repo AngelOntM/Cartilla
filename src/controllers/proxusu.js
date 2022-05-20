@@ -2,8 +2,32 @@ import { connect } from '../database'
 
 export const getProxusus = async (req, res) => {
     try {
+        var sql = 'SELECT proxusu.PXU_NUMCTRL, proxusu.TIU_NUMCTRL, tipousu.TIU_NOMBRE, proxusu.PRG_NUMCTRL, programa.PRG_CLAVE, programa.PRG_NOMBRE, programa.PRG_RUTA, programa.PRG_DESC FROM proxusu INNER JOIN programa ON programa.PRG_NUMCTRL = proxusu.PRG_NUMCTRL inner join tipousu ON tipousu.TIU_NUMCTRL = proxusu.TIU_NUMCTRL'
+        if (req.body.TIU_NOMBRE) {
+            sql += ' WHERE TIU_NOMBRE LIKE "%' + req.body.TIU_NOMBRE + '%"'
+        }
+        if (req.body.PRG_CLAVE) {
+            sql += ' WHERE PRG_CLAVE LIKE "%' + req.body.PRG_CLAVE + '%"'
+        }
+        if (req.body.PRG_NOMBRE) {
+            sql += ' WHERE PRG_NOMBRE LIKE "%' + req.body.PRG_NOMBRE + '%"'
+        }
+        if (req.body.PRG_RUTA) {
+            sql += ' WHERE PRG_RUTA LIKE "%' + req.body.PRG_RUTA + '%"'
+        }
+        if (req.body.PRG_DESC) {
+            sql += ' WHERE PRG_DESC LIKE "%' + req.body.PRG_DESC + '%"'
+        }
+        if (req.body.ORDER) {
+            sql += ' ORDER BY ' + req.body.ORDER + ' '
+        }
+        if (req.body.BY) {
+            sql += req.body.BY
+        }
+        sql += ' LIMIT ' + req.body.LIMIT1 + ', ' + req.body.LIMIT2
         const connection = await connect()
-        const [rows] = await connection.query('SELECT proxusu.PXU_NUMCTRL, proxusu.TIU_NUMCTRL, tipousu.TIU_NOMBRE, proxusu.PRG_NUMCTRL, programa.PRG_CLAVE, programa.PRG_NOMBRE, programa.PRG_RUTA, programa.PRG_DESC FROM proxusu INNER JOIN programa ON programa.PRG_NUMCTRL = proxusu.PRG_NUMCTRL inner join tipousu ON tipousu.TIU_NUMCTRL = proxusu.TIU_NUMCTRL')
+        const [rows] = await connection.query(sql)
+
         res.json(rows)
     } catch (error) {
         res.sendStatus(400)

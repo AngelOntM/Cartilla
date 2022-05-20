@@ -36,7 +36,7 @@ var getMenus = /*#__PURE__*/function () {
           case 3:
             connection = _context.sent;
             _context.next = 6;
-            return connection.query('SELECT * FROM menu');
+            return connection.query('SELECT * FROM menu LIMIT ?, ?', [req.body.inicio, req.body.cantidad]);
 
           case 6:
             _yield$connection$que = _context.sent;
@@ -171,7 +171,7 @@ var createMenu = /*#__PURE__*/function () {
           case 3:
             connection = _context4.sent;
             _context4.next = 6;
-            return connection.query("INSERT INTO menu(MEN_CLAVE,MEN_NOMBRE) VALUES (?, ?)", [req.body.MEN_CLAVE, req.body.MEN_NOMBRE]);
+            return connection.query("INSERT INTO menu(MEN_CLAVE,MEN_NOMBRE,MEN_DESC) VALUES (?, ?,?)", [req.body.MEN_CLAVE, req.body.MEN_NOMBRE, req.body.MEN_DESC]);
 
           case 6:
             _yield$connection$que7 = _context4.sent;

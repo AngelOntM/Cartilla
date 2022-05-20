@@ -2,8 +2,25 @@ import { connect } from '../database'
 
 export const getPropietarios = async (req, res) => {
     try {
+        var sql = 'SELECT * FROM propietario'
+        if (req.body.PRO_NOMBRE) {
+            sql += ' WHERE PRO_NOMBRE LIKE "%' + req.body.PRO_NOMBRE + '%"'
+        }
+        if (req.body.PRO_CELULAR) {
+            sql += ' WHERE PRO_CELULAR LIKE "%' + req.body.PRO_CELULAR + '%"'
+        }
+        if (req.body.PRO_CORREO) {
+            sql += ' WHERE PRO_CORREO LIKE "%' + req.body.PRO_CORREO + '%"'
+        }
+        if (req.body.ORDER) {
+            sql += ' ORDER BY ' + req.body.ORDER + ' '
+        }
+        if (req.body.BY) {
+            sql += req.body.BY
+        }
+        sql += ' LIMIT ' + req.body.LIMIT1 + ', ' + req.body.LIMIT2
         const connection = await connect()
-        const [rows] = await connection.query('SELECT * FROM propietario')
+        const [rows] = await connection.query(sql)
         res.json(rows)
     } catch (error) {
         res.sendStatus(400)
@@ -12,8 +29,31 @@ export const getPropietarios = async (req, res) => {
 
 export const getProveedores = async (req, res) => {
     try {
+        var sql = 'SELECT * FROM proveedor'
+        if (req.body.PRV_NOMBRE) {
+            sql += ' WHERE PRV_NOMBRE LIKE "%' + req.body.PRV_NOMBRE + '%"'
+        }
+        if (req.body.PRV_PROPIETARIO) {
+            sql += ' WHERE PRV_PROPIETARIO LIKE "%' + req.body.PRV_PROPIETARIO + '%"'
+        }
+        if (req.body.PRV_CELULAR) {
+            sql += ' WHERE PRV_CELULAR LIKE "%' + req.body.PRV_CELULAR + '%"'
+        }
+        if (req.body.PRV_TELOFICINA) {
+            sql += ' WHERE PRV_TELOFICINA LIKE "%' + req.body.PRV_TELOFICINA + '%"'
+        }
+        if (req.body.PRV_CORREO) {
+            sql += ' WHERE PRV_CORREO LIKE "%' + req.body.PRV_CORREO + '%"'
+        }
+        if (req.body.ORDER) {
+            sql += ' ORDER BY ' + req.body.ORDER + ' '
+        }
+        if (req.body.BY) {
+            sql += req.body.BY
+        }
+        sql += ' LIMIT ' + req.body.LIMIT1 + ', ' + req.body.LIMIT2
         const connection = await connect()
-        const [rows] = await connection.query('SELECT * FROM proveedor')
+        const [rows] = await connection.query(sql)
         res.json(rows)
     } catch (error) {
         res.sendStatus(400)
@@ -22,8 +62,22 @@ export const getProveedores = async (req, res) => {
 
 export const getSupervisores = async (req, res) => {
     try {
+        var sql = 'SELECT * FROM supervisor'
+        if (req.body.SUP_NOMBRE) {
+            sql += ' WHERE SUP_NOMBRE LIKE "%' + req.body.SUP_NOMBRE + '%"'
+        }
+        if (req.body.SUP_CORREO) {
+            sql += ' WHERE SUP_CORREO LIKE "%' + req.body.SUP_CORREO + '%"'
+        }
+        if (req.body.ORDER) {
+            sql += ' ORDER BY ' + req.body.ORDER + ' '
+        }
+        if (req.body.BY) {
+            sql += req.body.BY
+        }
+        sql += ' LIMIT ' + req.body.LIMIT1 + ', ' + req.body.LIMIT2
         const connection = await connect()
-        const [rows] = await connection.query('SELECT * FROM supervisor')
+        const [rows] = await connection.query(sql)
         res.json(rows)
     } catch (error) {
         res.sendStatus(400)
