@@ -1,27 +1,29 @@
 import { connect } from '../database'
 
 export const getMenus = async (req, res) => {
+    console.log(req)
+    console.log(res)
     try {
         var sql = 'SELECT * FROM menu'
-        if (req.body.MEN_NUMCTRL) {
+        if (req.headers.MEN_NUMCTRL) {
             sql += ' WHERE MEN_NUMCTRL LIKE "%' + req.body.MEN_NUMCTRL + '%"'
         }
-        if (req.body.MEN_CLAVE) {
+        if (req.headers.MEN_CLAVE) {
             sql += ' WHERE MEN_CLAVE LIKE "%' + req.body.MEN_CLAVE + '%"'
         }
-        if (req.body.MEN_NOMBRE) {
+        if (req.headers.MEN_NOMBRE) {
             sql += ' WHERE MEN_NOMBRE LIKE "%' + req.body.MEN_NOMBRE + '%"'
         }
-        if (req.body.MEN_DESC) {
+        if (req.headers.MEN_DESC) {
             sql += ' WHERE MEN_DESC LIKE "%' + req.body.MEN_DESC + '%"'
         }
-        if (req.body.ORDER) {
+        if (req.headers.ORDER) {
             sql += ' ORDER BY ' + req.body.ORDER + ' '
         }
-        if (req.body.BY) {
+        if (req.headers.BY) {
             sql += req.body.BY
         }
-        sql += ' LIMIT ' + req.body.LIMIT1 + ', ' + req.body.LIMIT2
+        sql += ' LIMIT ' + req.query.LIMIT1 + ', ' + req.query.LIMIT2
         const connection = await connect()
         const [rows] = await connection.query(sql)
         res.json(rows)

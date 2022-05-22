@@ -2,12 +2,21 @@ import { connect } from '../database'
 
 export const getProxmens = async (req, res) => {
     try {
-        var sql = 'SELECT proxmen.PXM_NUMCTRL, proxmen.PRG_NUMCTRL, programa.PRG_NOMBRE, proxmen.MEN_NUMCTRL, menu.MEN_NOMBRE FROM proxmen INNER JOIN programa ON programa.PRG_NUMCTRL = proxmen.PRG_NUMCTRL inner join menu ON menu.MEN_NUMCTRL = proxmen.MEN_NUMCTRL'
+        var sql = 'SELECT proxmen.PXM_NUMCTRL, proxmen.PRG_NUMCTRL, programa.PRG_NOMBRE, proxmen.MEN_NUMCTRL, menu.MEN_NOMBRE, programa.PRG_CLAVE, programa.PRG_DESC FROM proxmen INNER JOIN programa ON programa.PRG_NUMCTRL = proxmen.PRG_NUMCTRL inner join menu ON menu.MEN_NUMCTRL = proxmen.MEN_NUMCTRL'
+        if (req.body.MEN_NUMCTRL) {
+            sql += ' WHERE proxmen.MEN_NUMCTRL LIKE "%' + req.body.MEN_NUMCTRL + '%"'
+        }
         if (req.body.PRG_NOMBRE) {
-            sql += ' WHERE PRG_NOMBRE LIKE "%' + req.body.PRG_NOMBRE + '%"'
+            sql += ' WHERE programa.PRG_NOMBRE LIKE "%' + req.body.PRG_NOMBRE + '%"'
+        }
+        if (req.body.PRG_DESC) {
+            sql += ' WHERE programa.PRG_DESC LIKE "%' + req.body.PRG_DESC + '%"'
+        }
+        if (req.body.PRG_CLAVE) {
+            sql += ' WHERE programa.PRG_CLAVE LIKE "%' + req.body.PRG_CLAVE + '%"'
         }
         if (req.body.MEN_NOMBRE) {
-            sql += ' WHERE MEN_NOMBRE LIKE "%' + req.body.MEN_NOMBRE + '%"'
+            sql += ' WHERE menu.MEN_NOMBRE LIKE "%' + req.body.MEN_NOMBRE + '%"'
         }
         if (req.body.ORDER) {
             sql += ' ORDER BY ' + req.body.ORDER + ' '
@@ -27,9 +36,10 @@ export const getProxmens = async (req, res) => {
 export const getProxmen = async (req, res) => {
     try {
         const connection = await connect()
-        const [rows] = await connection.query('SELECT proxmen.PXM_NUMCTRL, proxmen.PRG_NUMCTRL, programa.PRG_NOMBRE, proxmen.MEN_NUMCTRL, menu.MEN_NOMBRE FROM proxmen INNER JOIN programa ON programa.PRG_NUMCTRL = proxmen.PRG_NUMCTRL inner join menu ON menu.MEN_NUMCTRL = proxmen.MEN_NUMCTRL WHERE PXM_NUMCTRL = ?', [req.params.id,])
-        res.json(rows[0])
+        const [rows] = await connection.query('SELECT proxmen.PXM_NUMCTRL, proxmen.PRG_NUMCTRL, programa.PRG_NOMBRE, proxmen.MEN_NUMCTRL, menu.MEN_NOMBRE FROM proxmen INNER JOIN programa ON programa.PRG_NUMCTRL = proxmen.PRG_NUMCTRL inner join menu ON menu.MEN_NUMCTRL = proxmen.MEN_NUMCTRL WHERE proxmen.MEN_NUMCTRL = ?', [req.params.id,])
+        res.json(rows)
     } catch (error) {
+        console.log(error)
         res.sendStatus(400)
     }
 }

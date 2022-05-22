@@ -3,6 +3,9 @@ import { connect } from '../database'
 export const getProgramas = async (req, res) => {
     try {
         var sql = 'SELECT * FROM programa'
+        if (req.body.PRG_NUMCTRL) {
+            sql += ' WHERE PRG_NUMCTRL LIKE "%' + req.body.PRG_NUMCTRL + '%"'
+        }
         if (req.body.PRG_CLAVE) {
             sql += ' WHERE PRG_CLAVE LIKE "%' + req.body.PRG_CLAVE + '%"'
         }

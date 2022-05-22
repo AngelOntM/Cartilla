@@ -17,7 +17,7 @@ const router = Router()
  *      summary: Get all Programas
  *      tags: [Programas]
  */
-router.get('/programa', getProgramas)
+router.post('/programa', getProgramas)
 
 /**
  * @swagger
@@ -31,7 +31,7 @@ router.get('/programa/count', countProgramas)
 /**
  * @swagger
  * /Programas/id:
- *  get:
+ *  post:
  *      summary: Get a Programas
  *      tags: [Programas]
  */
@@ -44,7 +44,7 @@ router.get('/programa/:id', getPrograma)
  *      summary: Create a new Programa
  *      tags: [Programas]
  */
-router.post('/programa', createPrograma)
+router.post('/programa/create', createPrograma)
 
 /**
  * @swagger

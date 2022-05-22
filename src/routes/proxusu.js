@@ -13,11 +13,11 @@ const router = Router()
 /**
  * @swagger
  * /Proxusus:
- *  get:
+ *  post:
  *      summary: Get all Proxusus
  *      tags: [Proxusus]
  */
-router.get('/proxusu', getProxusus)
+router.post('/proxusu', getProxusus)
 
 /**
  * @swagger
@@ -44,7 +44,7 @@ router.get('/proxusu/:id', getProxusu)
  *      summary: Create a new Proxusu
  *      tags: [Proxusus]
  */
-router.post('/proxusu', createProxusu)
+router.post('/proxusu/create', createProxusu)
 
 /**
  * @swagger

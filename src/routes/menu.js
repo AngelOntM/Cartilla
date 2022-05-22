@@ -13,11 +13,11 @@ const router = Router()
 /**
  * @swagger
  * /menu:
- *  get:
+ *  post:
  *      summary: Get all menu
  *      tags: [Menu]
  */
-router.get('/menu', getMenus)
+router.post('/menu', getMenus)
 
 /**
  * @swagger
@@ -44,7 +44,7 @@ router.get('/menu/:id', getMenu)
  *      summary: Create a new menu
  *      tags: [Menu]
  */
-router.post('/menu', createMenu)
+router.post('/menu/create', createMenu)
 
 /**
  * @swagger

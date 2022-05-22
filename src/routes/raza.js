@@ -13,11 +13,11 @@ const router = Router()
 /**
  * @swagger
  * /Razas:
- *  get:
+ *  post:
  *      summary: Get all Razas
  *      tags: [Razas]
  */
-router.get('/raza', getRazas)
+router.post('/raza', getRazas)
 
 /**
  * @swagger
@@ -44,7 +44,7 @@ router.get('/raza/:id', getRaza)
  *      summary: Create a new Raza
  *      tags: [Razas]
  */
-router.post('/raza', createRaza)
+router.post('/raza/create', createRaza)
 
 /**
  * @swagger

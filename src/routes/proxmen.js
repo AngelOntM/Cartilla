@@ -13,11 +13,11 @@ const router = Router()
 /**
  * @swagger
  * /Proxmens:
- *  get:
+ *  post:
  *      summary: Get all Proxmens
  *      tags: [Proxmens]
  */
-router.get('/proxmen', getProxmens)
+router.post('/proxmen', getProxmens)
 
 /**
  * @swagger
@@ -44,7 +44,7 @@ router.get('/proxmen/:id', getProxmen)
  *      summary: Create a new Proxmen
  *      tags: [Proxmens]
  */
-router.post('/proxmen', createProxmen)
+router.post('/proxmen/create', createProxmen)
 
 /**
  * @swagger
