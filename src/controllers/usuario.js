@@ -2,15 +2,19 @@ import { connect } from '../database'
 
 export const getPropietarios = async (req, res) => {
     try {
+        var val = ' WHERE'
         var sql = 'SELECT * FROM propietario'
         if (req.body.PRO_NOMBRE) {
-            sql += ' WHERE PRO_NOMBRE LIKE "%' + req.body.PRO_NOMBRE + '%"'
+            sql += val + ' propietario.PRO_NOMBRE LIKE "%' + req.body.PRO_NOMBRE + '%"'
+            val = ' AND'
         }
         if (req.body.PRO_CELULAR) {
-            sql += ' WHERE PRO_CELULAR LIKE "%' + req.body.PRO_CELULAR + '%"'
+            sql += val + ' propietario.PRO_CELULAR LIKE "%' + req.body.PRO_CELULAR + '%"'
+            val = ' AND'
         }
         if (req.body.PRO_CORREO) {
-            sql += ' WHERE PRO_CORREO LIKE "%' + req.body.PRO_CORREO + '%"'
+            sql += val + ' propietario.PRO_CORREO LIKE "%' + req.body.PRO_CORREO + '%"'
+            val = ' AND'
         }
         if (req.body.ORDER) {
             sql += ' ORDER BY ' + req.body.ORDER + ' '
@@ -31,19 +35,24 @@ export const getProveedores = async (req, res) => {
     try {
         var sql = 'SELECT * FROM proveedor'
         if (req.body.PRV_NOMBRE) {
-            sql += ' WHERE PRV_NOMBRE LIKE "%' + req.body.PRV_NOMBRE + '%"'
+            sql += val + ' proveedor.PRV_NOMBRE LIKE "%' + req.body.PRV_NOMBRE + '%"'
+            val = ' AND'
         }
         if (req.body.PRV_PROPIETARIO) {
-            sql += ' WHERE PRV_PROPIETARIO LIKE "%' + req.body.PRV_PROPIETARIO + '%"'
+            sql += val + ' proveedor.PRV_PROPIETARIO LIKE "%' + req.body.PRV_PROPIETARIO + '%"'
+            val = ' AND'
         }
         if (req.body.PRV_CELULAR) {
-            sql += ' WHERE PRV_CELULAR LIKE "%' + req.body.PRV_CELULAR + '%"'
+            sql += val + ' proveedor.PRV_CELULAR LIKE "%' + req.body.PRV_CELULAR + '%"'
+            val = ' AND'
         }
         if (req.body.PRV_TELOFICINA) {
-            sql += ' WHERE PRV_TELOFICINA LIKE "%' + req.body.PRV_TELOFICINA + '%"'
+            sql += val + ' proveedor.PRV_TELOFICINA LIKE "%' + req.body.PRV_TELOFICINA + '%"'
+            val = ' AND'
         }
         if (req.body.PRV_CORREO) {
-            sql += ' WHERE PRV_CORREO LIKE "%' + req.body.PRV_CORREO + '%"'
+            sql += val + ' proveedor.PRV_CORREO LIKE "%' + req.body.PRV_CORREO + '%"'
+            val = ' AND'
         }
         if (req.body.ORDER) {
             sql += ' ORDER BY ' + req.body.ORDER + ' '

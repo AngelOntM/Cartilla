@@ -2,9 +2,10 @@ import { connect } from '../database'
 
 export const getTipousus = async (req, res) => {
     try {
+        var val = ' WHERE'
         var sql = 'SELECT * FROM tipousu'
         if (req.body.TIU_NOMBRE) {
-            sql += ' WHERE TIU_NOMBRE LIKE "%' + req.body.TIU_NOMBRE + '%"'
+            sql += val + ' tipousu.TIU_NOMBRE LIKE "%' + req.body.TIU_NOMBRE + '%"'
         }
         if (req.body.ORDER) {
             sql += ' ORDER BY ' + req.body.ORDER + ' '

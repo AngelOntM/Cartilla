@@ -2,21 +2,27 @@ import { connect } from '../database'
 
 export const getProxusus = async (req, res) => {
     try {
+        var val = ' WHERE'
         var sql = 'SELECT proxusu.PXU_NUMCTRL, proxusu.TIU_NUMCTRL, tipousu.TIU_NOMBRE, proxusu.PRG_NUMCTRL, programa.PRG_CLAVE, programa.PRG_NOMBRE, programa.PRG_RUTA, programa.PRG_DESC FROM proxusu INNER JOIN programa ON programa.PRG_NUMCTRL = proxusu.PRG_NUMCTRL inner join tipousu ON tipousu.TIU_NUMCTRL = proxusu.TIU_NUMCTRL'
         if (req.body.TIU_NOMBRE) {
-            sql += ' WHERE tipousu.TIU_NOMBRE LIKE "%' + req.body.TIU_NOMBRE + '%"'
+            sql += val + ' tipousu.TIU_NOMBRE LIKE "%' + req.body.TIU_NOMBRE + '%"'
+            val = ' AND'
         }
         if (req.body.PRG_CLAVE) {
-            sql += ' WHERE programa.PRG_CLAVE LIKE "%' + req.body.PRG_CLAVE + '%"'
+            sql += val + ' programa.PRG_CLAVE LIKE "%' + req.body.PRG_CLAVE + '%"'
+            val = ' AND'
         }
         if (req.body.PRG_NOMBRE) {
-            sql += ' WHERE programa.PRG_NOMBRE LIKE "%' + req.body.PRG_NOMBRE + '%"'
+            sql += val + ' programa.PRG_NOMBRE LIKE "%' + req.body.PRG_NOMBRE + '%"'
+            val = ' AND'
         }
         if (req.body.PRG_RUTA) {
-            sql += ' WHERE programa.PRG_RUTA LIKE "%' + req.body.PRG_RUTA + '%"'
+            sql += val + ' programa.PRG_RUTA LIKE "%' + req.body.PRG_RUTA + '%"'
+            val = ' AND'
         }
         if (req.body.PRG_DESC) {
-            sql += ' WHERE programa.PRG_DESC LIKE "%' + req.body.PRG_DESC + '%"'
+            sql += val + ' programa.PRG_DESC LIKE "%' + req.body.PRG_DESC + '%"'
+            val = ' AND'
         }
         if (req.body.ORDER) {
             sql += ' ORDER BY ' + req.body.ORDER + ' '

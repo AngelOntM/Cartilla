@@ -2,21 +2,27 @@ import { connect } from '../database'
 
 export const getProxmens = async (req, res) => {
     try {
+        var val = ' WHERE'
         var sql = 'SELECT proxmen.PXM_NUMCTRL, proxmen.PRG_NUMCTRL, programa.PRG_NOMBRE, proxmen.MEN_NUMCTRL, menu.MEN_NOMBRE, programa.PRG_CLAVE, programa.PRG_DESC FROM proxmen INNER JOIN programa ON programa.PRG_NUMCTRL = proxmen.PRG_NUMCTRL inner join menu ON menu.MEN_NUMCTRL = proxmen.MEN_NUMCTRL'
         if (req.body.MEN_NUMCTRL) {
-            sql += ' WHERE proxmen.MEN_NUMCTRL LIKE "%' + req.body.MEN_NUMCTRL + '%"'
+            sql += val + ' proxmen.MEN_NUMCTRL LIKE "%' + req.body.MEN_NUMCTRL + '%"'
+            val = ' AND'
         }
         if (req.body.PRG_NOMBRE) {
-            sql += ' WHERE programa.PRG_NOMBRE LIKE "%' + req.body.PRG_NOMBRE + '%"'
+            sql += val + ' programa.PRG_NOMBRE LIKE "%' + req.body.PRG_NOMBRE + '%"'
+            val = ' AND'
         }
         if (req.body.PRG_DESC) {
-            sql += ' WHERE programa.PRG_DESC LIKE "%' + req.body.PRG_DESC + '%"'
+            sql += val + ' programa.PRG_DESC LIKE "%' + req.body.PRG_DESC + '%"'
+            val = ' AND'
         }
         if (req.body.PRG_CLAVE) {
-            sql += ' WHERE programa.PRG_CLAVE LIKE "%' + req.body.PRG_CLAVE + '%"'
+            sql += val + ' programa.PRG_CLAVE LIKE "%' + req.body.PRG_CLAVE + '%"'
+            val = ' AND'
         }
         if (req.body.MEN_NOMBRE) {
-            sql += ' WHERE menu.MEN_NOMBRE LIKE "%' + req.body.MEN_NOMBRE + '%"'
+            sql += val + ' menu.MEN_NOMBRE LIKE "%' + req.body.MEN_NOMBRE + '%"'
+            val = ' AND'
         }
         if (req.body.ORDER) {
             sql += ' ORDER BY ' + req.body.ORDER + ' '

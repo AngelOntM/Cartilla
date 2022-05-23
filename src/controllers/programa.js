@@ -2,21 +2,27 @@ import { connect } from '../database'
 
 export const getProgramas = async (req, res) => {
     try {
-        var sql = 'SELECT * FROM programa'
+        var val = ' WHERE'
+        var sql = 'SELECT * FROM programa '
         if (req.body.PRG_NUMCTRL) {
-            sql += ' WHERE PRG_NUMCTRL LIKE "%' + req.body.PRG_NUMCTRL + '%"'
+            sql += val + ' PRG_NUMCTRL LIKE "%' + req.body.PRG_NUMCTRL + '%"'
+            val = ' AND'
         }
         if (req.body.PRG_CLAVE) {
-            sql += ' WHERE PRG_CLAVE LIKE "%' + req.body.PRG_CLAVE + '%"'
+            sql += val + ' PRG_CLAVE LIKE "%' + req.body.PRG_CLAVE + '%"'
+            val = ' AND'
         }
         if (req.body.PRG_NOMBRE) {
-            sql += ' WHERE PRG_NOMBRE LIKE "%' + req.body.PRG_NOMBRE + '%"'
+            sql += val + ' PRG_NOMBRE LIKE "%' + req.body.PRG_NOMBRE + '%"'
+            val = ' AND'
         }
         if (req.body.PRG_RUTA) {
-            sql += ' WHERE PRG_RUTA LIKE "%' + req.body.PRG_RUTA + '%"'
+            sql += val + ' PRG_RUTA LIKE "%' + req.body.PRG_RUTA + '%"'
+            val = ' AND'
         }
         if (req.body.PRG_DESC) {
-            sql += ' WHERE PRG_DESC LIKE "%' + req.body.PRG_DESC + '%"'
+            sql += val + ' PRG_DESC LIKE "%' + req.body.PRG_DESC + '%"'
+            val = ' AND'
         }
         if (req.body.ORDER) {
             sql += ' ORDER BY ' + req.body.ORDER + ' '

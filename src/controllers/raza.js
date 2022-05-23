@@ -2,9 +2,10 @@ import { connect } from '../database'
 
 export const getRazas = async (req, res) => {
     try {
+        var val = ' WHERE'
         var sql = 'SELECT * FROM raza'
         if (req.body.RAZ_NOMBRE) {
-            sql += ' WHERE RAZ_NOMBRE LIKE "%' + req.body.RAZ_NOMBRE + '%"'
+            sql += val + ' raza.RAZ_NOMBRE LIKE "%' + req.body.RAZ_NOMBRE + '%"'
         }
         if (req.body.ORDER) {
             sql += ' ORDER BY ' + req.body.ORDER + ' '

@@ -1,21 +1,24 @@
 import { connect } from '../database'
 
 export const getMenus = async (req, res) => {
-    console.log(req)
-    console.log(res)
     try {
+        var val = ' WHERE'
         var sql = 'SELECT * FROM menu'
         if (req.headers.MEN_NUMCTRL) {
-            sql += ' WHERE MEN_NUMCTRL LIKE "%' + req.body.MEN_NUMCTRL + '%"'
+            sql += val + ' MEN_NUMCTRL LIKE "%' + req.body.MEN_NUMCTRL + '%"'
+            val = ' AND'
         }
         if (req.headers.MEN_CLAVE) {
-            sql += ' WHERE MEN_CLAVE LIKE "%' + req.body.MEN_CLAVE + '%"'
+            sql += val + ' MEN_CLAVE LIKE "%' + req.body.MEN_CLAVE + '%"'
+            val = ' AND'
         }
         if (req.headers.MEN_NOMBRE) {
-            sql += ' WHERE MEN_NOMBRE LIKE "%' + req.body.MEN_NOMBRE + '%"'
+            sql += val + ' MEN_NOMBRE LIKE "%' + req.body.MEN_NOMBRE + '%"'
+            val = ' AND'
         }
         if (req.headers.MEN_DESC) {
-            sql += ' WHERE MEN_DESC LIKE "%' + req.body.MEN_DESC + '%"'
+            sql += val + ' MEN_DESC LIKE "%' + req.body.MEN_DESC + '%"'
+            val = ' AND'
         }
         if (req.headers.ORDER) {
             sql += ' ORDER BY ' + req.body.ORDER + ' '
