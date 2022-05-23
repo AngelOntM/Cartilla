@@ -4,29 +4,29 @@ export const getMenus = async (req, res) => {
     try {
         var val = ' WHERE'
         var sql = 'SELECT * FROM menu'
-        if (req.headers.MEN_NUMCTRL) {
+        if (req.body.MEN_NUMCTRL) {
             sql += val + ' MEN_NUMCTRL LIKE "%' + req.body.MEN_NUMCTRL + '%"'
             val = ' AND'
         }
-        if (req.headers.MEN_CLAVE) {
+        if (req.body.MEN_CLAVE) {
             sql += val + ' MEN_CLAVE LIKE "%' + req.body.MEN_CLAVE + '%"'
             val = ' AND'
         }
-        if (req.headers.MEN_NOMBRE) {
+        if (req.body.MEN_NOMBRE) {
             sql += val + ' MEN_NOMBRE LIKE "%' + req.body.MEN_NOMBRE + '%"'
             val = ' AND'
         }
-        if (req.headers.MEN_DESC) {
+        if (req.body.MEN_DESC) {
             sql += val + ' MEN_DESC LIKE "%' + req.body.MEN_DESC + '%"'
             val = ' AND'
         }
-        if (req.headers.ORDER) {
+        if (req.body.ORDER) {
             sql += ' ORDER BY ' + req.body.ORDER + ' '
         }
-        if (req.headers.BY) {
+        if (req.body.BY) {
             sql += req.body.BY
         }
-        sql += ' LIMIT ' + req.query.LIMIT1 + ', ' + req.query.LIMIT2
+        sql += ' LIMIT ' + req.body.LIMIT1 + ', ' + req.body.LIMIT2
         const connection = await connect()
         const [rows] = await connection.query(sql)
         res.json(rows)
