@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { countTipousus, createTipousu, deleteTipousu, getTipousu, getTipousus, updateTipousu } from '../controllers/Tipousu'
+import { countTipousus, createTipousu, deleteTipousu, getTipousu, getTipousus, updateTipousu } from '../controllers/tipousu.js'
 
 const router = Router()
 

@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { createPropietario, createProveedor, createSupervisor, deletePropietario, deleteProveedor, deleteSupervisor, getPropietario, getPropietarios, getProveedor, getProveedores, getSupervisor, getSupervisores, loginUsuario, updatePropietario, updateProveedor, updateSupervisor } from '../controllers/Usuario'
+import { createPropietario, createProveedor, createSupervisor, deletePropietario, deleteProveedor, deleteSupervisor, getPropietario, getPropietarios, getProveedor, getProveedores, getSupervisor, getSupervisores, loginUsuario, updatePropietario, updateProveedor, updateSupervisor } from '../controllers/usuario.js'
 
 const router = Router()
 

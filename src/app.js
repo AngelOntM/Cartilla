@@ -5,13 +5,13 @@ import swaggerJsDoc from "swagger-jsdoc";
 import swaggerUI from "swagger-ui-express";
 
 
-import usuario from "./routes/usuario"
-import menu from "./routes/menu"
-import programa from "./routes/programa"
-import raza from "./routes/raza"
-import tipousu from "./routes/tipousu"
-import proxmen from "./routes/proxmen"
-import proxusu from "./routes/proxusu"
+import usuario from "./routes/usuario.js"
+import menu from "./routes/menu.js"
+import programa from "./routes/programa.js"
+import raza from "./routes/raza.js"
+import tipousu from "./routes/tipousu.js"
+import proxmen from "./routes/proxmen.js"
+import proxusu from "./routes/proxusu.js"
 
 import { options } from './swaggerOptions'
 

@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { countRazas, createRaza, deleteRaza, getRaza, getRazas, updateRaza } from '../controllers/raza'
+import { countRazas, createRaza, deleteRaza, getRaza, getRazas, updateRaza } from '../controllers/raza.js'
 
 const router = Router()
 

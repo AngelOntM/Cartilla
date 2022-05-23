@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { countProxusus, createProxusu, deleteProxusu, getProxusu, getProxusus, updateProxusu } from '../controllers/Proxusu'
+import { countProxusus, createProxusu, deleteProxusu, getProxusu, getProxusus, updateProxusu } from '../controllers/proxusu.js'
 
 const router = Router()
 

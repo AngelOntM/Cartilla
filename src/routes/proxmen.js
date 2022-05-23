@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { countProxmens, createProxmen, deleteProxmen, getProxmen, getProxmens, updateProxmen } from '../controllers/Proxmen'
+import { countProxmens, createProxmen, deleteProxmen, getProxmen, getProxmens, updateProxmen } from '../controllers/proxmen.js'
 
 const router = Router()
 

@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { countProgramas, createPrograma, deletePrograma, getPrograma, getProgramas, updatePrograma } from '../controllers/programa'
+import { countProgramas, createPrograma, deletePrograma, getPrograma, getProgramas, updatePrograma } from '../controllers/programa.js'
 
 const router = Router()
 
