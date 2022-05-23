@@ -23,40 +23,77 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 var getProxusus = /*#__PURE__*/function () {
   var _ref = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee(req, res) {
-    var connection, _yield$connection$que, _yield$connection$que2, rows;
+    var val, sql, connection, _yield$connection$que, _yield$connection$que2, rows;
 
     return _regenerator["default"].wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
             _context.prev = 0;
-            _context.next = 3;
+            val = ' WHERE';
+            sql = 'SELECT proxusu.PXU_NUMCTRL, proxusu.TIU_NUMCTRL, tipousu.TIU_NOMBRE, proxusu.PRG_NUMCTRL, programa.PRG_CLAVE, programa.PRG_NOMBRE, programa.PRG_RUTA, programa.PRG_DESC FROM proxusu INNER JOIN programa ON programa.PRG_NUMCTRL = proxusu.PRG_NUMCTRL inner join tipousu ON tipousu.TIU_NUMCTRL = proxusu.TIU_NUMCTRL';
+
+            if (req.body.TIU_NOMBRE) {
+              sql += val + ' tipousu.TIU_NOMBRE LIKE "%' + req.body.TIU_NOMBRE + '%"';
+              val = ' AND';
+            }
+
+            if (req.body.PRG_CLAVE) {
+              sql += val + ' programa.PRG_CLAVE LIKE "%' + req.body.PRG_CLAVE + '%"';
+              val = ' AND';
+            }
+
+            if (req.body.PRG_NOMBRE) {
+              sql += val + ' programa.PRG_NOMBRE LIKE "%' + req.body.PRG_NOMBRE + '%"';
+              val = ' AND';
+            }
+
+            if (req.body.PRG_RUTA) {
+              sql += val + ' programa.PRG_RUTA LIKE "%' + req.body.PRG_RUTA + '%"';
+              val = ' AND';
+            }
+
+            if (req.body.PRG_DESC) {
+              sql += val + ' programa.PRG_DESC LIKE "%' + req.body.PRG_DESC + '%"';
+              val = ' AND';
+            }
+
+            if (req.body.ORDER) {
+              sql += ' ORDER BY ' + req.body.ORDER + ' ';
+            }
+
+            if (req.body.BY) {
+              sql += req.body.BY;
+            }
+
+            sql += ' LIMIT ' + req.body.LIMIT1 + ', ' + req.body.LIMIT2;
+            _context.next = 13;
             return (0, _database.connect)();
 
-          case 3:
+          case 13:
             connection = _context.sent;
-            _context.next = 6;
-            return connection.query('SELECT proxusu.PXU_NUMCTRL, proxusu.TIU_NUMCTRL, tipousu.TIU_NOMBRE, proxusu.PRG_NUMCTRL, programa.PRG_CLAVE, programa.PRG_NOMBRE, programa.PRG_RUTA, programa.PRG_DESC FROM proxusu INNER JOIN programa ON programa.PRG_NUMCTRL = proxusu.PRG_NUMCTRL inner join tipousu ON tipousu.TIU_NUMCTRL = proxusu.TIU_NUMCTRL');
+            _context.next = 16;
+            return connection.query(sql);
 
-          case 6:
+          case 16:
             _yield$connection$que = _context.sent;
             _yield$connection$que2 = (0, _slicedToArray2["default"])(_yield$connection$que, 1);
             rows = _yield$connection$que2[0];
             res.json(rows);
-            _context.next = 15;
+            _context.next = 25;
             break;
 
-          case 12:
-            _context.prev = 12;
+          case 22:
+            _context.prev = 22;
             _context.t0 = _context["catch"](0);
             res.sendStatus(400);
 
-          case 15:
+          case 25:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[0, 12]]);
+    }, _callee, null, [[0, 22]]);
   }));
 
   return function getProxusus(_x, _x2) {

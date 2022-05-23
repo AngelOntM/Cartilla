@@ -7,7 +7,7 @@ exports["default"] = void 0;
 
 var _express = require("express");
 
-var _Proxmen = require("../controllers/Proxmen");
+var _proxmen = require("../controllers/proxmen.js");
 
 var router = (0, _express.Router)();
 /**
@@ -20,12 +20,12 @@ var router = (0, _express.Router)();
 /**
  * @swagger
  * /Proxmens:
- *  get:
+ *  post:
  *      summary: Get all Proxmens
  *      tags: [Proxmens]
  */
 
-router.get('/proxmen', _Proxmen.getProxmens);
+router.post('/proxmen', _proxmen.getProxmens);
 /**
  * @swagger
  * /Proxmens/count:
@@ -34,7 +34,7 @@ router.get('/proxmen', _Proxmen.getProxmens);
  *      tags: [Proxmens]
  */
 
-router.get('/proxmen/count', _Proxmen.countProxmens);
+router.get('/proxmen/count', _proxmen.countProxmens);
 /**
  * @swagger
  * /Proxmens/id:
@@ -43,7 +43,7 @@ router.get('/proxmen/count', _Proxmen.countProxmens);
  *      tags: [Proxmens]
  */
 
-router.get('/proxmen/:id', _Proxmen.getProxmen);
+router.get('/proxmen/:id', _proxmen.getProxmen);
 /**
  * @swagger
  * /Proxmens:
@@ -52,7 +52,7 @@ router.get('/proxmen/:id', _Proxmen.getProxmen);
  *      tags: [Proxmens]
  */
 
-router.post('/proxmen', _Proxmen.createProxmen);
+router.post('/proxmen/create', _proxmen.createProxmen);
 /**
  * @swagger
  * /Proxmens/id:
@@ -61,7 +61,7 @@ router.post('/proxmen', _Proxmen.createProxmen);
  *      tags: [Proxmens]
  */
 
-router.put('/proxmen/:id', _Proxmen.updateProxmen);
+router.put('/proxmen/:id', _proxmen.updateProxmen);
 /**
  * @swagger
  * /Proxmens/id:
@@ -70,6 +70,6 @@ router.put('/proxmen/:id', _Proxmen.updateProxmen);
  *      tags: [Proxmens]
  */
 
-router["delete"]('/proxmen/:id', _Proxmen.deleteProxmen);
+router["delete"]('/proxmen/:id', _proxmen.deleteProxmen);
 var _default = router;
 exports["default"] = _default;

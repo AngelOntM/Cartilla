@@ -23,40 +23,77 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 var getProxmens = /*#__PURE__*/function () {
   var _ref = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee(req, res) {
-    var connection, _yield$connection$que, _yield$connection$que2, rows;
+    var val, sql, connection, _yield$connection$que, _yield$connection$que2, rows;
 
     return _regenerator["default"].wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
             _context.prev = 0;
-            _context.next = 3;
+            val = ' WHERE';
+            sql = 'SELECT proxmen.PXM_NUMCTRL, proxmen.PRG_NUMCTRL, programa.PRG_NOMBRE, proxmen.MEN_NUMCTRL, menu.MEN_NOMBRE, programa.PRG_CLAVE, programa.PRG_DESC FROM proxmen INNER JOIN programa ON programa.PRG_NUMCTRL = proxmen.PRG_NUMCTRL inner join menu ON menu.MEN_NUMCTRL = proxmen.MEN_NUMCTRL';
+
+            if (req.body.MEN_NUMCTRL) {
+              sql += val + ' proxmen.MEN_NUMCTRL LIKE "%' + req.body.MEN_NUMCTRL + '%"';
+              val = ' AND';
+            }
+
+            if (req.body.PRG_NOMBRE) {
+              sql += val + ' programa.PRG_NOMBRE LIKE "%' + req.body.PRG_NOMBRE + '%"';
+              val = ' AND';
+            }
+
+            if (req.body.PRG_DESC) {
+              sql += val + ' programa.PRG_DESC LIKE "%' + req.body.PRG_DESC + '%"';
+              val = ' AND';
+            }
+
+            if (req.body.PRG_CLAVE) {
+              sql += val + ' programa.PRG_CLAVE LIKE "%' + req.body.PRG_CLAVE + '%"';
+              val = ' AND';
+            }
+
+            if (req.body.MEN_NOMBRE) {
+              sql += val + ' menu.MEN_NOMBRE LIKE "%' + req.body.MEN_NOMBRE + '%"';
+              val = ' AND';
+            }
+
+            if (req.body.ORDER) {
+              sql += ' ORDER BY ' + req.body.ORDER + ' ';
+            }
+
+            if (req.body.BY) {
+              sql += req.body.BY;
+            }
+
+            sql += ' LIMIT ' + req.body.LIMIT1 + ', ' + req.body.LIMIT2;
+            _context.next = 13;
             return (0, _database.connect)();
 
-          case 3:
+          case 13:
             connection = _context.sent;
-            _context.next = 6;
-            return connection.query('SELECT proxmen.PXM_NUMCTRL, proxmen.PRG_NUMCTRL, programa.PRG_NOMBRE, proxmen.MEN_NUMCTRL, menu.MEN_NOMBRE FROM proxmen INNER JOIN programa ON programa.PRG_NUMCTRL = proxmen.PRG_NUMCTRL inner join menu ON menu.MEN_NUMCTRL = proxmen.MEN_NUMCTRL');
+            _context.next = 16;
+            return connection.query(sql);
 
-          case 6:
+          case 16:
             _yield$connection$que = _context.sent;
             _yield$connection$que2 = (0, _slicedToArray2["default"])(_yield$connection$que, 1);
             rows = _yield$connection$que2[0];
             res.json(rows);
-            _context.next = 15;
+            _context.next = 25;
             break;
 
-          case 12:
-            _context.prev = 12;
+          case 22:
+            _context.prev = 22;
             _context.t0 = _context["catch"](0);
             res.sendStatus(400);
 
-          case 15:
+          case 25:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[0, 12]]);
+    }, _callee, null, [[0, 22]]);
   }));
 
   return function getProxmens(_x, _x2) {
@@ -81,22 +118,23 @@ var getProxmen = /*#__PURE__*/function () {
           case 3:
             connection = _context2.sent;
             _context2.next = 6;
-            return connection.query('SELECT proxmen.PXM_NUMCTRL, proxmen.PRG_NUMCTRL, programa.PRG_NOMBRE, proxmen.MEN_NUMCTRL, menu.MEN_NOMBRE FROM proxmen INNER JOIN programa ON programa.PRG_NUMCTRL = proxmen.PRG_NUMCTRL inner join menu ON menu.MEN_NUMCTRL = proxmen.MEN_NUMCTRL WHERE PXM_NUMCTRL = ?', [req.params.id]);
+            return connection.query('SELECT proxmen.PXM_NUMCTRL, proxmen.PRG_NUMCTRL, programa.PRG_NOMBRE, proxmen.MEN_NUMCTRL, menu.MEN_NOMBRE FROM proxmen INNER JOIN programa ON programa.PRG_NUMCTRL = proxmen.PRG_NUMCTRL inner join menu ON menu.MEN_NUMCTRL = proxmen.MEN_NUMCTRL WHERE proxmen.MEN_NUMCTRL = ?', [req.params.id]);
 
           case 6:
             _yield$connection$que3 = _context2.sent;
             _yield$connection$que4 = (0, _slicedToArray2["default"])(_yield$connection$que3, 1);
             rows = _yield$connection$que4[0];
-            res.json(rows[0]);
-            _context2.next = 15;
+            res.json(rows);
+            _context2.next = 16;
             break;
 
           case 12:
             _context2.prev = 12;
             _context2.t0 = _context2["catch"](0);
+            console.log(_context2.t0);
             res.sendStatus(400);
 
-          case 15:
+          case 16:
           case "end":
             return _context2.stop();
         }

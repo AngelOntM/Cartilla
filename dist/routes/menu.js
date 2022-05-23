@@ -7,7 +7,7 @@ exports["default"] = void 0;
 
 var _express = require("express");
 
-var _menu = require("../controllers/menu");
+var _menu = require("../controllers/menu.js");
 
 var router = (0, _express.Router)();
 /**
@@ -20,12 +20,12 @@ var router = (0, _express.Router)();
 /**
  * @swagger
  * /menu:
- *  get:
+ *  post:
  *      summary: Get all menu
  *      tags: [Menu]
  */
 
-router.get('/menu', _menu.getMenus);
+router.post('/menu', _menu.getMenus);
 /**
  * @swagger
  * /menu/count:
@@ -52,7 +52,7 @@ router.get('/menu/:id', _menu.getMenu);
  *      tags: [Menu]
  */
 
-router.post('/menu', _menu.createMenu);
+router.post('/menu/create', _menu.createMenu);
 /**
  * @swagger
  * /menu/id:

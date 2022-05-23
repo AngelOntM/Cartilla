@@ -23,40 +23,72 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 var getMenus = /*#__PURE__*/function () {
   var _ref = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee(req, res) {
-    var connection, _yield$connection$que, _yield$connection$que2, rows;
+    var val, sql, connection, _yield$connection$que, _yield$connection$que2, rows;
 
     return _regenerator["default"].wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
             _context.prev = 0;
-            _context.next = 3;
+            val = ' WHERE';
+            sql = 'SELECT * FROM menu';
+
+            if (req.body.MEN_NUMCTRL) {
+              sql += val + ' MEN_NUMCTRL LIKE "%' + req.body.MEN_NUMCTRL + '%"';
+              val = ' AND';
+            }
+
+            if (req.body.MEN_CLAVE) {
+              sql += val + ' MEN_CLAVE LIKE "%' + req.body.MEN_CLAVE + '%"';
+              val = ' AND';
+            }
+
+            if (req.body.MEN_NOMBRE) {
+              sql += val + ' MEN_NOMBRE LIKE "%' + req.body.MEN_NOMBRE + '%"';
+              val = ' AND';
+            }
+
+            if (req.body.MEN_DESC) {
+              sql += val + ' MEN_DESC LIKE "%' + req.body.MEN_DESC + '%"';
+              val = ' AND';
+            }
+
+            if (req.body.ORDER) {
+              sql += ' ORDER BY ' + req.body.ORDER + ' ';
+            }
+
+            if (req.body.BY) {
+              sql += req.body.BY;
+            }
+
+            sql += ' LIMIT ' + req.body.LIMIT1 + ', ' + req.body.LIMIT2;
+            _context.next = 12;
             return (0, _database.connect)();
 
-          case 3:
+          case 12:
             connection = _context.sent;
-            _context.next = 6;
-            return connection.query('SELECT * FROM menu LIMIT ?, ?', [req.body.inicio, req.body.cantidad]);
+            _context.next = 15;
+            return connection.query(sql);
 
-          case 6:
+          case 15:
             _yield$connection$que = _context.sent;
             _yield$connection$que2 = (0, _slicedToArray2["default"])(_yield$connection$que, 1);
             rows = _yield$connection$que2[0];
             res.json(rows);
-            _context.next = 15;
+            _context.next = 24;
             break;
 
-          case 12:
-            _context.prev = 12;
+          case 21:
+            _context.prev = 21;
             _context.t0 = _context["catch"](0);
             res.sendStatus(400);
 
-          case 15:
+          case 24:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[0, 12]]);
+    }, _callee, null, [[0, 21]]);
   }));
 
   return function getMenus(_x, _x2) {

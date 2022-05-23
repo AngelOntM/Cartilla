@@ -23,40 +23,56 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 var getTipousus = /*#__PURE__*/function () {
   var _ref = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee(req, res) {
-    var connection, _yield$connection$que, _yield$connection$que2, rows;
+    var val, sql, connection, _yield$connection$que, _yield$connection$que2, rows;
 
     return _regenerator["default"].wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
             _context.prev = 0;
-            _context.next = 3;
+            val = ' WHERE';
+            sql = 'SELECT * FROM tipousu';
+
+            if (req.body.TIU_NOMBRE) {
+              sql += val + ' tipousu.TIU_NOMBRE LIKE "%' + req.body.TIU_NOMBRE + '%"';
+            }
+
+            if (req.body.ORDER) {
+              sql += ' ORDER BY ' + req.body.ORDER + ' ';
+            }
+
+            if (req.body.BY) {
+              sql += req.body.BY;
+            }
+
+            sql += ' LIMIT ' + req.body.LIMIT1 + ', ' + req.body.LIMIT2;
+            _context.next = 9;
             return (0, _database.connect)();
 
-          case 3:
+          case 9:
             connection = _context.sent;
-            _context.next = 6;
-            return connection.query('SELECT * FROM Tipousu');
+            _context.next = 12;
+            return connection.query(sql);
 
-          case 6:
+          case 12:
             _yield$connection$que = _context.sent;
             _yield$connection$que2 = (0, _slicedToArray2["default"])(_yield$connection$que, 1);
             rows = _yield$connection$que2[0];
             res.json(rows);
-            _context.next = 15;
+            _context.next = 21;
             break;
 
-          case 12:
-            _context.prev = 12;
+          case 18:
+            _context.prev = 18;
             _context.t0 = _context["catch"](0);
             res.sendStatus(400);
 
-          case 15:
+          case 21:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[0, 12]]);
+    }, _callee, null, [[0, 18]]);
   }));
 
   return function getTipousus(_x, _x2) {

@@ -13,7 +13,7 @@ var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/
 
 var _promise = _interopRequireDefault(require("mysql2/promise"));
 
-var _config = require("./config");
+var _config = require("./config.js");
 
 var connect = /*#__PURE__*/function () {
   var _ref = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee() {

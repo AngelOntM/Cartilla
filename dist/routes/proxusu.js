@@ -7,7 +7,7 @@ exports["default"] = void 0;
 
 var _express = require("express");
 
-var _Proxusu = require("../controllers/Proxusu");
+var _proxusu = require("../controllers/proxusu.js");
 
 var router = (0, _express.Router)();
 /**
@@ -20,12 +20,12 @@ var router = (0, _express.Router)();
 /**
  * @swagger
  * /Proxusus:
- *  get:
+ *  post:
  *      summary: Get all Proxusus
  *      tags: [Proxusus]
  */
 
-router.get('/proxusu', _Proxusu.getProxusus);
+router.post('/proxusu', _proxusu.getProxusus);
 /**
  * @swagger
  * /Proxusus/count:
@@ -34,7 +34,7 @@ router.get('/proxusu', _Proxusu.getProxusus);
  *      tags: [Proxusus]
  */
 
-router.get('/proxusu/count', _Proxusu.countProxusus);
+router.get('/proxusu/count', _proxusu.countProxusus);
 /**
  * @swagger
  * /Proxusus/id:
@@ -43,7 +43,7 @@ router.get('/proxusu/count', _Proxusu.countProxusus);
  *      tags: [Proxusus]
  */
 
-router.get('/proxusu/:id', _Proxusu.getProxusu);
+router.get('/proxusu/:id', _proxusu.getProxusu);
 /**
  * @swagger
  * /Proxusus:
@@ -52,7 +52,7 @@ router.get('/proxusu/:id', _Proxusu.getProxusu);
  *      tags: [Proxusus]
  */
 
-router.post('/proxusu', _Proxusu.createProxusu);
+router.post('/proxusu/create', _proxusu.createProxusu);
 /**
  * @swagger
  * /Proxusus/id:
@@ -61,7 +61,7 @@ router.post('/proxusu', _Proxusu.createProxusu);
  *      tags: [Proxusus]
  */
 
-router.put('/proxusu/:id', _Proxusu.updateProxusu);
+router.put('/proxusu/:id', _proxusu.updateProxusu);
 /**
  * @swagger
  * /Proxusus/id:
@@ -70,6 +70,6 @@ router.put('/proxusu/:id', _Proxusu.updateProxusu);
  *      tags: [Proxusus]
  */
 
-router["delete"]('/proxusu/:id', _Proxusu.deleteProxusu);
+router["delete"]('/proxusu/:id', _proxusu.deleteProxusu);
 var _default = router;
 exports["default"] = _default;

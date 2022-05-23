@@ -7,7 +7,7 @@ exports["default"] = void 0;
 
 var _express = require("express");
 
-var _Tipousu = require("../controllers/Tipousu");
+var _tipousu = require("../controllers/tipousu.js");
 
 var router = (0, _express.Router)();
 /**
@@ -20,12 +20,12 @@ var router = (0, _express.Router)();
 /**
  * @swagger
  * /Tipousus:
- *  get:
+ *  post:
  *      summary: Get all Tipousus
  *      tags: [Tipousus]
  */
 
-router.get('/tipousu', _Tipousu.getTipousus);
+router.post('/tipousu', _tipousu.getTipousus);
 /**
  * @swagger
  * /Tipousus/count:
@@ -34,7 +34,7 @@ router.get('/tipousu', _Tipousu.getTipousus);
  *      tags: [Tipousus]
  */
 
-router.get('/tipousu/count', _Tipousu.countTipousus);
+router.get('/tipousu/count', _tipousu.countTipousus);
 /**
  * @swagger
  * /Tipousus/id:
@@ -43,7 +43,7 @@ router.get('/tipousu/count', _Tipousu.countTipousus);
  *      tags: [Tipousus]
  */
 
-router.get('/tipousu/:id', _Tipousu.getTipousu);
+router.get('/tipousu/:id', _tipousu.getTipousu);
 /**
  * @swagger
  * /Tipousus:
@@ -52,7 +52,7 @@ router.get('/tipousu/:id', _Tipousu.getTipousu);
  *      tags: [Tipousus]
  */
 
-router.post('/tipousu', _Tipousu.createTipousu);
+router.post('/tipousu/create', _tipousu.createTipousu);
 /**
  * @swagger
  * /Tipousus/id:
@@ -61,7 +61,7 @@ router.post('/tipousu', _Tipousu.createTipousu);
  *      tags: [Tipousus]
  */
 
-router.put('/tipousu/:id', _Tipousu.updateTipousu);
+router.put('/tipousu/:id', _tipousu.updateTipousu);
 /**
  * @swagger
  * /Tipousus/id:
@@ -70,6 +70,6 @@ router.put('/tipousu/:id', _Tipousu.updateTipousu);
  *      tags: [Tipousus]
  */
 
-router["delete"]('/tipousu/:id', _Tipousu.deleteTipousu);
+router["delete"]('/tipousu/:id', _tipousu.deleteTipousu);
 var _default = router;
 exports["default"] = _default;

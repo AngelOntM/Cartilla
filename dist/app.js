@@ -17,19 +17,19 @@ var _swaggerJsdoc = _interopRequireDefault(require("swagger-jsdoc"));
 
 var _swaggerUiExpress = _interopRequireDefault(require("swagger-ui-express"));
 
-var _usuario = _interopRequireDefault(require("./routes/usuario"));
+var _usuario = _interopRequireDefault(require("./routes/usuario.js"));
 
-var _menu = _interopRequireDefault(require("./routes/menu"));
+var _menu = _interopRequireDefault(require("./routes/menu.js"));
 
-var _programa = _interopRequireDefault(require("./routes/programa"));
+var _programa = _interopRequireDefault(require("./routes/programa.js"));
 
-var _raza = _interopRequireDefault(require("./routes/raza"));
+var _raza = _interopRequireDefault(require("./routes/raza.js"));
 
-var _tipousu = _interopRequireDefault(require("./routes/tipousu"));
+var _tipousu = _interopRequireDefault(require("./routes/tipousu.js"));
 
-var _proxmen = _interopRequireDefault(require("./routes/proxmen"));
+var _proxmen = _interopRequireDefault(require("./routes/proxmen.js"));
 
-var _proxusu = _interopRequireDefault(require("./routes/proxusu"));
+var _proxusu = _interopRequireDefault(require("./routes/proxusu.js"));
 
 var _swaggerOptions = require("./swaggerOptions");
 

@@ -23,40 +23,67 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 var getPropietarios = /*#__PURE__*/function () {
   var _ref = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee(req, res) {
-    var connection, _yield$connection$que, _yield$connection$que2, rows;
+    var val, sql, connection, _yield$connection$que, _yield$connection$que2, rows;
 
     return _regenerator["default"].wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
             _context.prev = 0;
-            _context.next = 3;
+            val = ' WHERE';
+            sql = 'SELECT * FROM propietario';
+
+            if (req.body.PRO_NOMBRE) {
+              sql += val + ' propietario.PRO_NOMBRE LIKE "%' + req.body.PRO_NOMBRE + '%"';
+              val = ' AND';
+            }
+
+            if (req.body.PRO_CELULAR) {
+              sql += val + ' propietario.PRO_CELULAR LIKE "%' + req.body.PRO_CELULAR + '%"';
+              val = ' AND';
+            }
+
+            if (req.body.PRO_CORREO) {
+              sql += val + ' propietario.PRO_CORREO LIKE "%' + req.body.PRO_CORREO + '%"';
+              val = ' AND';
+            }
+
+            if (req.body.ORDER) {
+              sql += ' ORDER BY ' + req.body.ORDER + ' ';
+            }
+
+            if (req.body.BY) {
+              sql += req.body.BY;
+            }
+
+            sql += ' LIMIT ' + req.body.LIMIT1 + ', ' + req.body.LIMIT2;
+            _context.next = 11;
             return (0, _database.connect)();
 
-          case 3:
+          case 11:
             connection = _context.sent;
-            _context.next = 6;
-            return connection.query('SELECT * FROM propietario');
+            _context.next = 14;
+            return connection.query(sql);
 
-          case 6:
+          case 14:
             _yield$connection$que = _context.sent;
             _yield$connection$que2 = (0, _slicedToArray2["default"])(_yield$connection$que, 1);
             rows = _yield$connection$que2[0];
             res.json(rows);
-            _context.next = 15;
+            _context.next = 23;
             break;
 
-          case 12:
-            _context.prev = 12;
+          case 20:
+            _context.prev = 20;
             _context.t0 = _context["catch"](0);
             res.sendStatus(400);
 
-          case 15:
+          case 23:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[0, 12]]);
+    }, _callee, null, [[0, 20]]);
   }));
 
   return function getPropietarios(_x, _x2) {
@@ -68,40 +95,76 @@ exports.getPropietarios = getPropietarios;
 
 var getProveedores = /*#__PURE__*/function () {
   var _ref2 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee2(req, res) {
-    var connection, _yield$connection$que3, _yield$connection$que4, rows;
+    var sql, connection, _yield$connection$que3, _yield$connection$que4, rows;
 
     return _regenerator["default"].wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
             _context2.prev = 0;
-            _context2.next = 3;
+            sql = 'SELECT * FROM proveedor';
+
+            if (req.body.PRV_NOMBRE) {
+              sql += val + ' proveedor.PRV_NOMBRE LIKE "%' + req.body.PRV_NOMBRE + '%"';
+              val = ' AND';
+            }
+
+            if (req.body.PRV_PROPIETARIO) {
+              sql += val + ' proveedor.PRV_PROPIETARIO LIKE "%' + req.body.PRV_PROPIETARIO + '%"';
+              val = ' AND';
+            }
+
+            if (req.body.PRV_CELULAR) {
+              sql += val + ' proveedor.PRV_CELULAR LIKE "%' + req.body.PRV_CELULAR + '%"';
+              val = ' AND';
+            }
+
+            if (req.body.PRV_TELOFICINA) {
+              sql += val + ' proveedor.PRV_TELOFICINA LIKE "%' + req.body.PRV_TELOFICINA + '%"';
+              val = ' AND';
+            }
+
+            if (req.body.PRV_CORREO) {
+              sql += val + ' proveedor.PRV_CORREO LIKE "%' + req.body.PRV_CORREO + '%"';
+              val = ' AND';
+            }
+
+            if (req.body.ORDER) {
+              sql += ' ORDER BY ' + req.body.ORDER + ' ';
+            }
+
+            if (req.body.BY) {
+              sql += req.body.BY;
+            }
+
+            sql += ' LIMIT ' + req.body.LIMIT1 + ', ' + req.body.LIMIT2;
+            _context2.next = 12;
             return (0, _database.connect)();
 
-          case 3:
+          case 12:
             connection = _context2.sent;
-            _context2.next = 6;
-            return connection.query('SELECT * FROM proveedor');
+            _context2.next = 15;
+            return connection.query(sql);
 
-          case 6:
+          case 15:
             _yield$connection$que3 = _context2.sent;
             _yield$connection$que4 = (0, _slicedToArray2["default"])(_yield$connection$que3, 1);
             rows = _yield$connection$que4[0];
             res.json(rows);
-            _context2.next = 15;
+            _context2.next = 24;
             break;
 
-          case 12:
-            _context2.prev = 12;
+          case 21:
+            _context2.prev = 21;
             _context2.t0 = _context2["catch"](0);
             res.sendStatus(400);
 
-          case 15:
+          case 24:
           case "end":
             return _context2.stop();
         }
       }
-    }, _callee2, null, [[0, 12]]);
+    }, _callee2, null, [[0, 21]]);
   }));
 
   return function getProveedores(_x3, _x4) {
@@ -113,40 +176,59 @@ exports.getProveedores = getProveedores;
 
 var getSupervisores = /*#__PURE__*/function () {
   var _ref3 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee3(req, res) {
-    var connection, _yield$connection$que5, _yield$connection$que6, rows;
+    var sql, connection, _yield$connection$que5, _yield$connection$que6, rows;
 
     return _regenerator["default"].wrap(function _callee3$(_context3) {
       while (1) {
         switch (_context3.prev = _context3.next) {
           case 0:
             _context3.prev = 0;
-            _context3.next = 3;
+            sql = 'SELECT * FROM supervisor';
+
+            if (req.body.SUP_NOMBRE) {
+              sql += ' WHERE SUP_NOMBRE LIKE "%' + req.body.SUP_NOMBRE + '%"';
+            }
+
+            if (req.body.SUP_CORREO) {
+              sql += ' WHERE SUP_CORREO LIKE "%' + req.body.SUP_CORREO + '%"';
+            }
+
+            if (req.body.ORDER) {
+              sql += ' ORDER BY ' + req.body.ORDER + ' ';
+            }
+
+            if (req.body.BY) {
+              sql += req.body.BY;
+            }
+
+            sql += ' LIMIT ' + req.body.LIMIT1 + ', ' + req.body.LIMIT2;
+            _context3.next = 9;
             return (0, _database.connect)();
 
-          case 3:
+          case 9:
             connection = _context3.sent;
-            _context3.next = 6;
-            return connection.query('SELECT * FROM supervisor');
+            _context3.next = 12;
+            return connection.query(sql);
 
-          case 6:
+          case 12:
             _yield$connection$que5 = _context3.sent;
             _yield$connection$que6 = (0, _slicedToArray2["default"])(_yield$connection$que5, 1);
             rows = _yield$connection$que6[0];
             res.json(rows);
-            _context3.next = 15;
+            _context3.next = 21;
             break;
 
-          case 12:
-            _context3.prev = 12;
+          case 18:
+            _context3.prev = 18;
             _context3.t0 = _context3["catch"](0);
             res.sendStatus(400);
 
-          case 15:
+          case 21:
           case "end":
             return _context3.stop();
         }
       }
-    }, _callee3, null, [[0, 12]]);
+    }, _callee3, null, [[0, 18]]);
   }));
 
   return function getSupervisores(_x5, _x6) {

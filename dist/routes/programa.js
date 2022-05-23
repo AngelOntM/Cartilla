@@ -7,7 +7,7 @@ exports["default"] = void 0;
 
 var _express = require("express");
 
-var _programa = require("../controllers/programa");
+var _programa = require("../controllers/programa.js");
 
 var router = (0, _express.Router)();
 /**
@@ -25,7 +25,7 @@ var router = (0, _express.Router)();
  *      tags: [Programas]
  */
 
-router.get('/programa', _programa.getProgramas);
+router.post('/programa', _programa.getProgramas);
 /**
  * @swagger
  * /Programas/count:
@@ -38,7 +38,7 @@ router.get('/programa/count', _programa.countProgramas);
 /**
  * @swagger
  * /Programas/id:
- *  get:
+ *  post:
  *      summary: Get a Programas
  *      tags: [Programas]
  */
@@ -52,7 +52,7 @@ router.get('/programa/:id', _programa.getPrograma);
  *      tags: [Programas]
  */
 
-router.post('/programa', _programa.createPrograma);
+router.post('/programa/create', _programa.createPrograma);
 /**
  * @swagger
  * /Programas/id:

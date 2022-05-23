@@ -7,7 +7,7 @@ exports["default"] = void 0;
 
 var _express = require("express");
 
-var _raza = require("../controllers/raza");
+var _raza = require("../controllers/raza.js");
 
 var router = (0, _express.Router)();
 /**
@@ -20,12 +20,12 @@ var router = (0, _express.Router)();
 /**
  * @swagger
  * /Razas:
- *  get:
+ *  post:
  *      summary: Get all Razas
  *      tags: [Razas]
  */
 
-router.get('/raza', _raza.getRazas);
+router.post('/raza', _raza.getRazas);
 /**
  * @swagger
  * /Razas/count:
@@ -52,7 +52,7 @@ router.get('/raza/:id', _raza.getRaza);
  *      tags: [Razas]
  */
 
-router.post('/raza', _raza.createRaza);
+router.post('/raza/create', _raza.createRaza);
 /**
  * @swagger
  * /Razas/id:
