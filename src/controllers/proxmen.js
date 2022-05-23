@@ -5,7 +5,7 @@ export const getProxmens = async (req, res) => {
         var val = ' WHERE'
         var sql = 'SELECT proxmen.PXM_NUMCTRL, proxmen.PRG_NUMCTRL, programa.PRG_NOMBRE, proxmen.MEN_NUMCTRL, menu.MEN_NOMBRE, programa.PRG_CLAVE, programa.PRG_DESC FROM proxmen INNER JOIN programa ON programa.PRG_NUMCTRL = proxmen.PRG_NUMCTRL inner join menu ON menu.MEN_NUMCTRL = proxmen.MEN_NUMCTRL'
         if (req.body.MEN_NUMCTRL) {
-            sql += val + ' proxmen.MEN_NUMCTRL LIKE "%' + req.body.MEN_NUMCTRL + '%"'
+            sql += val + ' proxmen.MEN_NUMCTRL = ' + req.body.MEN_NUMCTRL
             val = ' AND'
         }
         if (req.body.PRG_NOMBRE) {
