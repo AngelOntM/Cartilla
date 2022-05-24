@@ -301,11 +301,14 @@ export const loginUsuario = async (req, res) => {
                     ])
                 if (rows[0] != null) {
                     datos = rows[0]
-                    rows = await connection.query('SELECT programa.PRG_CLAVE, programa.PRG_NOMBRE, programa.PRG_RUTA FROM menu inner join proxmen on menu.MEN_NUMCTRL = proxmen.MEN_NUMCTRL INNER JOIN programa ON programa.PRG_NUMCTRL = proxmen.PRG_NUMCTRL INNER JOIN proxusu on proxusu.PRG_NUMCTRL = programa.PRG_NUMCTRL INNER JOIN tipousu on tipousu.TIU_NUMCTRL = proxusu.TIU_NUMCTRL WHERE menu.MEN_NUMCTRL = ? AND tipousu.TIU_NUMCTRL = ?', [rows[0].TIU_NUMCTRL, rows[0].TIU_NUMCTRL])
-                    menu = rows[0]
-                    datos = { datos, menu }
+                    rows = await connection.query('SELECT programa.PRG_CLAVE, programa.PRG_NOMBRE, programa.PRG_RUTA FROM menu inner join proxmen on menu.MEN_NUMCTRL = proxmen.MEN_NUMCTRL INNER JOIN programa ON programa.PRG_NUMCTRL = proxmen.PRG_NUMCTRL INNER JOIN proxusu on proxusu.PRG_NUMCTRL = programa.PRG_NUMCTRL INNER JOIN tipousu on tipousu.TIU_NUMCTRL = proxusu.TIU_NUMCTRL WHERE menu.MEN_NUMCTRL = 1 AND tipousu.TIU_NUMCTRL = 1')
+                    var proveedor = rows[0]
+                    rows = await connection.query('SELECT programa.PRG_CLAVE, programa.PRG_NOMBRE, programa.PRG_RUTA FROM menu inner join proxmen on menu.MEN_NUMCTRL = proxmen.MEN_NUMCTRL INNER JOIN programa ON programa.PRG_NUMCTRL = proxmen.PRG_NUMCTRL INNER JOIN proxusu on proxusu.PRG_NUMCTRL = programa.PRG_NUMCTRL INNER JOIN tipousu on tipousu.TIU_NUMCTRL = proxusu.TIU_NUMCTRL WHERE menu.MEN_NUMCTRL = 2 AND tipousu.TIU_NUMCTRL = 2')
+                    var propietario = rows[0]
+                    rows = await connection.query('SELECT programa.PRG_CLAVE, programa.PRG_NOMBRE, programa.PRG_RUTA FROM menu inner join proxmen on menu.MEN_NUMCTRL = proxmen.MEN_NUMCTRL INNER JOIN programa ON programa.PRG_NUMCTRL = proxmen.PRG_NUMCTRL INNER JOIN proxusu on proxusu.PRG_NUMCTRL = programa.PRG_NUMCTRL INNER JOIN tipousu on tipousu.TIU_NUMCTRL = proxusu.TIU_NUMCTRL WHERE menu.MEN_NUMCTRL = 3 AND tipousu.TIU_NUMCTRL = 3')
+                    var supervisor = rows[0]
+                    datos = { datos, proveedor, propietario, supervisor }
                 }
-
             }
         }
         if (datos != null) {
