@@ -67,6 +67,12 @@ export const countProxmens = async (req, res) => {
 export const createProxmen = async (req, res) => {
     try {
         const connection = await connect()
+        const [orden] = await connection.query('SELECT * FROM proxmen WHERE MEN_NUMCTRL = ? AND PXM_ORDEN = ?',
+            [
+                req.body.MEN_NUMCTRL,
+                req.body.PXM_ORDEN
+            ])
+        if (orden[0] != undefined) { return res.sendStatus(400) }
         const [rows] = await connection.query("INSERT INTO proxmen(PRG_NUMCTRL, MEN_NUMCTRL, proxmen.PXM_ORDEN) VALUES (?, ?, ?)",
             [
                 req.body.PRG_NUMCTRL,
@@ -85,9 +91,18 @@ export const createProxmen = async (req, res) => {
 export const deleteProxmen = async (req, res) => {
     try {
         const connection = await connect()
-        const [rows] = await connection.query('DELETE FROM proxmen WHERE PXM_NUMCTRL = ?',
+        const [orden] = await connection.query('SELECT * FROM proxmen WHERE PXM_NUMCTRL = ?',
             [
                 req.params.id
+            ])
+        await connection.query('DELETE FROM proxmen WHERE PXM_NUMCTRL = ?',
+            [
+                req.params.id
+            ])
+        const [up] = await connection.query('UPDATE proxmen SET PXM_ORDEN = PXM_ORDEN - 1 WHERE PXM_ORDEN > ? AND MEN_NUMCTRL = ?',
+            [
+                orden[0].PXM_ORDEN,
+                orden[0].MEN_NUMCTRL
             ])
         res.sendStatus(204)
     } catch (error) {
