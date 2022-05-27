@@ -49,21 +49,66 @@ VALUES("PRG10000", "Cartilla", "cartilla"),("PRG20000", "Mascotas", "mascotas"),
         "PRG110000",
         "Programas por Tipo",
         "programas_tipo"
+    ),("PRG120000", "Sucursales", "sucursales"),(
+        "PRG130000",
+        "Servicios por Sucursal",
+        "servicios_por_sucursal"
+    ),(
+        "PRG140000",
+        "Horario por Sucursal",
+        "horario_por_sucursal"
+    ),("PRG150000", "Agenda de Citas", "agenda_de_citas"),("PRG160000", "Veterinarias", "veterinarias"),("PRG170000", "Tiendas", "tiendas"),("PRG180000", "Criptas", "criptas"),(
+        "PRG190000",
+        "Paseo de Mascotas",
+        "paseo_de_mascotas"
     );
 
 CREATE TABLE IF NOT EXISTS menu(
     MEN_NUMCTRL INTEGER(9) PRIMARY KEY AUTO_INCREMENT,
     MEN_CLAVE VARCHAR(10) NOT NULL unique,
     MEN_NOMBRE VARCHAR(40) NOT NULL,
+    MEN_ICON VARCHAR(200),
     MEN_DESC TEXT
 );
 
 USE cartilla;
 
 INSERT INTO
-    menu(MEN_CLAVE, MEN_NOMBRE)
+    menu(MEN_CLAVE, MEN_NOMBRE, MEN_ICON, MEN_DESC)
 values
-    ("0001", "Proveedor"),("0002", "Propietario"),("0003", "Supervisor");
+    (
+        "men001",
+        "Mascotas",
+        "icon-Mascotas",
+        "Menu de mascotas"
+    ),(
+        "men002",
+        "Proveedores",
+        "icon-Proveedores",
+        "Menú de Proveedores"
+    ),
+    (
+        "men003",
+        "Favoritos",
+        "icon-Favoritos",
+        "Menú de Favoritos"
+    ),("men004", "Menus", "icon-Menus", "Menú de Menus"),
+    (
+        "men005",
+        "Favoritos",
+        "icon-Favoritos",
+        "Menú de Favoritos Proveedor"
+    ),(
+        "men006",
+        "Favoritos",
+        "icon-Favoritos",
+        "Menú de Favoritos Supervisor"
+    ),(
+        "men007",
+        "Proveedor",
+        "icon-Proveedor",
+        "Menú de Proveedor"
+    );
 
 CREATE TABLE IF NOT EXISTS especialidad(
     ESP_NUMCTRL INTEGER(9) PRIMARY KEY AUTO_INCREMENT,
@@ -119,18 +164,18 @@ INSERT INTO
 VALUES
     (
         "Vet1",
-        "Angel1",
+        "Prov1",
         1234567890,
         1234567891,
-        "angel@gmail.com1",
-        "angel1"
+        "prov1@gmail.com",
+        "prov1"
     ),(
         "Vet2",
-        "Angel2",
+        "Prov2",
         1234567892,
         1234567893,
-        "angel@gmail.com2",
-        "angel2"
+        "prov2@gmail.com",
+        "prov2"
     );
 
 CREATE TABLE IF NOT EXISTS propietario (
@@ -139,7 +184,7 @@ CREATE TABLE IF NOT EXISTS propietario (
     PRO_CELULAR BIGINT(10) NOT NULL UNIQUE,
     PRO_CORREO VARCHAR(60) NOT NULL UNIQUE,
     PRO_CONTRA VARCHAR(100) NOT NULL,
-    TIU_NUMCTRL INTEGER(9),
+    TIU_NUMCTRL INTEGER(9) DEFAULT 2,
     CONSTRAINT propietario1 FOREIGN KEY (TIU_NUMCTRL) REFERENCES tipousu (TIU_NUMCTRL) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
@@ -148,23 +193,23 @@ USE cartilla;
 INSERT INTO
     propietario (PRO_NOMBRE, PRO_CELULAR, PRO_CORREO, PRO_CONTRA)
 VALUES
-    ("Angel2", 1234567891, "angel@gmail.com2", "angel2"),("Angel3", 1234567893, "angel@gmail.com3", "angel3");
+    ("Prop1", 1234567891, "prop1@gmail.com", "prop1"),("Prop2", 1234567893, "prop2@gmail.com", "prop2");
 
 CREATE TABLE IF NOT EXISTS supervisor(
     SUP_NUMCTRL INTEGER(9) PRIMARY KEY AUTO_INCREMENT,
     SUP_NOMBRE VARCHAR(40) NOT NULL,
     SUP_CORREO VARCHAR(60) NOT NULL UNIQUE,
     SUP_CONTRA VARCHAR(100) NOT NULL,
-    TIU_NUMCTRL INTEGER(9),
+    TIU_NUMCTRL INTEGER(9) DEFAULT 3,
     CONSTRAINT supervisor1 FOREIGN KEY (TIU_NUMCTRL) REFERENCES tipousu (TIU_NUMCTRL) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 USE cartilla;
 
 INSERT INTO
-    supervisor (SUP_NOMBRE, SUP_CORREO, SUP_CONTRA, TIU_NUMCTRL)
+    supervisor (SUP_NOMBRE, SUP_CORREO, SUP_CONTRA)
 VALUES
-    ("Sup1", "sup@gmail.com", "123456", 3);
+    ("Sup1", "sup1@gmail.com", "sup1");
 
 CREATE TABLE IF NOT EXISTS mascota(
     MAS_NUMCTRL INTEGER(9) PRIMARY KEY AUTO_INCREMENT,
@@ -325,7 +370,7 @@ USE cartilla;
 INSERT INTO
     proxmen(PRG_NUMCTRL, MEN_NUMCTRL, PXM_ORDEN)
 VALUES
-    (1, 1, 1),(2, 1, 2),(3, 1, 3),(4, 1, 4),(1, 2, 1),(2, 2, 2),(3, 2, 3),(4, 2, 4);
+    (1, 1, 1),(2, 1, 2),(3, 1, 3),(4, 1, 4),(5, 1, 5),(6, 3, 1),(7, 3, 2),(8, 4, 1),(9, 4, 2),(10, 4, 3),(11, 4, 4),(16, 2, 1),(17, 2, 2),(18, 2, 3),(19, 2, 4),(7, 7, 1),(12, 7, 2),(13, 7, 3),(14, 7, 4),(15, 7, 5);
 
 CREATE TABLE IF NOT EXISTS proxusu(
     PXU_NUMCTRL INTEGER(9) PRIMARY KEY AUTO_INCREMENT,
@@ -340,7 +385,7 @@ USE cartilla;
 INSERT INTO
     proxusu(TIU_NUMCTRL, PRG_NUMCTRL)
 VALUES
-    (1, 1),(1, 2),(1, 3),(1, 4),(2, 1),(2, 2),(2, 3),(2, 4);
+    (3, 1),(3, 2),(3, 3),(3, 4),(3, 5),(3, 6),(3, 7),(3, 8),(3, 9),(3, 10),(3, 11),(2, 1),(2, 2),(2, 3),(2, 4),(2, 6),(2, 7),(2, 16),(2, 17),(2, 18),(2, 19),(1, 7),(1, 12),(1, 13),(1, 14),(1, 15);
 
 CREATE TABLE IF NOT EXISTS vacxmas(
     VXM_NUMCTRL INTEGER(9) PRIMARY KEY AUTO_INCREMENT,
