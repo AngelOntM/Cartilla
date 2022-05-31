@@ -57,7 +57,11 @@ VALUES("PRG10000", "Cartilla", "cartilla"),("PRG20000", "Mascotas", "mascotas"),
         "PRG140000",
         "Horario por Sucursal",
         "horario_por_sucursal"
-    ),("PRG150000", "Agenda de Citas", "agenda_de_citas"),("PRG160000", "Veterinarias", "veterinarias"),("PRG170000", "Tiendas", "tiendas"),("PRG180000", "Criptas", "criptas"),(
+    ),(
+        "PRG150000",
+        "Agenda de Citas",
+        "agenda_de_citas"
+    ),("PRG160000", "Veterinarias", "veterinarias"),("PRG170000", "Tiendas", "tiendas"),("PRG180000", "Criptas", "criptas"),(
         "PRG190000",
         "Paseo de Mascotas",
         "paseo_de_mascotas"
@@ -67,7 +71,7 @@ CREATE TABLE IF NOT EXISTS menu(
     MEN_NUMCTRL INTEGER(9) PRIMARY KEY AUTO_INCREMENT,
     MEN_CLAVE VARCHAR(10) NOT NULL unique,
     MEN_NOMBRE VARCHAR(40) NOT NULL,
-    MEN_ICON VARCHAR(200),
+    MEN_ICON TEXT,
     MEN_DESC TEXT
 );
 

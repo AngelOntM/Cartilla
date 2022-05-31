@@ -58,10 +58,11 @@ export const countMenus = async (req, res) => {
 export const createMenu = async (req, res) => {
     try {
         const connection = await connect()
-        const [rows] = await connection.query("INSERT INTO menu(MEN_CLAVE,MEN_NOMBRE,MEN_DESC) VALUES (?, ?,?)",
+        const [rows] = await connection.query("INSERT INTO menu(MEN_CLAVE,MEN_NOMBRE,MEN_ICON,MEN_DESC) VALUES (?, ?, ?, ?)",
             [
                 req.body.MEN_CLAVE,
                 req.body.MEN_NOMBRE,
+                req.body.MEN_ICON,
                 req.body.MEN_DESC
             ])
         res.json({
