@@ -57,11 +57,7 @@ VALUES("PRG10000", "Cartilla", "cartilla"),("PRG20000", "Mascotas", "mascotas"),
         "PRG140000",
         "Horario por Sucursal",
         "horario_por_sucursal"
-    ),(
-        "PRG150000",
-        "Agenda de Citas",
-        "agenda_de_citas"
-    ),("PRG160000", "Veterinarias", "veterinarias"),("PRG170000", "Tiendas", "tiendas"),("PRG180000", "Criptas", "criptas"),(
+    ),("PRG150000", "Agenda de Citas", "agenda_de_citas"),("PRG160000", "Veterinarias", "veterinarias"),("PRG170000", "Tiendas", "tiendas"),("PRG180000", "Criptas", "criptas"),(
         "PRG190000",
         "Paseo de Mascotas",
         "paseo_de_mascotas"
@@ -113,6 +109,20 @@ values
         "icon-Proveedor",
         "Menú de Proveedor"
     );
+
+CREATE TABLE IF NOT EXISTS submenu(
+    SUM_NUMCTRL INTEGER(9) PRIMARY KEY AUTO_INCREMENT,
+    MEN_NUMCTRL INTEGER(9) UNIQUE,
+    SUM_ORDEN INTEGER(5),
+    CONSTRAINT submenu1 FOREIGN KEY (MEN_NUMCTRL) REFERENCES menu(MEN_NUMCTRL) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+USE cartilla;
+
+INSERT INTO
+    submenu (MEN_NUMCTRL, SUM_ORDEN)
+values
+    (1, 1),(2, 2),(3, 3),(4, 4),(5, 5),(6, 6),(7, 7);
 
 CREATE TABLE IF NOT EXISTS especialidad(
     ESP_NUMCTRL INTEGER(9) PRIMARY KEY AUTO_INCREMENT,

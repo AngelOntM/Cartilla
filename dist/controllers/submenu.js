@@ -5,7 +5,7 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.updateProxmen = exports.getProxmens = exports.getProxmen = exports.deleteProxmen = exports.createProxmen = exports.countProxmens = void 0;
+exports.updateSubmenu = exports.getSubmenus = exports.getSubmenu = exports.deleteSubmenu = exports.createSubmenu = exports.countSubmenus = void 0;
 
 var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
 
@@ -21,7 +21,7 @@ function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (O
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2["default"])(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 
-var getProxmens = /*#__PURE__*/function () {
+var getSubmenus = /*#__PURE__*/function () {
   var _ref = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee(req, res) {
     var val, sql, connection, _yield$connection$que, _yield$connection$que2, rows;
 
@@ -31,35 +31,20 @@ var getProxmens = /*#__PURE__*/function () {
           case 0:
             _context.prev = 0;
             val = ' WHERE';
-            sql = 'SELECT proxmen.PXM_NUMCTRL, proxmen.PRG_NUMCTRL, programa.PRG_NOMBRE, proxmen.MEN_NUMCTRL, menu.MEN_NOMBRE, programa.PRG_CLAVE, programa.PRG_DESC, proxmen.PXM_ORDEN, menu.MEN_ICON, menu.MEN_DESC FROM proxmen INNER JOIN programa ON programa.PRG_NUMCTRL = proxmen.PRG_NUMCTRL inner join menu ON menu.MEN_NUMCTRL = proxmen.MEN_NUMCTRL';
+            sql = 'SELECT * FROM Submenu';
 
             if (req.body.MEN_NUMCTRL) {
-              sql += val + ' proxmen.MEN_NUMCTRL = ' + req.body.MEN_NUMCTRL;
+              sql += val + ' MEN_NUMCTRL LIKE "%' + req.body.MEN_NUMCTRL + '%"';
               val = ' AND';
             }
 
-            if (req.body.PRG_NOMBRE) {
-              sql += val + ' programa.PRG_NOMBRE LIKE "%' + req.body.PRG_NOMBRE + '%"';
+            if (req.body.SUM_ORDEN) {
+              sql += val + ' SUM_ORDEN LIKE "%' + req.body.SUM_ORDEN + '%"';
               val = ' AND';
             }
 
-            if (req.body.PRG_DESC) {
-              sql += val + ' programa.PRG_DESC LIKE "%' + req.body.PRG_DESC + '%"';
-              val = ' AND';
-            }
-
-            if (req.body.PRG_CLAVE) {
-              sql += val + ' programa.PRG_CLAVE LIKE "%' + req.body.PRG_CLAVE + '%"';
-              val = ' AND';
-            }
-
-            if (req.body.MEN_NOMBRE) {
-              sql += val + ' menu.MEN_NOMBRE LIKE "%' + req.body.MEN_NOMBRE + '%"';
-              val = ' AND';
-            }
-
-            if (req.body.PXM_ORDEN) {
-              sql += val + ' proxmen.PXM_ORDEN LIKE "%' + req.body.PXM_ORDEN + '%"';
+            if (req.body.SUM_NUMCTRL) {
+              sql += val + ' SUM_NUMCTRL LIKE "%' + req.body.SUM_NUMCTRL + '%"';
               val = ' AND';
             }
 
@@ -72,43 +57,43 @@ var getProxmens = /*#__PURE__*/function () {
             }
 
             sql += ' LIMIT ' + req.body.LIMIT1 + ', ' + req.body.LIMIT2;
-            _context.next = 14;
+            _context.next = 11;
             return (0, _database.connect)();
 
-          case 14:
+          case 11:
             connection = _context.sent;
-            _context.next = 17;
+            _context.next = 14;
             return connection.query(sql);
 
-          case 17:
+          case 14:
             _yield$connection$que = _context.sent;
             _yield$connection$que2 = (0, _slicedToArray2["default"])(_yield$connection$que, 1);
             rows = _yield$connection$que2[0];
             res.json(rows);
-            _context.next = 26;
+            _context.next = 23;
             break;
 
-          case 23:
-            _context.prev = 23;
+          case 20:
+            _context.prev = 20;
             _context.t0 = _context["catch"](0);
             res.sendStatus(400);
 
-          case 26:
+          case 23:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[0, 23]]);
+    }, _callee, null, [[0, 20]]);
   }));
 
-  return function getProxmens(_x, _x2) {
+  return function getSubmenus(_x, _x2) {
     return _ref.apply(this, arguments);
   };
 }();
 
-exports.getProxmens = getProxmens;
+exports.getSubmenus = getSubmenus;
 
-var getProxmen = /*#__PURE__*/function () {
+var getSubmenu = /*#__PURE__*/function () {
   var _ref2 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee2(req, res) {
     var connection, _yield$connection$que3, _yield$connection$que4, rows;
 
@@ -123,23 +108,22 @@ var getProxmen = /*#__PURE__*/function () {
           case 3:
             connection = _context2.sent;
             _context2.next = 6;
-            return connection.query('SELECT proxmen.PXM_NUMCTRL, proxmen.PRG_NUMCTRL, programa.PRG_NOMBRE, proxmen.MEN_NUMCTRL, menu.MEN_NOMBRE, proxmen.PXM_ORDEN FROM proxmen INNER JOIN programa ON programa.PRG_NUMCTRL = proxmen.PRG_NUMCTRL inner join menu ON menu.MEN_NUMCTRL = proxmen.MEN_NUMCTRL WHERE proxmen.MEN_NUMCTRL = ?', [req.params.id]);
+            return connection.query('SELECT * FROM Submenu WHERE SUM_NUMCTRL = ?', [req.params.id]);
 
           case 6:
             _yield$connection$que3 = _context2.sent;
             _yield$connection$que4 = (0, _slicedToArray2["default"])(_yield$connection$que3, 1);
             rows = _yield$connection$que4[0];
-            res.json(rows);
-            _context2.next = 16;
+            res.json(rows[0]);
+            _context2.next = 15;
             break;
 
           case 12:
             _context2.prev = 12;
             _context2.t0 = _context2["catch"](0);
-            console.log(_context2.t0);
             res.sendStatus(400);
 
-          case 16:
+          case 15:
           case "end":
             return _context2.stop();
         }
@@ -147,14 +131,14 @@ var getProxmen = /*#__PURE__*/function () {
     }, _callee2, null, [[0, 12]]);
   }));
 
-  return function getProxmen(_x3, _x4) {
+  return function getSubmenu(_x3, _x4) {
     return _ref2.apply(this, arguments);
   };
 }();
 
-exports.getProxmen = getProxmen;
+exports.getSubmenu = getSubmenu;
 
-var countProxmens = /*#__PURE__*/function () {
+var countSubmenus = /*#__PURE__*/function () {
   var _ref3 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee3(req, res) {
     var connection, _yield$connection$que5, _yield$connection$que6, rows;
 
@@ -169,7 +153,7 @@ var countProxmens = /*#__PURE__*/function () {
           case 3:
             connection = _context3.sent;
             _context3.next = 6;
-            return connection.query('SELECT COUNT(*) FROM proxmen');
+            return connection.query('SELECT COUNT(*) FROM Submenu');
 
           case 6:
             _yield$connection$que5 = _context3.sent;
@@ -192,16 +176,16 @@ var countProxmens = /*#__PURE__*/function () {
     }, _callee3, null, [[0, 12]]);
   }));
 
-  return function countProxmens(_x5, _x6) {
+  return function countSubmenus(_x5, _x6) {
     return _ref3.apply(this, arguments);
   };
 }();
 
-exports.countProxmens = countProxmens;
+exports.countSubmenus = countSubmenus;
 
-var createProxmen = /*#__PURE__*/function () {
+var createSubmenu = /*#__PURE__*/function () {
   var _ref4 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee4(req, res) {
-    var connection, _yield$connection$que7, _yield$connection$que8, orden, _yield$connection$que9, _yield$connection$que10, rows;
+    var connection, _yield$connection$que7, _yield$connection$que8, rows;
 
     return _regenerator["default"].wrap(function _callee4$(_context4) {
       while (1) {
@@ -214,57 +198,41 @@ var createProxmen = /*#__PURE__*/function () {
           case 3:
             connection = _context4.sent;
             _context4.next = 6;
-            return connection.query('SELECT * FROM proxmen WHERE MEN_NUMCTRL = ? AND PXM_ORDEN = ?', [req.body.MEN_NUMCTRL, req.body.PXM_ORDEN]);
+            return connection.query("INSERT INTO Submenu(MEN_NUMCTRL,SUM_ORDEN) VALUES (?, ?)", [req.body.MEN_NUMCTRL, req.body.SUM_ORDEN]);
 
           case 6:
             _yield$connection$que7 = _context4.sent;
             _yield$connection$que8 = (0, _slicedToArray2["default"])(_yield$connection$que7, 1);
-            orden = _yield$connection$que8[0];
-
-            if (!(orden[0] != undefined)) {
-              _context4.next = 11;
-              break;
-            }
-
-            return _context4.abrupt("return", res.sendStatus(400));
-
-          case 11:
-            _context4.next = 13;
-            return connection.query("INSERT INTO proxmen(PRG_NUMCTRL, MEN_NUMCTRL, proxmen.PXM_ORDEN) VALUES (?, ?, ?)", [req.body.PRG_NUMCTRL, req.body.MEN_NUMCTRL, req.body.PXM_ORDEN]);
-
-          case 13:
-            _yield$connection$que9 = _context4.sent;
-            _yield$connection$que10 = (0, _slicedToArray2["default"])(_yield$connection$que9, 1);
-            rows = _yield$connection$que10[0];
+            rows = _yield$connection$que8[0];
             res.json(_objectSpread({
               id: rows.insertId
             }, req.body));
-            _context4.next = 22;
+            _context4.next = 15;
             break;
 
-          case 19:
-            _context4.prev = 19;
+          case 12:
+            _context4.prev = 12;
             _context4.t0 = _context4["catch"](0);
             res.sendStatus(400);
 
-          case 22:
+          case 15:
           case "end":
             return _context4.stop();
         }
       }
-    }, _callee4, null, [[0, 19]]);
+    }, _callee4, null, [[0, 12]]);
   }));
 
-  return function createProxmen(_x7, _x8) {
+  return function createSubmenu(_x7, _x8) {
     return _ref4.apply(this, arguments);
   };
 }();
 
-exports.createProxmen = createProxmen;
+exports.createSubmenu = createSubmenu;
 
-var deleteProxmen = /*#__PURE__*/function () {
+var deleteSubmenu = /*#__PURE__*/function () {
   var _ref5 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee5(req, res) {
-    var connection, _yield$connection$que11, _yield$connection$que12, orden, _yield$connection$que13, _yield$connection$que14, up;
+    var connection, _yield$connection$que9, _yield$connection$que10, rows;
 
     return _regenerator["default"].wrap(function _callee5$(_context5) {
       while (1) {
@@ -277,50 +245,39 @@ var deleteProxmen = /*#__PURE__*/function () {
           case 3:
             connection = _context5.sent;
             _context5.next = 6;
-            return connection.query('SELECT * FROM proxmen WHERE PXM_NUMCTRL = ?', [req.params.id]);
+            return connection.query('DELETE FROM Submenu WHERE SUM_NUMCTRL = ?', [req.params.id]);
 
           case 6:
-            _yield$connection$que11 = _context5.sent;
-            _yield$connection$que12 = (0, _slicedToArray2["default"])(_yield$connection$que11, 1);
-            orden = _yield$connection$que12[0];
-            _context5.next = 11;
-            return connection.query('DELETE FROM proxmen WHERE PXM_NUMCTRL = ?', [req.params.id]);
-
-          case 11:
-            _context5.next = 13;
-            return connection.query('UPDATE proxmen SET PXM_ORDEN = PXM_ORDEN - 1 WHERE PXM_ORDEN > ? AND MEN_NUMCTRL = ?', [orden[0].PXM_ORDEN, orden[0].MEN_NUMCTRL]);
-
-          case 13:
-            _yield$connection$que13 = _context5.sent;
-            _yield$connection$que14 = (0, _slicedToArray2["default"])(_yield$connection$que13, 1);
-            up = _yield$connection$que14[0];
+            _yield$connection$que9 = _context5.sent;
+            _yield$connection$que10 = (0, _slicedToArray2["default"])(_yield$connection$que9, 1);
+            rows = _yield$connection$que10[0];
             res.sendStatus(204);
-            _context5.next = 22;
+            _context5.next = 15;
             break;
 
-          case 19:
-            _context5.prev = 19;
+          case 12:
+            _context5.prev = 12;
             _context5.t0 = _context5["catch"](0);
             res.sendStatus(400);
 
-          case 22:
+          case 15:
           case "end":
             return _context5.stop();
         }
       }
-    }, _callee5, null, [[0, 19]]);
+    }, _callee5, null, [[0, 12]]);
   }));
 
-  return function deleteProxmen(_x9, _x10) {
+  return function deleteSubmenu(_x9, _x10) {
     return _ref5.apply(this, arguments);
   };
 }();
 
-exports.deleteProxmen = deleteProxmen;
+exports.deleteSubmenu = deleteSubmenu;
 
-var updateProxmen = /*#__PURE__*/function () {
+var updateSubmenu = /*#__PURE__*/function () {
   var _ref6 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee6(req, res) {
-    var connection, _yield$connection$que15, _yield$connection$que16, orden, _yield$connection$que17, _yield$connection$que18, rows;
+    var connection, _yield$connection$que11, _yield$connection$que12, rows;
 
     return _regenerator["default"].wrap(function _callee6$(_context6) {
       while (1) {
@@ -332,69 +289,33 @@ var updateProxmen = /*#__PURE__*/function () {
 
           case 3:
             connection = _context6.sent;
+            _context6.next = 6;
+            return connection.query('UPDATE Submenu SET ? WHERE SUM_NUMCTRL = ?', [req.body, req.params.id]);
 
-            if (!req.body.PXM_ORDEN) {
-              _context6.next = 18;
-              break;
-            }
-
-            _context6.next = 7;
-            return connection.query('SELECT * FROM proxmen WHERE PXM_NUMCTRL = ?', [req.params.id]);
-
-          case 7:
-            _yield$connection$que15 = _context6.sent;
-            _yield$connection$que16 = (0, _slicedToArray2["default"])(_yield$connection$que15, 1);
-            orden = _yield$connection$que16[0];
-
-            if (!(orden[0].PXM_ORDEN < req.body.PXM_ORDEN)) {
-              _context6.next = 15;
-              break;
-            }
-
-            _context6.next = 13;
-            return connection.query('UPDATE proxmen SET PXM_ORDEN = PXM_ORDEN - 1 WHERE MEN_NUMCTRL = ? AND PXM_ORDEN > ? AND PXM_ORDEN <= ?', [orden[0].MEN_NUMCTRL, orden[0].PXM_ORDEN, req.body.PXM_ORDEN]);
-
-          case 13:
-            _context6.next = 18;
-            break;
-
-          case 15:
-            if (!(orden[0].PXM_ORDEN > req.body.PXM_ORDEN)) {
-              _context6.next = 18;
-              break;
-            }
-
-            _context6.next = 18;
-            return connection.query('UPDATE proxmen SET PXM_ORDEN = PXM_ORDEN + 1 WHERE MEN_NUMCTRL = ? AND PXM_ORDEN < ? AND PXM_ORDEN >= ?', [orden[0].MEN_NUMCTRL, orden[0].PXM_ORDEN, req.body.PXM_ORDEN]);
-
-          case 18:
-            _context6.next = 20;
-            return connection.query('UPDATE proxmen SET ? WHERE PXM_NUMCTRL = ?', [req.body, req.params.id]);
-
-          case 20:
-            _yield$connection$que17 = _context6.sent;
-            _yield$connection$que18 = (0, _slicedToArray2["default"])(_yield$connection$que17, 1);
-            rows = _yield$connection$que18[0];
+          case 6:
+            _yield$connection$que11 = _context6.sent;
+            _yield$connection$que12 = (0, _slicedToArray2["default"])(_yield$connection$que11, 1);
+            rows = _yield$connection$que12[0];
             res.json(rows);
-            _context6.next = 29;
+            _context6.next = 15;
             break;
 
-          case 26:
-            _context6.prev = 26;
+          case 12:
+            _context6.prev = 12;
             _context6.t0 = _context6["catch"](0);
             res.sendStatus(400);
 
-          case 29:
+          case 15:
           case "end":
             return _context6.stop();
         }
       }
-    }, _callee6, null, [[0, 26]]);
+    }, _callee6, null, [[0, 12]]);
   }));
 
-  return function updateProxmen(_x11, _x12) {
+  return function updateSubmenu(_x11, _x12) {
     return _ref6.apply(this, arguments);
   };
 }();
 
-exports.updateProxmen = updateProxmen;
+exports.updateSubmenu = updateSubmenu;

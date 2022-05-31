@@ -203,7 +203,7 @@ var createMenu = /*#__PURE__*/function () {
           case 3:
             connection = _context4.sent;
             _context4.next = 6;
-            return connection.query("INSERT INTO menu(MEN_CLAVE,MEN_NOMBRE,MEN_DESC) VALUES (?, ?,?)", [req.body.MEN_CLAVE, req.body.MEN_NOMBRE, req.body.MEN_DESC]);
+            return connection.query("INSERT INTO menu(MEN_CLAVE,MEN_NOMBRE,MEN_ICON,MEN_DESC) VALUES (?, ?, ?, ?)", [req.body.MEN_CLAVE, req.body.MEN_NOMBRE, req.body.MEN_ICON, req.body.MEN_DESC]);
 
           case 6:
             _yield$connection$que7 = _context4.sent;

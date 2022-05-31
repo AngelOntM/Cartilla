@@ -12,6 +12,7 @@ import raza from "./routes/raza.js"
 import tipousu from "./routes/tipousu.js"
 import proxmen from "./routes/proxmen.js"
 import proxusu from "./routes/proxusu.js"
+import submenu from "./routes/submenu.js"
 
 import { options } from './swaggerOptions'
 
@@ -36,6 +37,7 @@ app.use(raza)
 app.use(tipousu)
 app.use(proxmen)
 app.use(proxusu)
+app.use(submenu)
 
 /**
  * Create Documentation

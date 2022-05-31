@@ -31,6 +31,8 @@ var _proxmen = _interopRequireDefault(require("./routes/proxmen.js"));
 
 var _proxusu = _interopRequireDefault(require("./routes/proxusu.js"));
 
+var _submenu = _interopRequireDefault(require("./routes/submenu.js"));
+
 var _swaggerOptions = require("./swaggerOptions");
 
 var specs = (0, _swaggerJsdoc["default"])(_swaggerOptions.options);
@@ -53,6 +55,7 @@ app.use(_raza["default"]);
 app.use(_tipousu["default"]);
 app.use(_proxmen["default"]);
 app.use(_proxusu["default"]);
+app.use(_submenu["default"]);
 /**
  * Create Documentation
  */
