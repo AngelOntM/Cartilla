@@ -63,66 +63,100 @@ VALUES("PRG10000", "Cartilla", "cartilla"),("PRG20000", "Mascotas", "mascotas"),
         "paseo_de_mascotas"
     );
 
+CREATE TABLE IF NOT EXISTS submenu(
+    SUM_NUMCTRL INTEGER(9) PRIMARY KEY AUTO_INCREMENT,
+    SUM_ETIQUETA VARCHAR(100)
+);
+
+USE cartilla;
+
+INSERT INTO
+    submenu (SUM_ETIQUETA)
+values
+    ("Menu de Proveedor"),("Menu de Propietario"),("Menu de Supervisor");
+
 CREATE TABLE IF NOT EXISTS menu(
     MEN_NUMCTRL INTEGER(9) PRIMARY KEY AUTO_INCREMENT,
     MEN_CLAVE VARCHAR(10) NOT NULL unique,
     MEN_NOMBRE VARCHAR(40) NOT NULL,
     MEN_ICON TEXT,
-    MEN_DESC TEXT
+    MEN_DESC TEXT,
+    MEN_ORDEN INTEGER(5),
+    SUM_NUMCTRL INTEGER(9),
+    CONSTRAINT menu1 FOREIGN KEY (SUM_NUMCTRL) REFERENCES submenu(SUM_NUMCTRL) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 USE cartilla;
 
 INSERT INTO
-    menu(MEN_CLAVE, MEN_NOMBRE, MEN_ICON, MEN_DESC)
+    menu(
+        MEN_CLAVE,
+        MEN_NOMBRE,
+        MEN_ICON,
+        MEN_DESC,
+        MEN_ORDEN,
+        SUM_NUMCTRL
+    )
 values
     (
         "men001",
         "Mascotas",
         "icon-Mascotas",
-        "Menu de mascotas"
+        "Menu de mascotas",
+        1,
+        2
     ),(
         "men002",
         "Proveedores",
         "icon-Proveedores",
-        "Menú de Proveedores"
+        "Menú de Proveedores",
+        2,
+        2
     ),
     (
         "men003",
         "Favoritos",
         "icon-Favoritos",
-        "Menú de Favoritos"
-    ),("men004", "Menus", "icon-Menus", "Menú de Menus"),
+        "Menú de Favoritos",
+        3,
+        2
+    ),(
+        "men004",
+        "Menus",
+        "icon-Menus",
+        "Menú de Menus",
+        3,
+        3
+    ),
     (
         "men005",
         "Favoritos",
         "icon-Favoritos",
-        "Menú de Favoritos Proveedor"
+        "Menú de Favoritos Proveedor",
+        2,
+        1
     ),(
         "men006",
         "Favoritos",
         "icon-Favoritos",
-        "Menú de Favoritos Supervisor"
+        "Menú de Favoritos Supervisor",
+        2,
+        3
     ),(
         "men007",
         "Proveedor",
         "icon-Proveedor",
-        "Menú de Proveedor"
+        "Menú de Proveedor",
+        1,
+        1
+    ),(
+        "men008",
+        "Mascotas",
+        "icon-Mascotas",
+        "Menu de mascotas Supervisor",
+        1,
+        3
     );
-
-CREATE TABLE IF NOT EXISTS submenu(
-    SUM_NUMCTRL INTEGER(9) PRIMARY KEY AUTO_INCREMENT,
-    MEN_NUMCTRL INTEGER(9) UNIQUE,
-    SUM_ORDEN INTEGER(5),
-    CONSTRAINT submenu1 FOREIGN KEY (MEN_NUMCTRL) REFERENCES menu(MEN_NUMCTRL) ON DELETE CASCADE ON UPDATE CASCADE
-);
-
-USE cartilla;
-
-INSERT INTO
-    submenu (MEN_NUMCTRL, SUM_ORDEN)
-values
-    (1, 1),(2, 2),(3, 3),(4, 4),(5, 5),(6, 6),(7, 7);
 
 CREATE TABLE IF NOT EXISTS especialidad(
     ESP_NUMCTRL INTEGER(9) PRIMARY KEY AUTO_INCREMENT,
@@ -384,7 +418,7 @@ USE cartilla;
 INSERT INTO
     proxmen(PRG_NUMCTRL, MEN_NUMCTRL, PXM_ORDEN)
 VALUES
-    (1, 1, 1),(2, 1, 2),(3, 1, 3),(4, 1, 4),(5, 1, 5),(6, 3, 1),(7, 3, 2),(8, 4, 1),(9, 4, 2),(10, 4, 3),(11, 4, 4),(16, 2, 1),(17, 2, 2),(18, 2, 3),(19, 2, 4),(7, 7, 1),(12, 7, 2),(13, 7, 3),(14, 7, 4),(15, 7, 5);
+    (1, 1, 1),(2, 1, 2),(3, 1, 3),(4, 1, 4),(16, 2, 1),(17, 2, 2),(18, 2, 3),(19, 2, 4),(6, 3, 1),(7, 3, 2),(8, 4, 1),(9, 4, 2),(10, 4, 3),(11, 4, 4),(6, 5, 1),(7, 5, 2),(6, 6, 1),(7, 6, 2),(7, 7, 1),(12, 7, 2),(13, 7, 3),(14, 7, 4),(15, 7, 5),(1, 8, 1),(2, 8, 2),(3, 8, 3),(4, 8, 4),(5, 8, 5);
 
 CREATE TABLE IF NOT EXISTS proxusu(
     PXU_NUMCTRL INTEGER(9) PRIMARY KEY AUTO_INCREMENT,
