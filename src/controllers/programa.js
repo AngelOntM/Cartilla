@@ -1,4 +1,4 @@
-import { connect } from '../database'
+import { connect } from '../database/database.js'
 
 export const getProgramas = async (req, res) => {
     try {

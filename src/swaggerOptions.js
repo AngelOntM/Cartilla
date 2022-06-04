@@ -4,5 +4,5 @@ export const options = {
             title: 'Cartilla api'
         }
     },
-    apis: ["./src/routes/**/*.js"]
+    apis: ["./src/Routes/**/*.js"]
 }
