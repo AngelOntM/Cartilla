@@ -31,7 +31,7 @@ var getMenus = /*#__PURE__*/function () {
           case 0:
             _context.prev = 0;
             val = ' WHERE';
-            sql = 'SELECT * FROM menu';
+            sql = 'SELECT  MEN_NUMCTRL,MEN_CLAVE,MEN_NOMBRE,MEN_ICON,MEN_DESC,MEN_ORDEN,SUM_NUMCTRL,SUM_ETIQUETA FROM menu inner join submenu on submenu.SUM_NUMCTRL';
 
             if (req.body.MEN_NUMCTRL) {
               sql += val + ' MEN_NUMCTRL LIKE "%' + req.body.MEN_NUMCTRL + '%"';
@@ -53,6 +53,21 @@ var getMenus = /*#__PURE__*/function () {
               val = ' AND';
             }
 
+            if (req.body.MEN_ORDEN) {
+              sql += val + ' MEN_ORDEN LIKE "%' + req.body.MEN_ORDEN + '%"';
+              val = ' AND';
+            }
+
+            if (req.body.SUM_NUMCTRL) {
+              sql += val + ' SUM_NUMCTRL LIKE "%' + req.body.SUM_NUMCTRL + '%"';
+              val = ' AND';
+            }
+
+            if (req.body.SUM_ETIQUETA) {
+              sql += val + ' SUM_ETIQUETA LIKE "%' + req.body.SUM_ETIQUETA + '%"';
+              val = ' AND';
+            }
+
             if (req.body.ORDER) {
               sql += ' ORDER BY ' + req.body.ORDER + ' ';
             }
@@ -62,33 +77,33 @@ var getMenus = /*#__PURE__*/function () {
             }
 
             sql += ' LIMIT ' + req.body.LIMIT1 + ', ' + req.body.LIMIT2;
-            _context.next = 12;
+            _context.next = 15;
             return (0, _database.connect)();
 
-          case 12:
+          case 15:
             connection = _context.sent;
-            _context.next = 15;
+            _context.next = 18;
             return connection.query(sql);
 
-          case 15:
+          case 18:
             _yield$connection$que = _context.sent;
             _yield$connection$que2 = (0, _slicedToArray2["default"])(_yield$connection$que, 1);
             rows = _yield$connection$que2[0];
             res.json(rows);
-            _context.next = 24;
+            _context.next = 27;
             break;
 
-          case 21:
-            _context.prev = 21;
+          case 24:
+            _context.prev = 24;
             _context.t0 = _context["catch"](0);
             res.sendStatus(400);
 
-          case 24:
+          case 27:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[0, 21]]);
+    }, _callee, null, [[0, 24]]);
   }));
 
   return function getMenus(_x, _x2) {
@@ -190,7 +205,7 @@ exports.countMenus = countMenus;
 
 var createMenu = /*#__PURE__*/function () {
   var _ref4 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee4(req, res) {
-    var connection, _yield$connection$que7, _yield$connection$que8, rows;
+    var connection, _yield$connection$que7, _yield$connection$que8, orden, _yield$connection$que9, _yield$connection$que10, rows;
 
     return _regenerator["default"].wrap(function _callee4$(_context4) {
       while (1) {
@@ -203,29 +218,45 @@ var createMenu = /*#__PURE__*/function () {
           case 3:
             connection = _context4.sent;
             _context4.next = 6;
-            return connection.query("INSERT INTO menu(MEN_CLAVE,MEN_NOMBRE,MEN_ICON,MEN_DESC) VALUES (?, ?, ?, ?)", [req.body.MEN_CLAVE, req.body.MEN_NOMBRE, req.body.MEN_ICON, req.body.MEN_DESC]);
+            return connection.query('SELECT * FROM menu WHERE MEN_ORDEN = ? AND SUM_NUMCTRL = ?', [req.body.MEN_ORDEN, req.body.SUM_NUMCTRL]);
 
           case 6:
             _yield$connection$que7 = _context4.sent;
             _yield$connection$que8 = (0, _slicedToArray2["default"])(_yield$connection$que7, 1);
-            rows = _yield$connection$que8[0];
+            orden = _yield$connection$que8[0];
+
+            if (!(orden[0] != undefined)) {
+              _context4.next = 11;
+              break;
+            }
+
+            return _context4.abrupt("return", res.sendStatus(400));
+
+          case 11:
+            _context4.next = 13;
+            return connection.query("INSERT INTO menu(MEN_CLAVE,MEN_NOMBRE,MEN_ICON,MEN_DESC,MEN_ORDEN,SUM_NUMCTRL) VALUES (?, ?, ?, ?, ?, ?)", [req.body.MEN_CLAVE, req.body.MEN_NOMBRE, req.body.MEN_ICON, req.body.MEN_DESC, req.body.MEN_ORDEN, req.body.SUM_NUMCTRL]);
+
+          case 13:
+            _yield$connection$que9 = _context4.sent;
+            _yield$connection$que10 = (0, _slicedToArray2["default"])(_yield$connection$que9, 1);
+            rows = _yield$connection$que10[0];
             res.json(_objectSpread({
               id: rows.insertId
             }, req.body));
-            _context4.next = 15;
+            _context4.next = 22;
             break;
 
-          case 12:
-            _context4.prev = 12;
+          case 19:
+            _context4.prev = 19;
             _context4.t0 = _context4["catch"](0);
             res.sendStatus(400);
 
-          case 15:
+          case 22:
           case "end":
             return _context4.stop();
         }
       }
-    }, _callee4, null, [[0, 12]]);
+    }, _callee4, null, [[0, 19]]);
   }));
 
   return function createMenu(_x7, _x8) {
@@ -237,7 +268,7 @@ exports.createMenu = createMenu;
 
 var deleteMenu = /*#__PURE__*/function () {
   var _ref5 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee5(req, res) {
-    var connection, _yield$connection$que9, _yield$connection$que10, rows;
+    var connection, _yield$connection$que11, _yield$connection$que12, orden, _yield$connection$que13, _yield$connection$que14, up;
 
     return _regenerator["default"].wrap(function _callee5$(_context5) {
       while (1) {
@@ -250,27 +281,38 @@ var deleteMenu = /*#__PURE__*/function () {
           case 3:
             connection = _context5.sent;
             _context5.next = 6;
-            return connection.query('DELETE FROM menu WHERE MEN_NUMCTRL = ?', [req.params.id]);
+            return connection.query('SELECT * FROM menu WHERE MEN_NUMCTRL = ?', [req.params.id]);
 
           case 6:
-            _yield$connection$que9 = _context5.sent;
-            _yield$connection$que10 = (0, _slicedToArray2["default"])(_yield$connection$que9, 1);
-            rows = _yield$connection$que10[0];
+            _yield$connection$que11 = _context5.sent;
+            _yield$connection$que12 = (0, _slicedToArray2["default"])(_yield$connection$que11, 1);
+            orden = _yield$connection$que12[0];
+            _context5.next = 11;
+            return connection.query('DELETE FROM menu WHERE MEN_NUMCTRL = ?', [req.params.id]);
+
+          case 11:
+            _context5.next = 13;
+            return connection.query('UPDATE menu SET MEN_ORDEN = MEN_ORDEN - 1 WHERE MEN_ORDEN > ? AND SUM_NUMCTRL = ?', [orden[0].MEN_ORDEN, orden[0].SUM_NUMCTRL]);
+
+          case 13:
+            _yield$connection$que13 = _context5.sent;
+            _yield$connection$que14 = (0, _slicedToArray2["default"])(_yield$connection$que13, 1);
+            up = _yield$connection$que14[0];
             res.sendStatus(204);
-            _context5.next = 15;
+            _context5.next = 22;
             break;
 
-          case 12:
-            _context5.prev = 12;
+          case 19:
+            _context5.prev = 19;
             _context5.t0 = _context5["catch"](0);
             res.sendStatus(400);
 
-          case 15:
+          case 22:
           case "end":
             return _context5.stop();
         }
       }
-    }, _callee5, null, [[0, 12]]);
+    }, _callee5, null, [[0, 19]]);
   }));
 
   return function deleteMenu(_x9, _x10) {
@@ -282,7 +324,7 @@ exports.deleteMenu = deleteMenu;
 
 var updateMenu = /*#__PURE__*/function () {
   var _ref6 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee6(req, res) {
-    var connection, _yield$connection$que11, _yield$connection$que12, rows;
+    var connection, _yield$connection$que15, _yield$connection$que16, orden, _yield$connection$que17, _yield$connection$que18, rows;
 
     return _regenerator["default"].wrap(function _callee6$(_context6) {
       while (1) {
@@ -294,28 +336,64 @@ var updateMenu = /*#__PURE__*/function () {
 
           case 3:
             connection = _context6.sent;
-            _context6.next = 6;
-            return connection.query('UPDATE menu SET ? WHERE MEN_NUMCTRL = ?', [req.body, req.params.id]);
 
-          case 6:
-            _yield$connection$que11 = _context6.sent;
-            _yield$connection$que12 = (0, _slicedToArray2["default"])(_yield$connection$que11, 1);
-            rows = _yield$connection$que12[0];
-            res.json(rows);
-            _context6.next = 15;
+            if (!req.body.MEN_ORDEN) {
+              _context6.next = 18;
+              break;
+            }
+
+            _context6.next = 7;
+            return connection.query('SELECT * FROM menu WHERE MEN_NUMCTRL = ?', [req.params.id]);
+
+          case 7:
+            _yield$connection$que15 = _context6.sent;
+            _yield$connection$que16 = (0, _slicedToArray2["default"])(_yield$connection$que15, 1);
+            orden = _yield$connection$que16[0];
+
+            if (!(orden[0].MEN_ORDEN < req.body.MEN_ORDEN)) {
+              _context6.next = 15;
+              break;
+            }
+
+            _context6.next = 13;
+            return connection.query('UPDATE menu SET MEN_ORDEN = MEN_ORDEN - 1 WHERE SUM_NUMCTRL = ? AND MEN_ORDEN > ? AND MEN_ORDEN <= ?', [orden[0].SUM_NUMCTRL, orden[0].MEN_ORDEN, req.body.MEN_ORDEN]);
+
+          case 13:
+            _context6.next = 18;
             break;
 
-          case 12:
-            _context6.prev = 12;
+          case 15:
+            if (!(orden[0].MEN_ORDEN > req.body.MEN_ORDEN)) {
+              _context6.next = 18;
+              break;
+            }
+
+            _context6.next = 18;
+            return connection.query('UPDATE menu SET MEN_ORDEN = MEN_ORDEN + 1 WHERE SUM_NUMCTRL = ? AND MEN_ORDEN < ? AND MEN_ORDEN >= ?', [orden[0].SUM_NUMCTRL, orden[0].MEN_ORDEN, req.body.MEN_ORDEN]);
+
+          case 18:
+            _context6.next = 20;
+            return connection.query('UPDATE menu SET ? WHERE MEN_NUMCTRL = ?', [req.body, req.params.id]);
+
+          case 20:
+            _yield$connection$que17 = _context6.sent;
+            _yield$connection$que18 = (0, _slicedToArray2["default"])(_yield$connection$que17, 1);
+            rows = _yield$connection$que18[0];
+            res.json(rows);
+            _context6.next = 29;
+            break;
+
+          case 26:
+            _context6.prev = 26;
             _context6.t0 = _context6["catch"](0);
             res.sendStatus(400);
 
-          case 15:
+          case 29:
           case "end":
             return _context6.stop();
         }
       }
-    }, _callee6, null, [[0, 12]]);
+    }, _callee6, null, [[0, 26]]);
   }));
 
   return function updateMenu(_x11, _x12) {

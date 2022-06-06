@@ -3,7 +3,7 @@ import { connect } from '../database/database.js'
 export const getMenus = async (req, res) => {
     try {
         var val = ' WHERE'
-        var sql = 'SELECT * FROM menu'
+        var sql = 'SELECT MEN_NUMCTRL,MEN_CLAVE,MEN_NOMBRE,MEN_ICON,MEN_DESC,MEN_ORDEN,submenu.SUM_NUMCTRL,submenu.SUM_ETIQUETA FROM menu inner join submenu on submenu.SUM_NUMCTRL WHERE submenu.SUM_NUMCTRL = menu.SUM_NUMCTRL'
         if (req.body.MEN_NUMCTRL) {
             sql += val + ' MEN_NUMCTRL LIKE "%' + req.body.MEN_NUMCTRL + '%"'
             val = ' AND'
@@ -28,6 +28,10 @@ export const getMenus = async (req, res) => {
             sql += val + ' SUM_NUMCTRL LIKE "%' + req.body.SUM_NUMCTRL + '%"'
             val = ' AND'
         }
+        if (req.body.SUM_ETIQUETA) {
+            sql += val + ' SUM_ETIQUETA LIKE "%' + req.body.SUM_ETIQUETA + '%"'
+            val = ' AND'
+        }
         if (req.body.ORDER) {
             sql += ' ORDER BY ' + req.body.ORDER + ' '
         }
@@ -39,6 +43,7 @@ export const getMenus = async (req, res) => {
         const [rows] = await connection.query(sql)
         res.json(rows)
     } catch (error) {
+        console.error(error)
         res.sendStatus(400)
     }
 }
