@@ -5,7 +5,7 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.updateProxusu = exports.getProxusus = exports.getProxusu = exports.deleteProxusu = exports.createProxusu = exports.countProxusus = void 0;
+exports.updateSerxsuc = exports.getSerxsucs = exports.getSerxsuc = exports.deleteSerxsuc = exports.createSerxsuc = exports.countSerxsucs = void 0;
 
 var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
 
@@ -21,7 +21,7 @@ function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (O
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2["default"])(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 
-var getProxusus = /*#__PURE__*/function () {
+var getSerxsucs = /*#__PURE__*/function () {
   var _ref = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee(req, res) {
     var val, sql, connection, _yield$connection$que, _yield$connection$que2, rows;
 
@@ -31,30 +31,35 @@ var getProxusus = /*#__PURE__*/function () {
           case 0:
             _context.prev = 0;
             val = ' WHERE';
-            sql = 'SELECT proxusu.PXU_NUMCTRL, proxusu.TIU_NUMCTRL, tipousu.TIU_NOMBRE, proxusu.PRG_NUMCTRL, programa.PRG_CLAVE, programa.PRG_NOMBRE, programa.PRG_RUTA, programa.PRG_DESC FROM proxusu INNER JOIN programa ON programa.PRG_NUMCTRL = proxusu.PRG_NUMCTRL inner join tipousu ON tipousu.TIU_NUMCTRL = proxusu.TIU_NUMCTRL';
+            sql = 'SELECT serxsuc.SXS_NUMCTRL, serxsuc.SXP_NUMCTRL, sucxprv.SXP_NOMBRE, serxsuc.SXS_NOMBRE, serxsuc.SXS_DESCRIPTION, serxsuc.SXS_PRECIO from serxsuc inner join sucxprv on sucxprv.SXP_NUMCTRL = serxsuc.SXP_NUMCTRL';
 
-            if (req.body.TIU_NOMBRE) {
-              sql += val + ' tipousu.TIU_NOMBRE LIKE "%' + req.body.TIU_NOMBRE + '%"';
+            if (req.body.SXS_NUMCTRL) {
+              sql += val + ' serxsuc.SXS_NUMCTRL LIKE "%' + req.body.SXS_NUMCTRL + '%"';
               val = ' AND';
             }
 
-            if (req.body.PRG_CLAVE) {
-              sql += val + ' programa.PRG_CLAVE LIKE "%' + req.body.PRG_CLAVE + '%"';
+            if (req.body.SXP_NUMCTRL) {
+              sql += val + ' propietario.SXP_NUMCTRL LIKE "%' + req.body.SXP_NUMCTRL + '%"';
               val = ' AND';
             }
 
-            if (req.body.PRG_NOMBRE) {
-              sql += val + ' programa.PRG_NOMBRE LIKE "%' + req.body.PRG_NOMBRE + '%"';
+            if (req.body.SXP_NOMBRE) {
+              sql += val + ' serxsuc.SXP_NOMBRE LIKE "%' + req.body.SXP_NOMBRE + '%"';
               val = ' AND';
             }
 
-            if (req.body.PRG_RUTA) {
-              sql += val + ' programa.PRG_RUTA LIKE "%' + req.body.PRG_RUTA + '%"';
+            if (req.body.SXS_NOMBRE) {
+              sql += val + ' serxsuc.SXS_NOMBRE LIKE "%' + req.body.SXS_NOMBRE + '%"';
               val = ' AND';
             }
 
-            if (req.body.PRG_DESC) {
-              sql += val + ' programa.PRG_DESC LIKE "%' + req.body.PRG_DESC + '%"';
+            if (req.body.SXS_DESCRIPTION) {
+              sql += val + ' serxsuc.SXS_DESCRIPTION LIKE "%' + req.body.SXS_DESCRIPTION + '%"';
+              val = ' AND';
+            }
+
+            if (req.body.SXS_PRECIO) {
+              sql += val + ' serxsuc.SXS_PRECIO LIKE "%' + req.body.SXS_PRECIO + '%"';
               val = ' AND';
             }
 
@@ -66,43 +71,43 @@ var getProxusus = /*#__PURE__*/function () {
               sql += req.body.BY;
             }
 
-            _context.next = 12;
+            _context.next = 13;
             return (0, _database.connect)();
 
-          case 12:
+          case 13:
             connection = _context.sent;
-            _context.next = 15;
+            _context.next = 16;
             return connection.query(sql);
 
-          case 15:
+          case 16:
             _yield$connection$que = _context.sent;
             _yield$connection$que2 = (0, _slicedToArray2["default"])(_yield$connection$que, 1);
             rows = _yield$connection$que2[0];
             res.json(rows);
-            _context.next = 24;
+            _context.next = 25;
             break;
 
-          case 21:
-            _context.prev = 21;
+          case 22:
+            _context.prev = 22;
             _context.t0 = _context["catch"](0);
             res.sendStatus(400);
 
-          case 24:
+          case 25:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[0, 21]]);
+    }, _callee, null, [[0, 22]]);
   }));
 
-  return function getProxusus(_x, _x2) {
+  return function getSerxsucs(_x, _x2) {
     return _ref.apply(this, arguments);
   };
 }();
 
-exports.getProxusus = getProxusus;
+exports.getSerxsucs = getSerxsucs;
 
-var getProxusu = /*#__PURE__*/function () {
+var getSerxsuc = /*#__PURE__*/function () {
   var _ref2 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee2(req, res) {
     var connection, _yield$connection$que3, _yield$connection$que4, rows;
 
@@ -117,7 +122,7 @@ var getProxusu = /*#__PURE__*/function () {
           case 3:
             connection = _context2.sent;
             _context2.next = 6;
-            return connection.query('SELECT proxusu.PXU_NUMCTRL, proxusu.TIU_NUMCTRL, tipousu.TIU_NOMBRE, proxusu.PRG_NUMCTRL, programa.PRG_CLAVE, programa.PRG_NOMBRE, programa.PRG_RUTA, programa.PRG_DESC FROM proxusu INNER JOIN programa ON programa.PRG_NUMCTRL = proxusu.PRG_NUMCTRL inner join tipousu ON tipousu.TIU_NUMCTRL = proxusu.TIU_NUMCTRL WHERE PXU_NUMCTRL = ?', [req.params.id]);
+            return connection.query('SELECT serxsuc.SXS_NUMCTRL, serxsuc.SXP_NUMCTRL, sucxprv.SXP_NOMBRE, serxsuc.SXS_NOMBRE, serxsuc.SXS_DESCRIPTION, serxsuc.SXS_PRECIO from serxsuc inner join sucxprv on sucxprv.SXP_NUMCTRL = serxsuc.SXP_NUMCTRL WHERE SXS_NUMCTRL = ?', [req.params.id]);
 
           case 6:
             _yield$connection$que3 = _context2.sent;
@@ -140,14 +145,14 @@ var getProxusu = /*#__PURE__*/function () {
     }, _callee2, null, [[0, 12]]);
   }));
 
-  return function getProxusu(_x3, _x4) {
+  return function getSerxsuc(_x3, _x4) {
     return _ref2.apply(this, arguments);
   };
 }();
 
-exports.getProxusu = getProxusu;
+exports.getSerxsuc = getSerxsuc;
 
-var countProxusus = /*#__PURE__*/function () {
+var countSerxsucs = /*#__PURE__*/function () {
   var _ref3 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee3(req, res) {
     var connection, _yield$connection$que5, _yield$connection$que6, rows;
 
@@ -162,7 +167,7 @@ var countProxusus = /*#__PURE__*/function () {
           case 3:
             connection = _context3.sent;
             _context3.next = 6;
-            return connection.query('SELECT COUNT(*) FROM proxusu');
+            return connection.query('SELECT COUNT(*) FROM Serxsuc');
 
           case 6:
             _yield$connection$que5 = _context3.sent;
@@ -185,14 +190,14 @@ var countProxusus = /*#__PURE__*/function () {
     }, _callee3, null, [[0, 12]]);
   }));
 
-  return function countProxusus(_x5, _x6) {
+  return function countSerxsucs(_x5, _x6) {
     return _ref3.apply(this, arguments);
   };
 }();
 
-exports.countProxusus = countProxusus;
+exports.countSerxsucs = countSerxsucs;
 
-var createProxusu = /*#__PURE__*/function () {
+var createSerxsuc = /*#__PURE__*/function () {
   var _ref4 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee4(req, res) {
     var connection, _yield$connection$que7, _yield$connection$que8, rows;
 
@@ -207,7 +212,7 @@ var createProxusu = /*#__PURE__*/function () {
           case 3:
             connection = _context4.sent;
             _context4.next = 6;
-            return connection.query("INSERT INTO proxusu(TIU_NUMCTRL, PRG_NUMCTRL) VALUES (?, ?)", [req.body.TIU_NUMCTRL, req.body.PRG_NUMCTRL]);
+            return connection.query("INSERT INTO Serxsuc(SXP_NUMCTRL, SXP_NOMBRE, SXS_NOMBRE, SXS_DESCRIPTION, SXS_PRECIO) VALUES (?, ?, ?, ?, ?)", [req.body.SXP_NUMCTRL, req.body.SXP_NOMBRE, req.body.SXS_NOMBRE, req.body.SXS_DESCRIPTION, req.body.SXS_PRECIO]);
 
           case 6:
             _yield$connection$que7 = _context4.sent;
@@ -232,14 +237,14 @@ var createProxusu = /*#__PURE__*/function () {
     }, _callee4, null, [[0, 12]]);
   }));
 
-  return function createProxusu(_x7, _x8) {
+  return function createSerxsuc(_x7, _x8) {
     return _ref4.apply(this, arguments);
   };
 }();
 
-exports.createProxusu = createProxusu;
+exports.createSerxsuc = createSerxsuc;
 
-var deleteProxusu = /*#__PURE__*/function () {
+var deleteSerxsuc = /*#__PURE__*/function () {
   var _ref5 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee5(req, res) {
     var connection, _yield$connection$que9, _yield$connection$que10, rows;
 
@@ -254,7 +259,7 @@ var deleteProxusu = /*#__PURE__*/function () {
           case 3:
             connection = _context5.sent;
             _context5.next = 6;
-            return connection.query('DELETE FROM proxusu WHERE PXU_NUMCTRL = ?', [req.params.id]);
+            return connection.query('DELETE FROM Serxsuc WHERE SXS_NUMCTRL = ?', [req.params.id]);
 
           case 6:
             _yield$connection$que9 = _context5.sent;
@@ -277,14 +282,14 @@ var deleteProxusu = /*#__PURE__*/function () {
     }, _callee5, null, [[0, 12]]);
   }));
 
-  return function deleteProxusu(_x9, _x10) {
+  return function deleteSerxsuc(_x9, _x10) {
     return _ref5.apply(this, arguments);
   };
 }();
 
-exports.deleteProxusu = deleteProxusu;
+exports.deleteSerxsuc = deleteSerxsuc;
 
-var updateProxusu = /*#__PURE__*/function () {
+var updateSerxsuc = /*#__PURE__*/function () {
   var _ref6 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee6(req, res) {
     var connection, _yield$connection$que11, _yield$connection$que12, rows;
 
@@ -299,7 +304,7 @@ var updateProxusu = /*#__PURE__*/function () {
           case 3:
             connection = _context6.sent;
             _context6.next = 6;
-            return connection.query('UPDATE proxusu SET ? WHERE PXU_NUMCTRL = ?', [req.body, req.params.id]);
+            return connection.query('UPDATE Serxsuc SET ? WHERE SXS_NUMCTRL = ?', [req.body, req.params.id]);
 
           case 6:
             _yield$connection$que11 = _context6.sent;
@@ -322,9 +327,9 @@ var updateProxusu = /*#__PURE__*/function () {
     }, _callee6, null, [[0, 12]]);
   }));
 
-  return function updateProxusu(_x11, _x12) {
+  return function updateSerxsuc(_x11, _x12) {
     return _ref6.apply(this, arguments);
   };
 }();
 
-exports.updateProxusu = updateProxusu;
+exports.updateSerxsuc = updateSerxsuc;

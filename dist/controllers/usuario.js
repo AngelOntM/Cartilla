@@ -56,34 +56,33 @@ var getPropietarios = /*#__PURE__*/function () {
               sql += req.body.BY;
             }
 
-            sql += ' LIMIT ' + req.body.LIMIT1 + ', ' + req.body.LIMIT2;
-            _context.next = 11;
+            _context.next = 10;
             return (0, _database.connect)();
 
-          case 11:
+          case 10:
             connection = _context.sent;
-            _context.next = 14;
+            _context.next = 13;
             return connection.query(sql);
 
-          case 14:
+          case 13:
             _yield$connection$que = _context.sent;
             _yield$connection$que2 = (0, _slicedToArray2["default"])(_yield$connection$que, 1);
             rows = _yield$connection$que2[0];
             res.json(rows);
-            _context.next = 23;
+            _context.next = 22;
             break;
 
-          case 20:
-            _context.prev = 20;
+          case 19:
+            _context.prev = 19;
             _context.t0 = _context["catch"](0);
             res.sendStatus(400);
 
-          case 23:
+          case 22:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[0, 20]]);
+    }, _callee, null, [[0, 19]]);
   }));
 
   return function getPropietarios(_x, _x2) {
@@ -137,34 +136,33 @@ var getProveedores = /*#__PURE__*/function () {
               sql += req.body.BY;
             }
 
-            sql += ' LIMIT ' + req.body.LIMIT1 + ', ' + req.body.LIMIT2;
-            _context2.next = 12;
+            _context2.next = 11;
             return (0, _database.connect)();
 
-          case 12:
+          case 11:
             connection = _context2.sent;
-            _context2.next = 15;
+            _context2.next = 14;
             return connection.query(sql);
 
-          case 15:
+          case 14:
             _yield$connection$que3 = _context2.sent;
             _yield$connection$que4 = (0, _slicedToArray2["default"])(_yield$connection$que3, 1);
             rows = _yield$connection$que4[0];
             res.json(rows);
-            _context2.next = 24;
+            _context2.next = 23;
             break;
 
-          case 21:
-            _context2.prev = 21;
+          case 20:
+            _context2.prev = 20;
             _context2.t0 = _context2["catch"](0);
             res.sendStatus(400);
 
-          case 24:
+          case 23:
           case "end":
             return _context2.stop();
         }
       }
-    }, _callee2, null, [[0, 21]]);
+    }, _callee2, null, [[0, 20]]);
   }));
 
   return function getProveedores(_x3, _x4) {
@@ -201,34 +199,33 @@ var getSupervisores = /*#__PURE__*/function () {
               sql += req.body.BY;
             }
 
-            sql += ' LIMIT ' + req.body.LIMIT1 + ', ' + req.body.LIMIT2;
-            _context3.next = 9;
+            _context3.next = 8;
             return (0, _database.connect)();
 
-          case 9:
+          case 8:
             connection = _context3.sent;
-            _context3.next = 12;
+            _context3.next = 11;
             return connection.query(sql);
 
-          case 12:
+          case 11:
             _yield$connection$que5 = _context3.sent;
             _yield$connection$que6 = (0, _slicedToArray2["default"])(_yield$connection$que5, 1);
             rows = _yield$connection$que6[0];
             res.json(rows);
-            _context3.next = 21;
+            _context3.next = 20;
             break;
 
-          case 18:
-            _context3.prev = 18;
+          case 17:
+            _context3.prev = 17;
             _context3.t0 = _context3["catch"](0);
             res.sendStatus(400);
 
-          case 21:
+          case 20:
           case "end":
             return _context3.stop();
         }
       }
-    }, _callee3, null, [[0, 18]]);
+    }, _callee3, null, [[0, 17]]);
   }));
 
   return function getSupervisores(_x5, _x6) {

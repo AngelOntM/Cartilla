@@ -71,34 +71,33 @@ var getProxmens = /*#__PURE__*/function () {
               sql += req.body.BY;
             }
 
-            sql += ' LIMIT ' + req.body.LIMIT1 + ', ' + req.body.LIMIT2;
-            _context.next = 14;
+            _context.next = 13;
             return (0, _database.connect)();
 
-          case 14:
+          case 13:
             connection = _context.sent;
-            _context.next = 17;
+            _context.next = 16;
             return connection.query(sql);
 
-          case 17:
+          case 16:
             _yield$connection$que = _context.sent;
             _yield$connection$que2 = (0, _slicedToArray2["default"])(_yield$connection$que, 1);
             rows = _yield$connection$que2[0];
             res.json(rows);
-            _context.next = 26;
+            _context.next = 25;
             break;
 
-          case 23:
-            _context.prev = 23;
+          case 22:
+            _context.prev = 22;
             _context.t0 = _context["catch"](0);
             res.sendStatus(400);
 
-          case 26:
+          case 25:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[0, 23]]);
+    }, _callee, null, [[0, 22]]);
   }));
 
   return function getProxmens(_x, _x2) {

@@ -5,7 +5,7 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.updateProxusu = exports.getProxusus = exports.getProxusu = exports.deleteProxusu = exports.createProxusu = exports.countProxusus = void 0;
+exports.updateSucxprv = exports.getSucxprvs = exports.getSucxprv = exports.deleteSucxprv = exports.createSucxprv = exports.countSucxprvs = void 0;
 
 var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
 
@@ -21,7 +21,7 @@ function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (O
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2["default"])(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 
-var getProxusus = /*#__PURE__*/function () {
+var getSucxprvs = /*#__PURE__*/function () {
   var _ref = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee(req, res) {
     var val, sql, connection, _yield$connection$que, _yield$connection$que2, rows;
 
@@ -31,30 +31,65 @@ var getProxusus = /*#__PURE__*/function () {
           case 0:
             _context.prev = 0;
             val = ' WHERE';
-            sql = 'SELECT proxusu.PXU_NUMCTRL, proxusu.TIU_NUMCTRL, tipousu.TIU_NOMBRE, proxusu.PRG_NUMCTRL, programa.PRG_CLAVE, programa.PRG_NOMBRE, programa.PRG_RUTA, programa.PRG_DESC FROM proxusu INNER JOIN programa ON programa.PRG_NUMCTRL = proxusu.PRG_NUMCTRL inner join tipousu ON tipousu.TIU_NUMCTRL = proxusu.TIU_NUMCTRL';
+            sql = 'SELECT sucxprv.SXP_NUMCTRL, sucxprv.PRV_NUMCTRL, proveedor.PRV_PROPIETARIO, proveedor.PRV_NOMBRE, sucxprv.SXP_NOMBRE, sucxprv.SXP_DIRECCION, sucxprv.SXP_COLONIA, sucxprv.SXP_CP, sucxprv.SXP_ENCARGADO, sucxprv.SXP_TELEFONO, sucxprv.SXP_LAT, sucxprv.SXP_LON, sucxprv.SXP_CORREO from sucxprv inner join proveedor on sucxprv.PRV_NUMCTRL = proveedor.PRV_NUMCTRL';
 
-            if (req.body.TIU_NOMBRE) {
-              sql += val + ' tipousu.TIU_NOMBRE LIKE "%' + req.body.TIU_NOMBRE + '%"';
+            if (req.body.PRV_NUMCTRL) {
+              sql += val + ' sucxprv.PRV_NUMCTRL LIKE "%' + req.body.PRV_NUMCTRL + '%"';
               val = ' AND';
             }
 
-            if (req.body.PRG_CLAVE) {
-              sql += val + ' programa.PRG_CLAVE LIKE "%' + req.body.PRG_CLAVE + '%"';
+            if (req.body.PRV_PROPIETARIO) {
+              sql += val + ' proveedor.PRV_PROPIETARIO LIKE "%' + req.body.PRV_PROPIETARIO + '%"';
               val = ' AND';
             }
 
-            if (req.body.PRG_NOMBRE) {
-              sql += val + ' programa.PRG_NOMBRE LIKE "%' + req.body.PRG_NOMBRE + '%"';
+            if (req.body.PRV_NOMBRE) {
+              sql += val + ' proveedor.PRV_NOMBRE LIKE "%' + req.body.PRV_NOMBRE + '%"';
               val = ' AND';
             }
 
-            if (req.body.PRG_RUTA) {
-              sql += val + ' programa.PRG_RUTA LIKE "%' + req.body.PRG_RUTA + '%"';
+            if (req.body.SXP_NOMBRE) {
+              sql += val + ' sucxprv.SXP_NOMBRE LIKE "%' + req.body.SXP_NOMBRE + '%"';
               val = ' AND';
             }
 
-            if (req.body.PRG_DESC) {
-              sql += val + ' programa.PRG_DESC LIKE "%' + req.body.PRG_DESC + '%"';
+            if (req.body.SXP_DIRECCION) {
+              sql += val + ' sucxprv.SXP_DIRECCION LIKE "%' + req.body.SXP_DIRECCION + '%"';
+              val = ' AND';
+            }
+
+            if (req.body.SXP_COLONIA) {
+              sql += val + ' sucxprv.SXP_COLONIA LIKE "%' + req.body.SXP_COLONIA + '%"';
+              val = ' AND';
+            }
+
+            if (req.body.SXP_CP) {
+              sql += val + ' sucxprv.SXP_CP LIKE "%' + req.body.SXP_CP + '%"';
+              val = ' AND';
+            }
+
+            if (req.body.SXP_ENCARGADO) {
+              sql += val + ' sucxprv.SXP_ENCARGADO LIKE "%' + req.body.SXP_ENCARGADO + '%"';
+              val = ' AND';
+            }
+
+            if (req.body.SXP_TELEFONO) {
+              sql += val + ' sucxprv.SXP_TELEFONO LIKE "%' + req.body.SXP_TELEFONO + '%"';
+              val = ' AND';
+            }
+
+            if (req.body.SXP_LAT) {
+              sql += val + ' sucxprv.SXP_LAT LIKE "%' + req.body.SXP_LAT + '%"';
+              val = ' AND';
+            }
+
+            if (req.body.SXP_LON) {
+              sql += val + ' sucxprv.SXP_LON LIKE "%' + req.body.SXP_LON + '%"';
+              val = ' AND';
+            }
+
+            if (req.body.SXP_CORREO) {
+              sql += val + ' sucxprv.SXP_CORREO LIKE "%' + req.body.SXP_CORREO + '%"';
               val = ' AND';
             }
 
@@ -66,43 +101,43 @@ var getProxusus = /*#__PURE__*/function () {
               sql += req.body.BY;
             }
 
-            _context.next = 12;
+            _context.next = 19;
             return (0, _database.connect)();
 
-          case 12:
+          case 19:
             connection = _context.sent;
-            _context.next = 15;
+            _context.next = 22;
             return connection.query(sql);
 
-          case 15:
+          case 22:
             _yield$connection$que = _context.sent;
             _yield$connection$que2 = (0, _slicedToArray2["default"])(_yield$connection$que, 1);
             rows = _yield$connection$que2[0];
             res.json(rows);
-            _context.next = 24;
+            _context.next = 31;
             break;
 
-          case 21:
-            _context.prev = 21;
+          case 28:
+            _context.prev = 28;
             _context.t0 = _context["catch"](0);
             res.sendStatus(400);
 
-          case 24:
+          case 31:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[0, 21]]);
+    }, _callee, null, [[0, 28]]);
   }));
 
-  return function getProxusus(_x, _x2) {
+  return function getSucxprvs(_x, _x2) {
     return _ref.apply(this, arguments);
   };
 }();
 
-exports.getProxusus = getProxusus;
+exports.getSucxprvs = getSucxprvs;
 
-var getProxusu = /*#__PURE__*/function () {
+var getSucxprv = /*#__PURE__*/function () {
   var _ref2 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee2(req, res) {
     var connection, _yield$connection$que3, _yield$connection$que4, rows;
 
@@ -117,7 +152,7 @@ var getProxusu = /*#__PURE__*/function () {
           case 3:
             connection = _context2.sent;
             _context2.next = 6;
-            return connection.query('SELECT proxusu.PXU_NUMCTRL, proxusu.TIU_NUMCTRL, tipousu.TIU_NOMBRE, proxusu.PRG_NUMCTRL, programa.PRG_CLAVE, programa.PRG_NOMBRE, programa.PRG_RUTA, programa.PRG_DESC FROM proxusu INNER JOIN programa ON programa.PRG_NUMCTRL = proxusu.PRG_NUMCTRL inner join tipousu ON tipousu.TIU_NUMCTRL = proxusu.TIU_NUMCTRL WHERE PXU_NUMCTRL = ?', [req.params.id]);
+            return connection.query('SELECT sucxprv.SXP_NUMCTRL, sucxprv.PRV_NUMCTRL, proveedor.PRV_PROPIETARIO, proveedor.PRV_NOMBRE, sucxprv.SXP_NOMBRE, sucxprv.SXP_DIRECCION, sucxprv.SXP_COLONIA, sucxprv.SXP_CP, sucxprv.SXP_ENCARGADO, sucxprv.SXP_TELEFONO, sucxprv.SXP_LAT, sucxprv.SXP_LON, sucxprv.SXP_CORREO WHERE sucxprv.SXP_NUMCTRL = ?', [req.params.id]);
 
           case 6:
             _yield$connection$que3 = _context2.sent;
@@ -140,14 +175,14 @@ var getProxusu = /*#__PURE__*/function () {
     }, _callee2, null, [[0, 12]]);
   }));
 
-  return function getProxusu(_x3, _x4) {
+  return function getSucxprv(_x3, _x4) {
     return _ref2.apply(this, arguments);
   };
 }();
 
-exports.getProxusu = getProxusu;
+exports.getSucxprv = getSucxprv;
 
-var countProxusus = /*#__PURE__*/function () {
+var countSucxprvs = /*#__PURE__*/function () {
   var _ref3 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee3(req, res) {
     var connection, _yield$connection$que5, _yield$connection$que6, rows;
 
@@ -162,7 +197,7 @@ var countProxusus = /*#__PURE__*/function () {
           case 3:
             connection = _context3.sent;
             _context3.next = 6;
-            return connection.query('SELECT COUNT(*) FROM proxusu');
+            return connection.query('SELECT COUNT(*) FROM sucxprv');
 
           case 6:
             _yield$connection$que5 = _context3.sent;
@@ -185,14 +220,14 @@ var countProxusus = /*#__PURE__*/function () {
     }, _callee3, null, [[0, 12]]);
   }));
 
-  return function countProxusus(_x5, _x6) {
+  return function countSucxprvs(_x5, _x6) {
     return _ref3.apply(this, arguments);
   };
 }();
 
-exports.countProxusus = countProxusus;
+exports.countSucxprvs = countSucxprvs;
 
-var createProxusu = /*#__PURE__*/function () {
+var createSucxprv = /*#__PURE__*/function () {
   var _ref4 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee4(req, res) {
     var connection, _yield$connection$que7, _yield$connection$que8, rows;
 
@@ -207,7 +242,7 @@ var createProxusu = /*#__PURE__*/function () {
           case 3:
             connection = _context4.sent;
             _context4.next = 6;
-            return connection.query("INSERT INTO proxusu(TIU_NUMCTRL, PRG_NUMCTRL) VALUES (?, ?)", [req.body.TIU_NUMCTRL, req.body.PRG_NUMCTRL]);
+            return connection.query("INSERT INTO sucxprv(PRV_NUMCTRL, SXP_NOMBRE, SXP_DIRECCION, SXP_COLONIA, SXP_CP, SXP_ENCARGADO, SXP_TELEFONO, SXP_LAT, SXP_LON, SXP_CORREO, SXP_CONTRA) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", [req.body.PRV_NUMCTRL, req.body.SXP_NOMBRE, req.body.SXP_DIRECCION, req.body.SXP_COLONIA, req.body.SXP_CP, req.body.SXP_ENCARGADO, req.body.SXP_TELEFONO, req.body.SXP_LAT, req.body.SXP_LON, req.body.SXP_CORREO, req.body.SXP_CONTRA]);
 
           case 6:
             _yield$connection$que7 = _context4.sent;
@@ -232,14 +267,14 @@ var createProxusu = /*#__PURE__*/function () {
     }, _callee4, null, [[0, 12]]);
   }));
 
-  return function createProxusu(_x7, _x8) {
+  return function createSucxprv(_x7, _x8) {
     return _ref4.apply(this, arguments);
   };
 }();
 
-exports.createProxusu = createProxusu;
+exports.createSucxprv = createSucxprv;
 
-var deleteProxusu = /*#__PURE__*/function () {
+var deleteSucxprv = /*#__PURE__*/function () {
   var _ref5 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee5(req, res) {
     var connection, _yield$connection$que9, _yield$connection$que10, rows;
 
@@ -254,7 +289,7 @@ var deleteProxusu = /*#__PURE__*/function () {
           case 3:
             connection = _context5.sent;
             _context5.next = 6;
-            return connection.query('DELETE FROM proxusu WHERE PXU_NUMCTRL = ?', [req.params.id]);
+            return connection.query('DELETE FROM sucxprv WHERE SXP_NUMCTRL = ?', [req.params.id]);
 
           case 6:
             _yield$connection$que9 = _context5.sent;
@@ -277,14 +312,14 @@ var deleteProxusu = /*#__PURE__*/function () {
     }, _callee5, null, [[0, 12]]);
   }));
 
-  return function deleteProxusu(_x9, _x10) {
+  return function deleteSucxprv(_x9, _x10) {
     return _ref5.apply(this, arguments);
   };
 }();
 
-exports.deleteProxusu = deleteProxusu;
+exports.deleteSucxprv = deleteSucxprv;
 
-var updateProxusu = /*#__PURE__*/function () {
+var updateSucxprv = /*#__PURE__*/function () {
   var _ref6 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee6(req, res) {
     var connection, _yield$connection$que11, _yield$connection$que12, rows;
 
@@ -299,7 +334,7 @@ var updateProxusu = /*#__PURE__*/function () {
           case 3:
             connection = _context6.sent;
             _context6.next = 6;
-            return connection.query('UPDATE proxusu SET ? WHERE PXU_NUMCTRL = ?', [req.body, req.params.id]);
+            return connection.query('UPDATE sucxprv SET ? WHERE SXP_NUMCTRL = ?', [req.body, req.params.id]);
 
           case 6:
             _yield$connection$que11 = _context6.sent;
@@ -322,9 +357,9 @@ var updateProxusu = /*#__PURE__*/function () {
     }, _callee6, null, [[0, 12]]);
   }));
 
-  return function updateProxusu(_x11, _x12) {
+  return function updateSucxprv(_x11, _x12) {
     return _ref6.apply(this, arguments);
   };
 }();
 
-exports.updateProxusu = updateProxusu;
+exports.updateSucxprv = updateSucxprv;

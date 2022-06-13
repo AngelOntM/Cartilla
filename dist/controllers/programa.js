@@ -66,34 +66,33 @@ var getProgramas = /*#__PURE__*/function () {
               sql += req.body.BY;
             }
 
-            sql += ' LIMIT ' + req.body.LIMIT1 + ', ' + req.body.LIMIT2;
-            _context.next = 13;
+            _context.next = 12;
             return (0, _database.connect)();
 
-          case 13:
+          case 12:
             connection = _context.sent;
-            _context.next = 16;
+            _context.next = 15;
             return connection.query(sql);
 
-          case 16:
+          case 15:
             _yield$connection$que = _context.sent;
             _yield$connection$que2 = (0, _slicedToArray2["default"])(_yield$connection$que, 1);
             rows = _yield$connection$que2[0];
             res.json(rows);
-            _context.next = 25;
+            _context.next = 24;
             break;
 
-          case 22:
-            _context.prev = 22;
+          case 21:
+            _context.prev = 21;
             _context.t0 = _context["catch"](0);
             res.sendStatus(400);
 
-          case 25:
+          case 24:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[0, 22]]);
+    }, _callee, null, [[0, 21]]);
   }));
 
   return function getProgramas(_x, _x2) {

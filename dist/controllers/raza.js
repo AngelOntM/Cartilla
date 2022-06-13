@@ -45,34 +45,33 @@ var getRazas = /*#__PURE__*/function () {
               sql += req.body.BY;
             }
 
-            sql += ' LIMIT ' + req.body.LIMIT1 + ', ' + req.body.LIMIT2;
-            _context.next = 9;
+            _context.next = 8;
             return (0, _database.connect)();
 
-          case 9:
+          case 8:
             connection = _context.sent;
-            _context.next = 12;
+            _context.next = 11;
             return connection.query(sql);
 
-          case 12:
+          case 11:
             _yield$connection$que = _context.sent;
             _yield$connection$que2 = (0, _slicedToArray2["default"])(_yield$connection$que, 1);
             rows = _yield$connection$que2[0];
             res.json(rows);
-            _context.next = 21;
+            _context.next = 20;
             break;
 
-          case 18:
-            _context.prev = 18;
+          case 17:
+            _context.prev = 17;
             _context.t0 = _context["catch"](0);
             res.sendStatus(400);
 
-          case 21:
+          case 20:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[0, 18]]);
+    }, _callee, null, [[0, 17]]);
   }));
 
   return function getRazas(_x, _x2) {
@@ -187,7 +186,7 @@ var createRaza = /*#__PURE__*/function () {
           case 3:
             connection = _context4.sent;
             _context4.next = 6;
-            return connection.query("INSERT INTO vacuna(RAZ_NOMBRE) VALUES (?)", [req.body.RAZ_NOMBRE]);
+            return connection.query("INSERT INTO raza(RAZ_NOMBRE) VALUES (?)", [req.body.RAZ_NOMBRE]);
 
           case 6:
             _yield$connection$que7 = _context4.sent;

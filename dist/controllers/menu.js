@@ -31,40 +31,40 @@ var getMenus = /*#__PURE__*/function () {
           case 0:
             _context.prev = 0;
             val = ' WHERE';
-            sql = 'SELECT  MEN_NUMCTRL,MEN_CLAVE,MEN_NOMBRE,MEN_ICON,MEN_DESC,MEN_ORDEN,SUM_NUMCTRL,SUM_ETIQUETA FROM menu inner join submenu on submenu.SUM_NUMCTRL';
+            sql = 'SELECT MEN_NUMCTRL,MEN_CLAVE,MEN_NOMBRE,MEN_ICON,MEN_DESC,MEN_ORDEN,submenu.SUM_NUMCTRL,submenu.SUM_ETIQUETA FROM menu inner join submenu on submenu.SUM_NUMCTRL = menu.SUM_NUMCTRL';
 
             if (req.body.MEN_NUMCTRL) {
-              sql += val + ' MEN_NUMCTRL LIKE "%' + req.body.MEN_NUMCTRL + '%"';
+              sql += val + ' menu.MEN_NUMCTRL LIKE "%' + req.body.MEN_NUMCTRL + '%"';
               val = ' AND';
             }
 
             if (req.body.MEN_CLAVE) {
-              sql += val + ' MEN_CLAVE LIKE "%' + req.body.MEN_CLAVE + '%"';
+              sql += val + ' menu.MEN_CLAVE LIKE "%' + req.body.MEN_CLAVE + '%"';
               val = ' AND';
             }
 
             if (req.body.MEN_NOMBRE) {
-              sql += val + ' MEN_NOMBRE LIKE "%' + req.body.MEN_NOMBRE + '%"';
+              sql += val + ' menu.MEN_NOMBRE LIKE "%' + req.body.MEN_NOMBRE + '%"';
               val = ' AND';
             }
 
             if (req.body.MEN_DESC) {
-              sql += val + ' MEN_DESC LIKE "%' + req.body.MEN_DESC + '%"';
+              sql += val + ' menu.MEN_DESC LIKE "%' + req.body.MEN_DESC + '%"';
               val = ' AND';
             }
 
             if (req.body.MEN_ORDEN) {
-              sql += val + ' MEN_ORDEN LIKE "%' + req.body.MEN_ORDEN + '%"';
+              sql += val + ' menu.MEN_ORDEN LIKE "%' + req.body.MEN_ORDEN + '%"';
               val = ' AND';
             }
 
             if (req.body.SUM_NUMCTRL) {
-              sql += val + ' SUM_NUMCTRL LIKE "%' + req.body.SUM_NUMCTRL + '%"';
+              sql += val + ' submenu.SUM_NUMCTRL LIKE "%' + req.body.SUM_NUMCTRL + '%"';
               val = ' AND';
             }
 
             if (req.body.SUM_ETIQUETA) {
-              sql += val + ' SUM_ETIQUETA LIKE "%' + req.body.SUM_ETIQUETA + '%"';
+              sql += val + ' submenu.SUM_ETIQUETA LIKE "%' + req.body.SUM_ETIQUETA + '%"';
               val = ' AND';
             }
 
@@ -76,16 +76,15 @@ var getMenus = /*#__PURE__*/function () {
               sql += req.body.BY;
             }
 
-            sql += ' LIMIT ' + req.body.LIMIT1 + ', ' + req.body.LIMIT2;
-            _context.next = 15;
+            _context.next = 14;
             return (0, _database.connect)();
 
-          case 15:
+          case 14:
             connection = _context.sent;
-            _context.next = 18;
+            _context.next = 17;
             return connection.query(sql);
 
-          case 18:
+          case 17:
             _yield$connection$que = _context.sent;
             _yield$connection$que2 = (0, _slicedToArray2["default"])(_yield$connection$que, 1);
             rows = _yield$connection$que2[0];
@@ -93,9 +92,10 @@ var getMenus = /*#__PURE__*/function () {
             _context.next = 27;
             break;
 
-          case 24:
-            _context.prev = 24;
+          case 23:
+            _context.prev = 23;
             _context.t0 = _context["catch"](0);
+            console.error(_context.t0);
             res.sendStatus(400);
 
           case 27:
@@ -103,7 +103,7 @@ var getMenus = /*#__PURE__*/function () {
             return _context.stop();
         }
       }
-    }, _callee, null, [[0, 24]]);
+    }, _callee, null, [[0, 23]]);
   }));
 
   return function getMenus(_x, _x2) {
@@ -128,7 +128,7 @@ var getMenu = /*#__PURE__*/function () {
           case 3:
             connection = _context2.sent;
             _context2.next = 6;
-            return connection.query('SELECT * FROM menu WHERE MEN_NUMCTRL = ?', [req.params.id]);
+            return connection.query('SELECT MEN_NUMCTRL,MEN_CLAVE,MEN_NOMBRE,MEN_ICON,MEN_DESC,MEN_ORDEN,submenu.SUM_NUMCTRL,submenu.SUM_ETIQUETA FROM menu inner join submenu on submenu.SUM_NUMCTRL = menu.SUM_NUMCTRL WHERE MEN_NUMCTRL = ?', [req.params.id]);
 
           case 6:
             _yield$connection$que3 = _context2.sent;

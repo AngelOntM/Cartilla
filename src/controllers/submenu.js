@@ -14,7 +14,6 @@ export const getSubmenus = async (req, res) => {
         if (req.body.BY) {
             sql += req.body.BY
         }
-        sql += ' LIMIT ' + req.body.LIMIT1 + ', ' + req.body.LIMIT2
         const connection = await connect()
         const [rows] = await connection.query(sql)
         res.json(rows)

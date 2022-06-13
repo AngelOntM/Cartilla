@@ -1,11 +1,16 @@
 import { connect } from '../database/database.js'
 
-export const getRazas = async (req, res) => {
+export const getEspecialidades = async (req, res) => {
     try {
         var val = ' WHERE'
-        var sql = 'SELECT * FROM raza'
-        if (req.body.RAZ_NOMBRE) {
-            sql += val + ' raza.RAZ_NOMBRE LIKE "%' + req.body.RAZ_NOMBRE + '%"'
+        var sql = 'SELECT * FROM especialidad'
+        if (req.body.ESP_NOMBRE) {
+            sql += val + ' especialidad.ESP_NOMBRE LIKE "%' + req.body.ESP_NOMBRE + '%"'
+            val = ' AND'
+        }
+        if (req.body.ESP_DESC) {
+            sql += val + ' especialidad.ESP_DESC LIKE "%' + req.body.ESP_DESC + '%"'
+            val = ' AND'
         }
         if (req.body.ORDER) {
             sql += ' ORDER BY ' + req.body.ORDER + ' '
@@ -21,32 +26,33 @@ export const getRazas = async (req, res) => {
     }
 }
 
-export const getRaza = async (req, res) => {
+export const getEspecialidad = async (req, res) => {
     try {
         const connection = await connect()
-        const [rows] = await connection.query('SELECT * FROM raza WHERE RAZ_NUMCTRL = ?', [req.params.id,])
+        const [rows] = await connection.query('SELECT * FROM especialidad WHERE ESP_NUMCTRL = ?', [req.params.id,])
         res.json(rows[0])
     } catch (error) {
         res.sendStatus(400)
     }
 }
 
-export const countRazas = async (req, res) => {
+export const countEspecialidades = async (req, res) => {
     try {
         const connection = await connect()
-        const [rows] = await connection.query('SELECT COUNT(*) FROM raza')
+        const [rows] = await connection.query('SELECT COUNT(*) FROM especialidad')
         res.json(rows[0]['COUNT(*)'])
     } catch (error) {
         res.sendStatus(400)
     }
 }
 
-export const createRaza = async (req, res) => {
+export const createEspecialidad = async (req, res) => {
     try {
         const connection = await connect()
-        const [rows] = await connection.query("INSERT INTO raza(RAZ_NOMBRE) VALUES (?)",
+        const [rows] = await connection.query("INSERT INTO especialidad(ESP_NOMBRE,ESP_DESC) VALUES (?,?)",
             [
-                req.body.RAZ_NOMBRE,
+                req.body.ESP_NOMBRE,
+                req.body.ESP_DESC
             ])
         res.json({
             id: rows.insertId,
@@ -57,10 +63,10 @@ export const createRaza = async (req, res) => {
     }
 }
 
-export const deleteRaza = async (req, res) => {
+export const deleteEspecialidad = async (req, res) => {
     try {
         const connection = await connect()
-        const [rows] = await connection.query('DELETE FROM raza WHERE RAZ_NUMCTRL = ?',
+        const [rows] = await connection.query('DELETE FROM especialidad WHERE ESP_NUMCTRL = ?',
             [
                 req.params.id
             ])
@@ -70,10 +76,10 @@ export const deleteRaza = async (req, res) => {
     }
 }
 
-export const updateRaza = async (req, res) => {
+export const updateEspecialidad = async (req, res) => {
     try {
         const connection = await connect()
-        const [rows] = await connection.query('UPDATE raza SET ? WHERE RAZ_NUMCTRL = ?',
+        const [rows] = await connection.query('UPDATE especialidad SET ? WHERE ESP_NUMCTRL = ?',
             [
                 req.body,
                 req.params.id
