@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { countSerxmass, createSerxmas, deleteSerxmas, getSerxmas, getSerxmass, updateSerxmas } from '../controllers/Serxmas.js'
+import { countSerxmass, createSerxmas, deleteSerxmas, getSerxmas, getSerxmass, updateSerxmas } from '../controllers/serxmas.js'
 
 const router = Router()
 

@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { countMasfotos, createMasfoto, deleteMasfoto, getMasfoto, getMasfotos, updateMasfoto } from '../controllers/Masfoto.js'
+import { countMasfotos, createMasfoto, deleteMasfoto, getMasfoto, getMasfotos, updateMasfoto } from '../controllers/masfoto.js'
 
 const router = Router()
 

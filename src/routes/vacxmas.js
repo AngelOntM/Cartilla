@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { countVacxmass, createVacxmas, deleteVacxmas, getVacxmas, getVacxmass, updateVacxmas } from '../controllers/Vacxmas.js'
+import { countVacxmass, createVacxmas, deleteVacxmas, getVacxmas, getVacxmass, updateVacxmas } from '../controllers/vacxmas.js'
 
 const router = Router()
 

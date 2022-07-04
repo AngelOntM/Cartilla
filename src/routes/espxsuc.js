@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { countEspxsucs, createEspxsuc, deleteEspxsuc, getEspxsuc, getEspxsucs, updateEspxsuc } from '../controllers/Espxsuc.js'
+import { countEspxsucs, createEspxsuc, deleteEspxsuc, getEspxsuc, getEspxsucs, updateEspxsuc } from '../controllers/espxsuc.js'
 
 const router = Router()
 

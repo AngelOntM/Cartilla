@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { countSerxsucs, createSerxsuc, deleteSerxsuc, getSerxsuc, getSerxsucs, updateSerxsuc } from '../controllers/Serxsuc.js'
+import { countSerxsucs, createSerxsuc, deleteSerxsuc, getSerxsuc, getSerxsucs, updateSerxsuc } from '../controllers/serxsuc.js'
 
 const router = Router()
 
