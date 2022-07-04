@@ -3,9 +3,13 @@ import { connect } from '../database/database.js'
 export const getProxmens = async (req, res) => {
     try {
         var val = ' WHERE'
-        var sql = 'SELECT proxmen.PXM_NUMCTRL, proxmen.PRG_NUMCTRL, programa.PRG_NOMBRE, proxmen.MEN_NUMCTRL, menu.MEN_NOMBRE, programa.PRG_CLAVE, programa.PRG_DESC, proxmen.PXM_ORDEN, menu.MEN_ICON, menu.MEN_DESC FROM proxmen INNER JOIN programa ON programa.PRG_NUMCTRL = proxmen.PRG_NUMCTRL inner join menu ON menu.MEN_NUMCTRL = proxmen.MEN_NUMCTRL'
+        var sql = 'SELECT proxmen.PXM_NUMCTRL, proxmen.PRG_NUMCTRL, programa.PRG_NOMBRE, proxmen.MEN_NUMCTRL, menu.MEN_NOMBRE, menu.MEN_CLAVE, programa.PRG_CLAVE, programa.PRG_DESC, proxmen.PXM_ORDEN, menu.MEN_ICON, menu.MEN_DESC FROM proxmen INNER JOIN programa ON programa.PRG_NUMCTRL = proxmen.PRG_NUMCTRL inner join menu ON menu.MEN_NUMCTRL = proxmen.MEN_NUMCTRL'
         if (req.body.MEN_NUMCTRL) {
             sql += val + ' proxmen.MEN_NUMCTRL = ' + req.body.MEN_NUMCTRL
+            val = ' AND'
+        }
+        if (req.body.MEN_CLAVE) {
+            sql += val + ' menu.MEN_CLAVE = ' + req.body.MEN_CLAVE
             val = ' AND'
         }
         if (req.body.PRG_NOMBRE) {

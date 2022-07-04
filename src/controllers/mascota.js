@@ -120,6 +120,7 @@ export const updateMascota = async (req, res) => {
             ])
         res.json(rows)
     } catch (error) {
+        console.error(error.message)
         res.sendStatus(400)
     }
 }
