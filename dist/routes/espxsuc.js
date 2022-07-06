@@ -7,7 +7,7 @@ exports["default"] = void 0;
 
 var _express = require("express");
 
-var _Espxsuc = require("../controllers/Espxsuc.js");
+var _espxsuc = require("../controllers/espxsuc.js");
 
 var router = (0, _express.Router)();
 /**
@@ -25,7 +25,7 @@ var router = (0, _express.Router)();
  *      tags: [Espxsuc]
  */
 
-router.post('/Espxsuc', _Espxsuc.getEspxsucs);
+router.post('/Espxsuc', _espxsuc.getEspxsucs);
 /**
  * @swagger
  * /Espxsuc/count:
@@ -34,7 +34,7 @@ router.post('/Espxsuc', _Espxsuc.getEspxsucs);
  *      tags: [Espxsuc]
  */
 
-router.get('/Espxsuc/count', _Espxsuc.countEspxsucs);
+router.get('/Espxsuc/count', _espxsuc.countEspxsucs);
 /**
  * @swagger
  * /Espxsuc/id:
@@ -43,7 +43,7 @@ router.get('/Espxsuc/count', _Espxsuc.countEspxsucs);
  *      tags: [Espxsuc]
  */
 
-router.get('/Espxsuc/:id', _Espxsuc.getEspxsuc);
+router.get('/Espxsuc/:id', _espxsuc.getEspxsuc);
 /**
  * @swagger
  * /Espxsuc:
@@ -52,7 +52,7 @@ router.get('/Espxsuc/:id', _Espxsuc.getEspxsuc);
  *      tags: [Espxsuc]
  */
 
-router.post('/Espxsuc/create', _Espxsuc.createEspxsuc);
+router.post('/Espxsuc/create', _espxsuc.createEspxsuc);
 /**
  * @swagger
  * /Espxsuc/id:
@@ -61,7 +61,7 @@ router.post('/Espxsuc/create', _Espxsuc.createEspxsuc);
  *      tags: [Espxsuc]
  */
 
-router.put('/Espxsuc/:id', _Espxsuc.updateEspxsuc);
+router.put('/Espxsuc/:id', _espxsuc.updateEspxsuc);
 /**
  * @swagger
  * /Espxsuc/id:
@@ -70,6 +70,6 @@ router.put('/Espxsuc/:id', _Espxsuc.updateEspxsuc);
  *      tags: [Espxsuc]
  */
 
-router["delete"]('/Espxsuc/:id', _Espxsuc.deleteEspxsuc);
+router["delete"]('/Espxsuc/:id', _espxsuc.deleteEspxsuc);
 var _default = router;
 exports["default"] = _default;

@@ -7,7 +7,7 @@ exports["default"] = void 0;
 
 var _express = require("express");
 
-var _Serxsuc = require("../controllers/Serxsuc.js");
+var _serxsuc = require("../controllers/serxsuc.js");
 
 var router = (0, _express.Router)();
 /**
@@ -25,7 +25,7 @@ var router = (0, _express.Router)();
  *      tags: [Serxsuc]
  */
 
-router.post('/Serxsuc', _Serxsuc.getSerxsucs);
+router.post('/Serxsuc', _serxsuc.getSerxsucs);
 /**
  * @swagger
  * /Serxsuc/count:
@@ -34,7 +34,7 @@ router.post('/Serxsuc', _Serxsuc.getSerxsucs);
  *      tags: [Serxsuc]
  */
 
-router.get('/Serxsuc/count', _Serxsuc.countSerxsucs);
+router.get('/Serxsuc/count', _serxsuc.countSerxsucs);
 /**
  * @swagger
  * /Serxsuc/id:
@@ -43,7 +43,7 @@ router.get('/Serxsuc/count', _Serxsuc.countSerxsucs);
  *      tags: [Serxsuc]
  */
 
-router.get('/Serxsuc/:id', _Serxsuc.getSerxsuc);
+router.get('/Serxsuc/:id', _serxsuc.getSerxsuc);
 /**
  * @swagger
  * /Serxsuc:
@@ -52,7 +52,7 @@ router.get('/Serxsuc/:id', _Serxsuc.getSerxsuc);
  *      tags: [Serxsuc]
  */
 
-router.post('/Serxsuc/create', _Serxsuc.createSerxsuc);
+router.post('/Serxsuc/create', _serxsuc.createSerxsuc);
 /**
  * @swagger
  * /Serxsuc/id:
@@ -61,7 +61,7 @@ router.post('/Serxsuc/create', _Serxsuc.createSerxsuc);
  *      tags: [Serxsuc]
  */
 
-router.put('/Serxsuc/:id', _Serxsuc.updateSerxsuc);
+router.put('/Serxsuc/:id', _serxsuc.updateSerxsuc);
 /**
  * @swagger
  * /Serxsuc/id:
@@ -70,6 +70,6 @@ router.put('/Serxsuc/:id', _Serxsuc.updateSerxsuc);
  *      tags: [Serxsuc]
  */
 
-router["delete"]('/Serxsuc/:id', _Serxsuc.deleteSerxsuc);
+router["delete"]('/Serxsuc/:id', _serxsuc.deleteSerxsuc);
 var _default = router;
 exports["default"] = _default;

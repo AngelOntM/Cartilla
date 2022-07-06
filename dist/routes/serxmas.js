@@ -7,7 +7,7 @@ exports["default"] = void 0;
 
 var _express = require("express");
 
-var _Serxmas = require("../controllers/Serxmas.js");
+var _serxmas = require("../controllers/serxmas.js");
 
 var router = (0, _express.Router)();
 /**
@@ -25,7 +25,7 @@ var router = (0, _express.Router)();
  *      tags: [Serxmas]
  */
 
-router.post('/serxmas', _Serxmas.getSerxmass);
+router.post('/serxmas', _serxmas.getSerxmass);
 /**
  * @swagger
  * /Serxmas/count:
@@ -34,7 +34,7 @@ router.post('/serxmas', _Serxmas.getSerxmass);
  *      tags: [Serxmas]
  */
 
-router.get('/serxmas/count', _Serxmas.countSerxmass);
+router.get('/serxmas/count', _serxmas.countSerxmass);
 /**
  * @swagger
  * /Serxmas/id:
@@ -43,7 +43,7 @@ router.get('/serxmas/count', _Serxmas.countSerxmass);
  *      tags: [Serxmas]
  */
 
-router.get('/serxmas/:id', _Serxmas.getSerxmas);
+router.get('/serxmas/:id', _serxmas.getSerxmas);
 /**
  * @swagger
  * /Serxmas:
@@ -52,7 +52,7 @@ router.get('/serxmas/:id', _Serxmas.getSerxmas);
  *      tags: [Serxmas]
  */
 
-router.post('/serxmas/create', _Serxmas.createSerxmas);
+router.post('/serxmas/create', _serxmas.createSerxmas);
 /**
  * @swagger
  * /Serxmas/id:
@@ -61,7 +61,7 @@ router.post('/serxmas/create', _Serxmas.createSerxmas);
  *      tags: [Serxmas]
  */
 
-router.put('/serxmas/:id', _Serxmas.updateSerxmas);
+router.put('/serxmas/:id', _serxmas.updateSerxmas);
 /**
  * @swagger
  * /Serxmas/id:
@@ -70,6 +70,6 @@ router.put('/serxmas/:id', _Serxmas.updateSerxmas);
  *      tags: [Serxmas]
  */
 
-router["delete"]('/serxmas/:id', _Serxmas.deleteSerxmas);
+router["delete"]('/serxmas/:id', _serxmas.deleteSerxmas);
 var _default = router;
 exports["default"] = _default;

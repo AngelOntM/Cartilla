@@ -7,7 +7,7 @@ exports["default"] = void 0;
 
 var _express = require("express");
 
-var _Vacxmas = require("../controllers/Vacxmas.js");
+var _vacxmas = require("../controllers/vacxmas.js");
 
 var router = (0, _express.Router)();
 /**
@@ -25,7 +25,7 @@ var router = (0, _express.Router)();
  *      tags: [Vacxmas]
  */
 
-router.post('/Vacxmas', _Vacxmas.getVacxmass);
+router.post('/Vacxmas', _vacxmas.getVacxmass);
 /**
  * @swagger
  * /Vacxmas/count:
@@ -34,7 +34,7 @@ router.post('/Vacxmas', _Vacxmas.getVacxmass);
  *      tags: [Vacxmas]
  */
 
-router.get('/Vacxmas/count', _Vacxmas.countVacxmass);
+router.get('/Vacxmas/count', _vacxmas.countVacxmass);
 /**
  * @swagger
  * /Vacxmas/id:
@@ -43,7 +43,7 @@ router.get('/Vacxmas/count', _Vacxmas.countVacxmass);
  *      tags: [Vacxmas]
  */
 
-router.get('/Vacxmas/:id', _Vacxmas.getVacxmas);
+router.get('/Vacxmas/:id', _vacxmas.getVacxmas);
 /**
  * @swagger
  * /Vacxmas:
@@ -52,7 +52,7 @@ router.get('/Vacxmas/:id', _Vacxmas.getVacxmas);
  *      tags: [Vacxmas]
  */
 
-router.post('/Vacxmas/create', _Vacxmas.createVacxmas);
+router.post('/Vacxmas/create', _vacxmas.createVacxmas);
 /**
  * @swagger
  * /Vacxmas/id:
@@ -61,7 +61,7 @@ router.post('/Vacxmas/create', _Vacxmas.createVacxmas);
  *      tags: [Vacxmas]
  */
 
-router.put('/Vacxmas/:id', _Vacxmas.updateVacxmas);
+router.put('/Vacxmas/:id', _vacxmas.updateVacxmas);
 /**
  * @swagger
  * /Vacxmas/id:
@@ -70,6 +70,6 @@ router.put('/Vacxmas/:id', _Vacxmas.updateVacxmas);
  *      tags: [Vacxmas]
  */
 
-router["delete"]('/Vacxmas/:id', _Vacxmas.deleteVacxmas);
+router["delete"]('/Vacxmas/:id', _vacxmas.deleteVacxmas);
 var _default = router;
 exports["default"] = _default;

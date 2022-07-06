@@ -326,15 +326,16 @@ var updateMascota = /*#__PURE__*/function () {
             _yield$connection$que12 = (0, _slicedToArray2["default"])(_yield$connection$que11, 1);
             rows = _yield$connection$que12[0];
             res.json(rows);
-            _context6.next = 15;
+            _context6.next = 16;
             break;
 
           case 12:
             _context6.prev = 12;
             _context6.t0 = _context6["catch"](0);
+            console.error(_context6.t0.message);
             res.sendStatus(400);
 
-          case 15:
+          case 16:
           case "end":
             return _context6.stop();
         }

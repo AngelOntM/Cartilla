@@ -31,10 +31,15 @@ var getProxmens = /*#__PURE__*/function () {
           case 0:
             _context.prev = 0;
             val = ' WHERE';
-            sql = 'SELECT proxmen.PXM_NUMCTRL, proxmen.PRG_NUMCTRL, programa.PRG_NOMBRE, proxmen.MEN_NUMCTRL, menu.MEN_NOMBRE, programa.PRG_CLAVE, programa.PRG_DESC, proxmen.PXM_ORDEN, menu.MEN_ICON, menu.MEN_DESC FROM proxmen INNER JOIN programa ON programa.PRG_NUMCTRL = proxmen.PRG_NUMCTRL inner join menu ON menu.MEN_NUMCTRL = proxmen.MEN_NUMCTRL';
+            sql = 'SELECT proxmen.PXM_NUMCTRL, proxmen.PRG_NUMCTRL, programa.PRG_NOMBRE, proxmen.MEN_NUMCTRL, menu.MEN_NOMBRE, menu.MEN_CLAVE, programa.PRG_CLAVE, programa.PRG_DESC, proxmen.PXM_ORDEN, menu.MEN_ICON, menu.MEN_DESC FROM proxmen INNER JOIN programa ON programa.PRG_NUMCTRL = proxmen.PRG_NUMCTRL inner join menu ON menu.MEN_NUMCTRL = proxmen.MEN_NUMCTRL';
 
             if (req.body.MEN_NUMCTRL) {
               sql += val + ' proxmen.MEN_NUMCTRL = ' + req.body.MEN_NUMCTRL;
+              val = ' AND';
+            }
+
+            if (req.body.MEN_CLAVE) {
+              sql += val + ' menu.MEN_CLAVE = ' + req.body.MEN_CLAVE;
               val = ' AND';
             }
 
@@ -71,33 +76,33 @@ var getProxmens = /*#__PURE__*/function () {
               sql += req.body.BY;
             }
 
-            _context.next = 13;
+            _context.next = 14;
             return (0, _database.connect)();
 
-          case 13:
+          case 14:
             connection = _context.sent;
-            _context.next = 16;
+            _context.next = 17;
             return connection.query(sql);
 
-          case 16:
+          case 17:
             _yield$connection$que = _context.sent;
             _yield$connection$que2 = (0, _slicedToArray2["default"])(_yield$connection$que, 1);
             rows = _yield$connection$que2[0];
             res.json(rows);
-            _context.next = 25;
+            _context.next = 26;
             break;
 
-          case 22:
-            _context.prev = 22;
+          case 23:
+            _context.prev = 23;
             _context.t0 = _context["catch"](0);
             res.sendStatus(400);
 
-          case 25:
+          case 26:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[0, 22]]);
+    }, _callee, null, [[0, 23]]);
   }));
 
   return function getProxmens(_x, _x2) {

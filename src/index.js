@@ -1,4 +1,4 @@
 import app from './app.js'
 
-app.listen(4444)
-console.log('Server listening on port 4444')
+app.listen(app.get('port'))
+console.log('Server listening on port', app.get('port'))

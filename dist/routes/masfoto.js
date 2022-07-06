@@ -7,7 +7,7 @@ exports["default"] = void 0;
 
 var _express = require("express");
 
-var _Masfoto = require("../controllers/Masfoto.js");
+var _masfoto = require("../controllers/masfoto.js");
 
 var router = (0, _express.Router)();
 /**
@@ -25,7 +25,7 @@ var router = (0, _express.Router)();
  *      tags: [Masfoto]
  */
 
-router.post('/masfoto', _Masfoto.getMasfotos);
+router.post('/masfoto', _masfoto.getMasfotos);
 /**
  * @swagger
  * /Masfoto/count:
@@ -34,7 +34,7 @@ router.post('/masfoto', _Masfoto.getMasfotos);
  *      tags: [Masfoto]
  */
 
-router.get('/masfoto/count', _Masfoto.countMasfotos);
+router.get('/masfoto/count', _masfoto.countMasfotos);
 /**
  * @swagger
  * /Masfoto/id:
@@ -43,7 +43,7 @@ router.get('/masfoto/count', _Masfoto.countMasfotos);
  *      tags: [Masfoto]
  */
 
-router.get('/masfoto/:id', _Masfoto.getMasfoto);
+router.get('/masfoto/:id', _masfoto.getMasfoto);
 /**
  * @swagger
  * /Masfoto:
@@ -52,7 +52,7 @@ router.get('/masfoto/:id', _Masfoto.getMasfoto);
  *      tags: [Masfoto]
  */
 
-router.post('/masfoto/create', _Masfoto.createMasfoto);
+router.post('/masfoto/create', _masfoto.createMasfoto);
 /**
  * @swagger
  * /Masfoto/id:
@@ -61,7 +61,7 @@ router.post('/masfoto/create', _Masfoto.createMasfoto);
  *      tags: [Masfoto]
  */
 
-router.put('/masfoto/:id', _Masfoto.updateMasfoto);
+router.put('/masfoto/:id', _masfoto.updateMasfoto);
 /**
  * @swagger
  * /Masfoto/id:
@@ -70,6 +70,6 @@ router.put('/masfoto/:id', _Masfoto.updateMasfoto);
  *      tags: [Masfoto]
  */
 
-router["delete"]('/masfoto/:id', _Masfoto.deleteMasfoto);
+router["delete"]('/masfoto/:id', _masfoto.deleteMasfoto);
 var _default = router;
 exports["default"] = _default;
