@@ -1,4 +1,4 @@
 import app from './app.js'
 
-app.listen(app.get('port'))
+app.listen(process.env.PORT || PORT)
 console.log('Server listening on port', app.get('port'))

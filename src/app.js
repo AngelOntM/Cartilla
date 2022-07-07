@@ -29,7 +29,6 @@ const specs = swaggerJsDoc(options)
 
 const app = express();
 
-app.set("port", 4444)
 
 /**
  * Dependencies
