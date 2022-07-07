@@ -1,8 +1,6 @@
 import express from "express";
 import cors from 'cors';
 import morgan from "morgan"
-import swaggerJsDoc from "swagger-jsdoc";
-import swaggerUI from "swagger-ui-express";
 
 
 import usuario from "./routes/usuario.js"
@@ -23,9 +21,7 @@ import vacxmas from "./routes/vacxmas.js"
 import serxsuc from "./routes/serxsuc.js"
 import espxsuc from "./routes/espxsuc.js"
 
-import { options } from './swaggerOptions'
 
-const specs = swaggerJsDoc(options)
 
 const app = express();
 
@@ -57,11 +53,6 @@ app.use(tipousu)
 app.use(usuario)
 app.use(vacuna)
 app.use(vacxmas)
-
-/**
- * Create Documentation
- */
-app.use('/docs', swaggerUI.serve, swaggerUI.setup(specs))
 
 const PORT = 3001
 
