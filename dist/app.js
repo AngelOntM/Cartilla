@@ -55,7 +55,6 @@ var _swaggerOptions = require("./swaggerOptions");
 
 var specs = (0, _swaggerJsdoc["default"])(_swaggerOptions.options);
 var app = (0, _express["default"])();
-app.set("port", 4444);
 /**
  * Dependencies
  */
