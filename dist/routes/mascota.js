@@ -1,15 +1,6 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = void 0;
-
-var _express = require("express");
-
-var _mascota = require("../controllers/mascota.js");
-
-var router = (0, _express.Router)();
+import { Router } from 'express';
+import { countMascotas, createMascota, deleteMascota, getMascota, getMascotas, updateMascota } from '../controllers/mascota.js';
+const router = Router();
 /**
  * @swagger
  * tags:
@@ -25,7 +16,7 @@ var router = (0, _express.Router)();
  *      tags: [Mascota]
  */
 
-router.post('/mascota', _mascota.getMascotas);
+router.post('/mascota', getMascotas);
 /**
  * @swagger
  * /Mascota/count:
@@ -34,7 +25,7 @@ router.post('/mascota', _mascota.getMascotas);
  *      tags: [Mascota]
  */
 
-router.get('/mascota/count', _mascota.countMascotas);
+router.get('/mascota/count', countMascotas);
 /**
  * @swagger
  * /Mascota/id:
@@ -43,7 +34,7 @@ router.get('/mascota/count', _mascota.countMascotas);
  *      tags: [Mascota]
  */
 
-router.get('/mascota/:id', _mascota.getMascota);
+router.get('/mascota/:id', getMascota);
 /**
  * @swagger
  * /Mascota:
@@ -52,7 +43,7 @@ router.get('/mascota/:id', _mascota.getMascota);
  *      tags: [Mascota]
  */
 
-router.post('/mascota/create', _mascota.createMascota);
+router.post('/mascota/create', createMascota);
 /**
  * @swagger
  * /Mascota/id:
@@ -61,7 +52,7 @@ router.post('/mascota/create', _mascota.createMascota);
  *      tags: [Mascota]
  */
 
-router.put('/mascota/:id', _mascota.updateMascota);
+router.put('/mascota/:id', updateMascota);
 /**
  * @swagger
  * /Mascota/id:
@@ -70,6 +61,5 @@ router.put('/mascota/:id', _mascota.updateMascota);
  *      tags: [Mascota]
  */
 
-router["delete"]('/mascota/:id', _mascota.deleteMascota);
-var _default = router;
-exports["default"] = _default;
+router.delete('/mascota/:id', deleteMascota);
+export default router;

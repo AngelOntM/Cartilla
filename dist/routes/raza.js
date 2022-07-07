@@ -1,15 +1,6 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = void 0;
-
-var _express = require("express");
-
-var _raza = require("../controllers/raza.js");
-
-var router = (0, _express.Router)();
+import { Router } from 'express';
+import { countRazas, createRaza, deleteRaza, getRaza, getRazas, updateRaza } from '../controllers/raza.js';
+const router = Router();
 /**
  * @swagger
  * tags:
@@ -25,7 +16,7 @@ var router = (0, _express.Router)();
  *      tags: [Razas]
  */
 
-router.post('/raza', _raza.getRazas);
+router.post('/raza', getRazas);
 /**
  * @swagger
  * /Razas/count:
@@ -34,7 +25,7 @@ router.post('/raza', _raza.getRazas);
  *      tags: [Razas]
  */
 
-router.get('/raza/count', _raza.countRazas);
+router.get('/raza/count', countRazas);
 /**
  * @swagger
  * /Razas/id:
@@ -43,7 +34,7 @@ router.get('/raza/count', _raza.countRazas);
  *      tags: [Razas]
  */
 
-router.get('/raza/:id', _raza.getRaza);
+router.get('/raza/:id', getRaza);
 /**
  * @swagger
  * /Razas:
@@ -52,7 +43,7 @@ router.get('/raza/:id', _raza.getRaza);
  *      tags: [Razas]
  */
 
-router.post('/raza/create', _raza.createRaza);
+router.post('/raza/create', createRaza);
 /**
  * @swagger
  * /Razas/id:
@@ -61,7 +52,7 @@ router.post('/raza/create', _raza.createRaza);
  *      tags: [Razas]
  */
 
-router.put('/raza/:id', _raza.updateRaza);
+router.put('/raza/:id', updateRaza);
 /**
  * @swagger
  * /Razas/id:
@@ -70,6 +61,5 @@ router.put('/raza/:id', _raza.updateRaza);
  *      tags: [Razas]
  */
 
-router["delete"]('/raza/:id', _raza.deleteRaza);
-var _default = router;
-exports["default"] = _default;
+router.delete('/raza/:id', deleteRaza);
+export default router;

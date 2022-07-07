@@ -1,15 +1,6 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = void 0;
-
-var _express = require("express");
-
-var _sucxprv = require("../controllers/sucxprv.js");
-
-var router = (0, _express.Router)();
+import { Router } from 'express';
+import { countSucxprvs, createSucxprv, deleteSucxprv, getSucxprv, getSucxprvs, updateSucxprv } from '../controllers/sucxprv.js';
+const router = Router();
 /**
  * @swagger
  * tags:
@@ -25,7 +16,7 @@ var router = (0, _express.Router)();
  *      tags: [Sucxprv]
  */
 
-router.post('/sucxprv', _sucxprv.getSucxprvs);
+router.post('/sucxprv', getSucxprvs);
 /**
  * @swagger
  * /Sucxprv/count:
@@ -34,7 +25,7 @@ router.post('/sucxprv', _sucxprv.getSucxprvs);
  *      tags: [Sucxprv]
  */
 
-router.get('/sucxprv/count', _sucxprv.countSucxprvs);
+router.get('/sucxprv/count', countSucxprvs);
 /**
  * @swagger
  * /Sucxprv/id:
@@ -43,7 +34,7 @@ router.get('/sucxprv/count', _sucxprv.countSucxprvs);
  *      tags: [Sucxprv]
  */
 
-router.get('/sucxprv/:id', _sucxprv.getSucxprv);
+router.get('/sucxprv/:id', getSucxprv);
 /**
  * @swagger
  * /Sucxprv:
@@ -52,7 +43,7 @@ router.get('/sucxprv/:id', _sucxprv.getSucxprv);
  *      tags: [Sucxprv]
  */
 
-router.post('/sucxprv/create', _sucxprv.createSucxprv);
+router.post('/sucxprv/create', createSucxprv);
 /**
  * @swagger
  * /Sucxprv/id:
@@ -61,7 +52,7 @@ router.post('/sucxprv/create', _sucxprv.createSucxprv);
  *      tags: [Sucxprv]
  */
 
-router.put('/sucxprv/:id', _sucxprv.updateSucxprv);
+router.put('/sucxprv/:id', updateSucxprv);
 /**
  * @swagger
  * /Sucxprv/id:
@@ -70,6 +61,5 @@ router.put('/sucxprv/:id', _sucxprv.updateSucxprv);
  *      tags: [Sucxprv]
  */
 
-router["delete"]('/sucxprv/:id', _sucxprv.deleteSucxprv);
-var _default = router;
-exports["default"] = _default;
+router.delete('/sucxprv/:id', deleteSucxprv);
+export default router;

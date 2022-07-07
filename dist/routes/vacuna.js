@@ -1,15 +1,6 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = void 0;
-
-var _express = require("express");
-
-var _vacuna = require("../controllers/vacuna.js");
-
-var router = (0, _express.Router)();
+import { Router } from 'express';
+import { countVacunas, createVacuna, deleteVacuna, getVacuna, getVacunas, updateVacuna } from '../controllers/vacuna.js';
+const router = Router();
 /**
  * @swagger
  * tags:
@@ -25,7 +16,7 @@ var router = (0, _express.Router)();
  *      tags: [Vacuna]
  */
 
-router.post('/vacuna', _vacuna.getVacunas);
+router.post('/vacuna', getVacunas);
 /**
  * @swagger
  * /Vacuna/count:
@@ -34,7 +25,7 @@ router.post('/vacuna', _vacuna.getVacunas);
  *      tags: [Vacuna]
  */
 
-router.get('/vacuna/count', _vacuna.countVacunas);
+router.get('/vacuna/count', countVacunas);
 /**
  * @swagger
  * /Vacuna/id:
@@ -43,7 +34,7 @@ router.get('/vacuna/count', _vacuna.countVacunas);
  *      tags: [Vacuna]
  */
 
-router.get('/vacuna/:id', _vacuna.getVacuna);
+router.get('/vacuna/:id', getVacuna);
 /**
  * @swagger
  * /Vacuna:
@@ -52,7 +43,7 @@ router.get('/vacuna/:id', _vacuna.getVacuna);
  *      tags: [Vacuna]
  */
 
-router.post('/vacuna/create', _vacuna.createVacuna);
+router.post('/vacuna/create', createVacuna);
 /**
  * @swagger
  * /Vacuna/id:
@@ -61,7 +52,7 @@ router.post('/vacuna/create', _vacuna.createVacuna);
  *      tags: [Vacuna]
  */
 
-router.put('/vacuna/:id', _vacuna.updateVacuna);
+router.put('/vacuna/:id', updateVacuna);
 /**
  * @swagger
  * /Vacuna/id:
@@ -70,6 +61,5 @@ router.put('/vacuna/:id', _vacuna.updateVacuna);
  *      tags: [Vacuna]
  */
 
-router["delete"]('/vacuna/:id', _vacuna.deleteVacuna);
-var _default = router;
-exports["default"] = _default;
+router.delete('/vacuna/:id', deleteVacuna);
+export default router;

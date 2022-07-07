@@ -1,15 +1,6 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = void 0;
-
-var _express = require("express");
-
-var _menu = require("../controllers/menu.js");
-
-var router = (0, _express.Router)();
+import { Router } from 'express';
+import { countMenus, createMenu, deleteMenu, getMenu, getMenus, updateMenu } from '../controllers/menu.js';
+const router = Router();
 /**
  * @swagger
  * tags:
@@ -25,7 +16,7 @@ var router = (0, _express.Router)();
  *      tags: [Menu]
  */
 
-router.post('/menu', _menu.getMenus);
+router.post('/menu', getMenus);
 /**
  * @swagger
  * /menu/count:
@@ -34,7 +25,7 @@ router.post('/menu', _menu.getMenus);
  *      tags: [Menu]
  */
 
-router.get('/menu/count', _menu.countMenus);
+router.get('/menu/count', countMenus);
 /**
  * @swagger
  * /menu/id:
@@ -43,7 +34,7 @@ router.get('/menu/count', _menu.countMenus);
  *      tags: [Menu]
  */
 
-router.get('/menu/:id', _menu.getMenu);
+router.get('/menu/:id', getMenu);
 /**
  * @swagger
  * /menu:
@@ -52,7 +43,7 @@ router.get('/menu/:id', _menu.getMenu);
  *      tags: [Menu]
  */
 
-router.post('/menu/create', _menu.createMenu);
+router.post('/menu/create', createMenu);
 /**
  * @swagger
  * /menu/id:
@@ -61,7 +52,7 @@ router.post('/menu/create', _menu.createMenu);
  *      tags: [Menu]
  */
 
-router.put('/menu/:id', _menu.updateMenu);
+router.put('/menu/:id', updateMenu);
 /**
  * @swagger
  * /menu/id:
@@ -70,6 +61,5 @@ router.put('/menu/:id', _menu.updateMenu);
  *      tags: [Menu]
  */
 
-router["delete"]('/menu/:id', _menu.deleteMenu);
-var _default = router;
-exports["default"] = _default;
+router.delete('/menu/:id', deleteMenu);
+export default router;

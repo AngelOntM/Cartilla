@@ -1,15 +1,6 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = void 0;
-
-var _express = require("express");
-
-var _proxmen = require("../controllers/proxmen.js");
-
-var router = (0, _express.Router)();
+import { Router } from 'express';
+import { countProxmens, createProxmen, deleteProxmen, getProxmen, getProxmens, updateProxmen } from '../controllers/proxmen.js';
+const router = Router();
 /**
  * @swagger
  * tags:
@@ -25,7 +16,7 @@ var router = (0, _express.Router)();
  *      tags: [Proxmens]
  */
 
-router.post('/proxmen', _proxmen.getProxmens);
+router.post('/proxmen', getProxmens);
 /**
  * @swagger
  * /Proxmens/count:
@@ -34,7 +25,7 @@ router.post('/proxmen', _proxmen.getProxmens);
  *      tags: [Proxmens]
  */
 
-router.get('/proxmen/count', _proxmen.countProxmens);
+router.get('/proxmen/count', countProxmens);
 /**
  * @swagger
  * /Proxmens/id:
@@ -43,7 +34,7 @@ router.get('/proxmen/count', _proxmen.countProxmens);
  *      tags: [Proxmens]
  */
 
-router.get('/proxmen/:id', _proxmen.getProxmen);
+router.get('/proxmen/:id', getProxmen);
 /**
  * @swagger
  * /Proxmens:
@@ -52,7 +43,7 @@ router.get('/proxmen/:id', _proxmen.getProxmen);
  *      tags: [Proxmens]
  */
 
-router.post('/proxmen/create', _proxmen.createProxmen);
+router.post('/proxmen/create', createProxmen);
 /**
  * @swagger
  * /Proxmens/id:
@@ -61,7 +52,7 @@ router.post('/proxmen/create', _proxmen.createProxmen);
  *      tags: [Proxmens]
  */
 
-router.put('/proxmen/:id', _proxmen.updateProxmen);
+router.put('/proxmen/:id', updateProxmen);
 /**
  * @swagger
  * /Proxmens/id:
@@ -70,6 +61,5 @@ router.put('/proxmen/:id', _proxmen.updateProxmen);
  *      tags: [Proxmens]
  */
 
-router["delete"]('/proxmen/:id', _proxmen.deleteProxmen);
-var _default = router;
-exports["default"] = _default;
+router.delete('/proxmen/:id', deleteProxmen);
+export default router;

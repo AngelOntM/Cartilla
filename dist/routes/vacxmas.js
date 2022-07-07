@@ -1,15 +1,6 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = void 0;
-
-var _express = require("express");
-
-var _vacxmas = require("../controllers/vacxmas.js");
-
-var router = (0, _express.Router)();
+import { Router } from 'express';
+import { countVacxmass, createVacxmas, deleteVacxmas, getVacxmas, getVacxmass, updateVacxmas } from '../controllers/vacxmas.js';
+const router = Router();
 /**
  * @swagger
  * tags:
@@ -25,7 +16,7 @@ var router = (0, _express.Router)();
  *      tags: [Vacxmas]
  */
 
-router.post('/Vacxmas', _vacxmas.getVacxmass);
+router.post('/Vacxmas', getVacxmass);
 /**
  * @swagger
  * /Vacxmas/count:
@@ -34,7 +25,7 @@ router.post('/Vacxmas', _vacxmas.getVacxmass);
  *      tags: [Vacxmas]
  */
 
-router.get('/Vacxmas/count', _vacxmas.countVacxmass);
+router.get('/Vacxmas/count', countVacxmass);
 /**
  * @swagger
  * /Vacxmas/id:
@@ -43,7 +34,7 @@ router.get('/Vacxmas/count', _vacxmas.countVacxmass);
  *      tags: [Vacxmas]
  */
 
-router.get('/Vacxmas/:id', _vacxmas.getVacxmas);
+router.get('/Vacxmas/:id', getVacxmas);
 /**
  * @swagger
  * /Vacxmas:
@@ -52,7 +43,7 @@ router.get('/Vacxmas/:id', _vacxmas.getVacxmas);
  *      tags: [Vacxmas]
  */
 
-router.post('/Vacxmas/create', _vacxmas.createVacxmas);
+router.post('/Vacxmas/create', createVacxmas);
 /**
  * @swagger
  * /Vacxmas/id:
@@ -61,7 +52,7 @@ router.post('/Vacxmas/create', _vacxmas.createVacxmas);
  *      tags: [Vacxmas]
  */
 
-router.put('/Vacxmas/:id', _vacxmas.updateVacxmas);
+router.put('/Vacxmas/:id', updateVacxmas);
 /**
  * @swagger
  * /Vacxmas/id:
@@ -70,6 +61,5 @@ router.put('/Vacxmas/:id', _vacxmas.updateVacxmas);
  *      tags: [Vacxmas]
  */
 
-router["delete"]('/Vacxmas/:id', _vacxmas.deleteVacxmas);
-var _default = router;
-exports["default"] = _default;
+router.delete('/Vacxmas/:id', deleteVacxmas);
+export default router;
