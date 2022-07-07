@@ -913,7 +913,7 @@ var loginUsuario = /*#__PURE__*/function () {
 
             datos = rows[0];
             _context16.next = 64;
-            return connection.query('SELECT DISTINCT menu.MEN_NUMCTRL,menu.MEN_CLAVE,menu.MEN_NOMBRE,menu.MEN_ICON,menu.MEN_DESC FROM submenu inner join menu on menu.SUM_NUMCTRL = submenu.SUM_NUMCTRL inner join proxmen on menu.MEN_NUMCTRL = proxmen.MEN_NUMCTRL INNER JOIN programa ON programa.PRG_NUMCTRL = proxmen.PRG_NUMCTRL INNER JOIN proxusu on proxusu.PRG_NUMCTRL = programa.PRG_NUMCTRL INNER JOIN tipousu on tipousu.TIU_NUMCTRL = proxusu.TIU_NUMCTRL WHERE  tipousu.TIU_NUMCTRL = ? AND submenu.SUM_NUMCTRL = ? ORDER BY menu.MEN_ORDEN', [rows[0].TIU_NUMCTRL, rows[0].TIU_NUMCTRL]);
+            return connection.query('SELECT menu.MEN_NUMCTRL,menu.MEN_CLAVE,menu.MEN_NOMBRE,menu.MEN_ICON,menu.MEN_DESC FROM submenu inner join menu on menu.SUM_NUMCTRL = submenu.SUM_NUMCTRL inner join proxmen on menu.MEN_NUMCTRL = proxmen.MEN_NUMCTRL INNER JOIN programa ON programa.PRG_NUMCTRL = proxmen.PRG_NUMCTRL INNER JOIN proxusu on proxusu.PRG_NUMCTRL = programa.PRG_NUMCTRL INNER JOIN tipousu on tipousu.TIU_NUMCTRL = proxusu.TIU_NUMCTRL WHERE  tipousu.TIU_NUMCTRL = ? AND submenu.SUM_NUMCTRL = ? ORDER BY menu.MEN_ORDEN', [rows[0].TIU_NUMCTRL, rows[0].TIU_NUMCTRL]);
 
           case 64:
             rows = _context16.sent;
