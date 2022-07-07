@@ -1,6 +1,15 @@
-import { Router } from 'express';
-import { countProgramas, createPrograma, deletePrograma, getPrograma, getProgramas, updatePrograma } from '../controllers/programa.js';
-const router = Router();
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+
+var _express = require("express");
+
+var _programa = require("../controllers/programa.js");
+
+var router = (0, _express.Router)();
 /**
  * @swagger
  * tags:
@@ -16,7 +25,7 @@ const router = Router();
  *      tags: [Programas]
  */
 
-router.post('/programa', getProgramas);
+router.post('/programa', _programa.getProgramas);
 /**
  * @swagger
  * /Programas/count:
@@ -25,7 +34,7 @@ router.post('/programa', getProgramas);
  *      tags: [Programas]
  */
 
-router.get('/programa/count', countProgramas);
+router.get('/programa/count', _programa.countProgramas);
 /**
  * @swagger
  * /Programas/id:
@@ -34,7 +43,7 @@ router.get('/programa/count', countProgramas);
  *      tags: [Programas]
  */
 
-router.get('/programa/:id', getPrograma);
+router.get('/programa/:id', _programa.getPrograma);
 /**
  * @swagger
  * /Programas:
@@ -43,7 +52,7 @@ router.get('/programa/:id', getPrograma);
  *      tags: [Programas]
  */
 
-router.post('/programa/create', createPrograma);
+router.post('/programa/create', _programa.createPrograma);
 /**
  * @swagger
  * /Programas/id:
@@ -52,7 +61,7 @@ router.post('/programa/create', createPrograma);
  *      tags: [Programas]
  */
 
-router.put('/programa/:id', updatePrograma);
+router.put('/programa/:id', _programa.updatePrograma);
 /**
  * @swagger
  * /Programas/id:
@@ -61,5 +70,6 @@ router.put('/programa/:id', updatePrograma);
  *      tags: [Programas]
  */
 
-router.delete('/programa/:id', deletePrograma);
-export default router;
+router["delete"]('/programa/:id', _programa.deletePrograma);
+var _default = router;
+exports["default"] = _default;

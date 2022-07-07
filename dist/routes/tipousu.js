@@ -1,6 +1,15 @@
-import { Router } from 'express';
-import { countTipousus, createTipousu, deleteTipousu, getTipousu, getTipousus, updateTipousu } from '../controllers/tipousu.js';
-const router = Router();
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+
+var _express = require("express");
+
+var _tipousu = require("../controllers/tipousu.js");
+
+var router = (0, _express.Router)();
 /**
  * @swagger
  * tags:
@@ -16,7 +25,7 @@ const router = Router();
  *      tags: [Tipousus]
  */
 
-router.post('/tipousu', getTipousus);
+router.post('/tipousu', _tipousu.getTipousus);
 /**
  * @swagger
  * /Tipousus/count:
@@ -25,7 +34,7 @@ router.post('/tipousu', getTipousus);
  *      tags: [Tipousus]
  */
 
-router.get('/tipousu/count', countTipousus);
+router.get('/tipousu/count', _tipousu.countTipousus);
 /**
  * @swagger
  * /Tipousus/id:
@@ -34,7 +43,7 @@ router.get('/tipousu/count', countTipousus);
  *      tags: [Tipousus]
  */
 
-router.get('/tipousu/:id', getTipousu);
+router.get('/tipousu/:id', _tipousu.getTipousu);
 /**
  * @swagger
  * /Tipousus:
@@ -43,7 +52,7 @@ router.get('/tipousu/:id', getTipousu);
  *      tags: [Tipousus]
  */
 
-router.post('/tipousu/create', createTipousu);
+router.post('/tipousu/create', _tipousu.createTipousu);
 /**
  * @swagger
  * /Tipousus/id:
@@ -52,7 +61,7 @@ router.post('/tipousu/create', createTipousu);
  *      tags: [Tipousus]
  */
 
-router.put('/tipousu/:id', updateTipousu);
+router.put('/tipousu/:id', _tipousu.updateTipousu);
 /**
  * @swagger
  * /Tipousus/id:
@@ -61,5 +70,6 @@ router.put('/tipousu/:id', updateTipousu);
  *      tags: [Tipousus]
  */
 
-router.delete('/tipousu/:id', deleteTipousu);
-export default router;
+router["delete"]('/tipousu/:id', _tipousu.deleteTipousu);
+var _default = router;
+exports["default"] = _default;

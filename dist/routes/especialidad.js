@@ -1,6 +1,15 @@
-import { Router } from 'express';
-import { countEspecialidades, createEspecialidad, deleteEspecialidad, getEspecialidad, getEspecialidades, updateEspecialidad } from '../controllers/especialidad.js';
-const router = Router();
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+
+var _express = require("express");
+
+var _especialidad = require("../controllers/especialidad.js");
+
+var router = (0, _express.Router)();
 /**
  * @swagger
  * tags:
@@ -16,7 +25,7 @@ const router = Router();
  *      tags: [Especialidad]
  */
 
-router.post('/especialidad', getEspecialidades);
+router.post('/especialidad', _especialidad.getEspecialidades);
 /**
  * @swagger
  * /Especialidad/count:
@@ -25,7 +34,7 @@ router.post('/especialidad', getEspecialidades);
  *      tags: [Especialidad]
  */
 
-router.get('/especialidad/count', countEspecialidades);
+router.get('/especialidad/count', _especialidad.countEspecialidades);
 /**
  * @swagger
  * /Especialidad/id:
@@ -34,7 +43,7 @@ router.get('/especialidad/count', countEspecialidades);
  *      tags: [Especialidad]
  */
 
-router.get('/especialidad/:id', getEspecialidad);
+router.get('/especialidad/:id', _especialidad.getEspecialidad);
 /**
  * @swagger
  * /Especialidad:
@@ -43,7 +52,7 @@ router.get('/especialidad/:id', getEspecialidad);
  *      tags: [Especialidad]
  */
 
-router.post('/especialidad/create', createEspecialidad);
+router.post('/especialidad/create', _especialidad.createEspecialidad);
 /**
  * @swagger
  * /Especialidad/id:
@@ -52,7 +61,7 @@ router.post('/especialidad/create', createEspecialidad);
  *      tags: [Especialidad]
  */
 
-router.put('/especialidad/:id', updateEspecialidad);
+router.put('/especialidad/:id', _especialidad.updateEspecialidad);
 /**
  * @swagger
  * /Especialidad/id:
@@ -61,5 +70,6 @@ router.put('/especialidad/:id', updateEspecialidad);
  *      tags: [Especialidad]
  */
 
-router.delete('/especialidad/:id', deleteEspecialidad);
-export default router;
+router["delete"]('/especialidad/:id', _especialidad.deleteEspecialidad);
+var _default = router;
+exports["default"] = _default;

@@ -1,6 +1,15 @@
-import { Router } from 'express';
-import { countSubmenus, createSubmenu, deleteSubmenu, getSubmenu, getSubmenus, updateSubmenu } from '../controllers/submenu.js';
-const router = Router();
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+
+var _express = require("express");
+
+var _submenu = require("../controllers/submenu.js");
+
+var router = (0, _express.Router)();
 /**
  * @swagger
  * tags:
@@ -16,7 +25,7 @@ const router = Router();
  *      tags: [Submenu]
  */
 
-router.post('/submenu', getSubmenus);
+router.post('/submenu', _submenu.getSubmenus);
 /**
  * @swagger
  * /Submenu/count:
@@ -25,7 +34,7 @@ router.post('/submenu', getSubmenus);
  *      tags: [Submenu]
  */
 
-router.get('/submenu/count', countSubmenus);
+router.get('/submenu/count', _submenu.countSubmenus);
 /**
  * @swagger
  * /Submenu/id:
@@ -34,7 +43,7 @@ router.get('/submenu/count', countSubmenus);
  *      tags: [Submenu]
  */
 
-router.get('/submenu/:id', getSubmenu);
+router.get('/submenu/:id', _submenu.getSubmenu);
 /**
  * @swagger
  * /Submenu:
@@ -43,7 +52,7 @@ router.get('/submenu/:id', getSubmenu);
  *      tags: [Submenu]
  */
 
-router.post('/submenu/create', createSubmenu);
+router.post('/submenu/create', _submenu.createSubmenu);
 /**
  * @swagger
  * /Submenu/id:
@@ -52,7 +61,7 @@ router.post('/submenu/create', createSubmenu);
  *      tags: [Submenu]
  */
 
-router.put('/submenu/:id', updateSubmenu);
+router.put('/submenu/:id', _submenu.updateSubmenu);
 /**
  * @swagger
  * /Submenu/id:
@@ -61,5 +70,6 @@ router.put('/submenu/:id', updateSubmenu);
  *      tags: [Submenu]
  */
 
-router.delete('/submenu/:id', deleteSubmenu);
-export default router;
+router["delete"]('/submenu/:id', _submenu.deleteSubmenu);
+var _default = router;
+exports["default"] = _default;

@@ -1,6 +1,15 @@
-import { Router } from 'express';
-import { countEspxsucs, createEspxsuc, deleteEspxsuc, getEspxsuc, getEspxsucs, updateEspxsuc } from '../controllers/espxsuc.js';
-const router = Router();
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+
+var _express = require("express");
+
+var _espxsuc = require("../controllers/espxsuc.js");
+
+var router = (0, _express.Router)();
 /**
  * @swagger
  * tags:
@@ -16,7 +25,7 @@ const router = Router();
  *      tags: [Espxsuc]
  */
 
-router.post('/Espxsuc', getEspxsucs);
+router.post('/Espxsuc', _espxsuc.getEspxsucs);
 /**
  * @swagger
  * /Espxsuc/count:
@@ -25,7 +34,7 @@ router.post('/Espxsuc', getEspxsucs);
  *      tags: [Espxsuc]
  */
 
-router.get('/Espxsuc/count', countEspxsucs);
+router.get('/Espxsuc/count', _espxsuc.countEspxsucs);
 /**
  * @swagger
  * /Espxsuc/id:
@@ -34,7 +43,7 @@ router.get('/Espxsuc/count', countEspxsucs);
  *      tags: [Espxsuc]
  */
 
-router.get('/Espxsuc/:id', getEspxsuc);
+router.get('/Espxsuc/:id', _espxsuc.getEspxsuc);
 /**
  * @swagger
  * /Espxsuc:
@@ -43,7 +52,7 @@ router.get('/Espxsuc/:id', getEspxsuc);
  *      tags: [Espxsuc]
  */
 
-router.post('/Espxsuc/create', createEspxsuc);
+router.post('/Espxsuc/create', _espxsuc.createEspxsuc);
 /**
  * @swagger
  * /Espxsuc/id:
@@ -52,7 +61,7 @@ router.post('/Espxsuc/create', createEspxsuc);
  *      tags: [Espxsuc]
  */
 
-router.put('/Espxsuc/:id', updateEspxsuc);
+router.put('/Espxsuc/:id', _espxsuc.updateEspxsuc);
 /**
  * @swagger
  * /Espxsuc/id:
@@ -61,5 +70,6 @@ router.put('/Espxsuc/:id', updateEspxsuc);
  *      tags: [Espxsuc]
  */
 
-router.delete('/Espxsuc/:id', deleteEspxsuc);
-export default router;
+router["delete"]('/Espxsuc/:id', _espxsuc.deleteEspxsuc);
+var _default = router;
+exports["default"] = _default;

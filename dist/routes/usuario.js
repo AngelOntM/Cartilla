@@ -1,6 +1,15 @@
-import { Router } from 'express';
-import { createPropietario, createProveedor, createSupervisor, deletePropietario, deleteProveedor, deleteSupervisor, getPropietario, getPropietarios, getProveedor, getProveedores, getSupervisor, getSupervisores, loginUsuario, updatePropietario, updateProveedor, updateSupervisor } from '../controllers/usuario.js';
-const router = Router();
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+
+var _express = require("express");
+
+var _usuario = require("../controllers/usuario.js");
+
+var router = (0, _express.Router)();
 /**
  * @swagger
  * tags:
@@ -16,7 +25,7 @@ const router = Router();
  *      tags: [Usuarios]
  */
 
-router.get('/usuario/propietario', getPropietarios);
+router.get('/usuario/propietario', _usuario.getPropietarios);
 /**
  * @swagger
  * /usuario/proveedor:
@@ -25,7 +34,7 @@ router.get('/usuario/propietario', getPropietarios);
  *      tags: [Usuarios]
  */
 
-router.get('/usuario/proveedor', getProveedores);
+router.get('/usuario/proveedor', _usuario.getProveedores);
 /**
  * @swagger
  * /usuario/supervisor:
@@ -34,7 +43,7 @@ router.get('/usuario/proveedor', getProveedores);
  *      tags: [Usuarios]
  */
 
-router.get('/usuario/supervisor', getSupervisores);
+router.get('/usuario/supervisor', _usuario.getSupervisores);
 /**
  * @swagger
  * /usuario/proveedor/id:
@@ -43,7 +52,7 @@ router.get('/usuario/supervisor', getSupervisores);
  *      tags: [Usuarios]
  */
 
-router.get('/usuario/proveedor/:id', getProveedor);
+router.get('/usuario/proveedor/:id', _usuario.getProveedor);
 /**
  * @swagger
  * /usuario/propietario/id:
@@ -52,7 +61,7 @@ router.get('/usuario/proveedor/:id', getProveedor);
  *      tags: [Usuarios]
  */
 
-router.get('/usuario/propietario/:id', getPropietario);
+router.get('/usuario/propietario/:id', _usuario.getPropietario);
 /**
  * @swagger
  * /usuario/supervisor/id:
@@ -61,7 +70,7 @@ router.get('/usuario/propietario/:id', getPropietario);
  *      tags: [Usuarios]
  */
 
-router.get('/usuario/supervisor/:id', getSupervisor);
+router.get('/usuario/supervisor/:id', _usuario.getSupervisor);
 /**
  * @swagger
  * /usuario/proveedor/register:
@@ -70,7 +79,7 @@ router.get('/usuario/supervisor/:id', getSupervisor);
  *      tags: [Usuarios]
  */
 
-router.post('/usuario/proveedor/register', createProveedor);
+router.post('/usuario/proveedor/register', _usuario.createProveedor);
 /**
  * @swagger
  * /usuario/propietario/register:
@@ -79,7 +88,7 @@ router.post('/usuario/proveedor/register', createProveedor);
  *      tags: [Usuarios]
  */
 
-router.post('/usuario/propietario/register', createPropietario);
+router.post('/usuario/propietario/register', _usuario.createPropietario);
 /**
  * @swagger
  * /usuario/supervisor/register:
@@ -88,7 +97,7 @@ router.post('/usuario/propietario/register', createPropietario);
  *      tags: [Usuarios]
  */
 
-router.post('/usuario/supervisor/register', createSupervisor);
+router.post('/usuario/supervisor/register', _usuario.createSupervisor);
 /**
  * @swagger
  * /usuarios/login:
@@ -97,7 +106,7 @@ router.post('/usuario/supervisor/register', createSupervisor);
  *      tags: [Usuarios]
  */
 
-router.post('/usuario/login', loginUsuario);
+router.post('/usuario/login', _usuario.loginUsuario);
 /**
  * @swagger
  * /usuario/propietario/id:
@@ -106,7 +115,7 @@ router.post('/usuario/login', loginUsuario);
  *      tags: [Usuarios]
  */
 
-router.put('/usuario/propietario/:id', updatePropietario);
+router.put('/usuario/propietario/:id', _usuario.updatePropietario);
 /**
  * @swagger
  * /usuario/proveedor/id:
@@ -115,7 +124,7 @@ router.put('/usuario/propietario/:id', updatePropietario);
  *      tags: [Usuarios]
  */
 
-router.put('/usuario/proveedor/:id', updateProveedor);
+router.put('/usuario/proveedor/:id', _usuario.updateProveedor);
 /**
  * @swagger
  * /usuario/supervisor/id:
@@ -124,7 +133,7 @@ router.put('/usuario/proveedor/:id', updateProveedor);
  *      tags: [Usuarios]
  */
 
-router.put('/usuario/supervisor/:id', updateSupervisor);
+router.put('/usuario/supervisor/:id', _usuario.updateSupervisor);
 /**
  * @swagger
  * /usuario/proveedor/id:
@@ -133,7 +142,7 @@ router.put('/usuario/supervisor/:id', updateSupervisor);
  *      tags: [Usuarios]
  */
 
-router.delete('/usuario/proveedor/:id', deleteProveedor);
+router["delete"]('/usuario/proveedor/:id', _usuario.deleteProveedor);
 /**
  * @swagger
  * /usuario/propietario/id:
@@ -142,7 +151,7 @@ router.delete('/usuario/proveedor/:id', deleteProveedor);
  *      tags: [Usuarios]
  */
 
-router.delete('/usuario/propietario/:id', deletePropietario);
+router["delete"]('/usuario/propietario/:id', _usuario.deletePropietario);
 /**
  * @swagger
  * /usuario/propietario/id:
@@ -151,5 +160,6 @@ router.delete('/usuario/propietario/:id', deletePropietario);
  *      tags: [Usuarios]
  */
 
-router.delete('/usuario/supervisor/:id', deleteSupervisor);
-export default router;
+router["delete"]('/usuario/supervisor/:id', _usuario.deleteSupervisor);
+var _default = router;
+exports["default"] = _default;

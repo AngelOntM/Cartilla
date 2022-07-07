@@ -1,6 +1,15 @@
-import { Router } from 'express';
-import { countSerxsucs, createSerxsuc, deleteSerxsuc, getSerxsuc, getSerxsucs, updateSerxsuc } from '../controllers/serxsuc.js';
-const router = Router();
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+
+var _express = require("express");
+
+var _serxsuc = require("../controllers/serxsuc.js");
+
+var router = (0, _express.Router)();
 /**
  * @swagger
  * tags:
@@ -16,7 +25,7 @@ const router = Router();
  *      tags: [Serxsuc]
  */
 
-router.post('/Serxsuc', getSerxsucs);
+router.post('/Serxsuc', _serxsuc.getSerxsucs);
 /**
  * @swagger
  * /Serxsuc/count:
@@ -25,7 +34,7 @@ router.post('/Serxsuc', getSerxsucs);
  *      tags: [Serxsuc]
  */
 
-router.get('/Serxsuc/count', countSerxsucs);
+router.get('/Serxsuc/count', _serxsuc.countSerxsucs);
 /**
  * @swagger
  * /Serxsuc/id:
@@ -34,7 +43,7 @@ router.get('/Serxsuc/count', countSerxsucs);
  *      tags: [Serxsuc]
  */
 
-router.get('/Serxsuc/:id', getSerxsuc);
+router.get('/Serxsuc/:id', _serxsuc.getSerxsuc);
 /**
  * @swagger
  * /Serxsuc:
@@ -43,7 +52,7 @@ router.get('/Serxsuc/:id', getSerxsuc);
  *      tags: [Serxsuc]
  */
 
-router.post('/Serxsuc/create', createSerxsuc);
+router.post('/Serxsuc/create', _serxsuc.createSerxsuc);
 /**
  * @swagger
  * /Serxsuc/id:
@@ -52,7 +61,7 @@ router.post('/Serxsuc/create', createSerxsuc);
  *      tags: [Serxsuc]
  */
 
-router.put('/Serxsuc/:id', updateSerxsuc);
+router.put('/Serxsuc/:id', _serxsuc.updateSerxsuc);
 /**
  * @swagger
  * /Serxsuc/id:
@@ -61,5 +70,6 @@ router.put('/Serxsuc/:id', updateSerxsuc);
  *      tags: [Serxsuc]
  */
 
-router.delete('/Serxsuc/:id', deleteSerxsuc);
-export default router;
+router["delete"]('/Serxsuc/:id', _serxsuc.deleteSerxsuc);
+var _default = router;
+exports["default"] = _default;

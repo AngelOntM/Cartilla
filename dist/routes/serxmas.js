@@ -1,6 +1,15 @@
-import { Router } from 'express';
-import { countSerxmass, createSerxmas, deleteSerxmas, getSerxmas, getSerxmass, updateSerxmas } from '../controllers/serxmas.js';
-const router = Router();
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+
+var _express = require("express");
+
+var _serxmas = require("../controllers/serxmas.js");
+
+var router = (0, _express.Router)();
 /**
  * @swagger
  * tags:
@@ -16,7 +25,7 @@ const router = Router();
  *      tags: [Serxmas]
  */
 
-router.post('/serxmas', getSerxmass);
+router.post('/serxmas', _serxmas.getSerxmass);
 /**
  * @swagger
  * /Serxmas/count:
@@ -25,7 +34,7 @@ router.post('/serxmas', getSerxmass);
  *      tags: [Serxmas]
  */
 
-router.get('/serxmas/count', countSerxmass);
+router.get('/serxmas/count', _serxmas.countSerxmass);
 /**
  * @swagger
  * /Serxmas/id:
@@ -34,7 +43,7 @@ router.get('/serxmas/count', countSerxmass);
  *      tags: [Serxmas]
  */
 
-router.get('/serxmas/:id', getSerxmas);
+router.get('/serxmas/:id', _serxmas.getSerxmas);
 /**
  * @swagger
  * /Serxmas:
@@ -43,7 +52,7 @@ router.get('/serxmas/:id', getSerxmas);
  *      tags: [Serxmas]
  */
 
-router.post('/serxmas/create', createSerxmas);
+router.post('/serxmas/create', _serxmas.createSerxmas);
 /**
  * @swagger
  * /Serxmas/id:
@@ -52,7 +61,7 @@ router.post('/serxmas/create', createSerxmas);
  *      tags: [Serxmas]
  */
 
-router.put('/serxmas/:id', updateSerxmas);
+router.put('/serxmas/:id', _serxmas.updateSerxmas);
 /**
  * @swagger
  * /Serxmas/id:
@@ -61,5 +70,6 @@ router.put('/serxmas/:id', updateSerxmas);
  *      tags: [Serxmas]
  */
 
-router.delete('/serxmas/:id', deleteSerxmas);
-export default router;
+router["delete"]('/serxmas/:id', _serxmas.deleteSerxmas);
+var _default = router;
+exports["default"] = _default;

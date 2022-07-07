@@ -1,6 +1,15 @@
-import { Router } from 'express';
-import { countProxusus, createProxusu, deleteProxusu, getProxusu, getProxusus, updateProxusu } from '../controllers/proxusu.js';
-const router = Router();
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+
+var _express = require("express");
+
+var _proxusu = require("../controllers/proxusu.js");
+
+var router = (0, _express.Router)();
 /**
  * @swagger
  * tags:
@@ -16,7 +25,7 @@ const router = Router();
  *      tags: [Proxusus]
  */
 
-router.post('/proxusu', getProxusus);
+router.post('/proxusu', _proxusu.getProxusus);
 /**
  * @swagger
  * /Proxusus/count:
@@ -25,7 +34,7 @@ router.post('/proxusu', getProxusus);
  *      tags: [Proxusus]
  */
 
-router.get('/proxusu/count', countProxusus);
+router.get('/proxusu/count', _proxusu.countProxusus);
 /**
  * @swagger
  * /Proxusus/id:
@@ -34,7 +43,7 @@ router.get('/proxusu/count', countProxusus);
  *      tags: [Proxusus]
  */
 
-router.get('/proxusu/:id', getProxusu);
+router.get('/proxusu/:id', _proxusu.getProxusu);
 /**
  * @swagger
  * /Proxusus:
@@ -43,7 +52,7 @@ router.get('/proxusu/:id', getProxusu);
  *      tags: [Proxusus]
  */
 
-router.post('/proxusu/create', createProxusu);
+router.post('/proxusu/create', _proxusu.createProxusu);
 /**
  * @swagger
  * /Proxusus/id:
@@ -52,7 +61,7 @@ router.post('/proxusu/create', createProxusu);
  *      tags: [Proxusus]
  */
 
-router.put('/proxusu/:id', updateProxusu);
+router.put('/proxusu/:id', _proxusu.updateProxusu);
 /**
  * @swagger
  * /Proxusus/id:
@@ -61,5 +70,6 @@ router.put('/proxusu/:id', updateProxusu);
  *      tags: [Proxusus]
  */
 
-router.delete('/proxusu/:id', deleteProxusu);
-export default router;
+router["delete"]('/proxusu/:id', _proxusu.deleteProxusu);
+var _default = router;
+exports["default"] = _default;
