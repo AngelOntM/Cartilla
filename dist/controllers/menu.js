@@ -31,7 +31,7 @@ var getMenus = /*#__PURE__*/function () {
           case 0:
             _context.prev = 0;
             val = ' WHERE';
-            sql = 'SELECT MEN_NUMCTRL,MEN_CLAVE,MEN_NOMBRE,MEN_ICON,MEN_DESC,MEN_ORDEN,submenu.SUM_NUMCTRL,submenu.SUM_ETIQUETA FROM menu inner join submenu on submenu.SUM_NUMCTRL = menu.SUM_NUMCTRL';
+            sql = 'SELECT menu.MEN_NUMCTRL,menu.MEN_CLAVE,menu.MEN_NOMBRE,menu.MEN_ICON,menu.MEN_DESC,menu.MEN_ORDEN,modxtipu.MXT_NUMCTRL FROM menu inner join modxtipu on modxtipu.MXT_NUMCTRL = menu.MXT_NUMCTRL';
 
             if (req.body.MEN_NUMCTRL) {
               sql += val + ' menu.MEN_NUMCTRL LIKE "%' + req.body.MEN_NUMCTRL + '%"';
@@ -58,13 +58,8 @@ var getMenus = /*#__PURE__*/function () {
               val = ' AND';
             }
 
-            if (req.body.SUM_NUMCTRL) {
-              sql += val + ' submenu.SUM_NUMCTRL LIKE "%' + req.body.SUM_NUMCTRL + '%"';
-              val = ' AND';
-            }
-
-            if (req.body.SUM_ETIQUETA) {
-              sql += val + ' submenu.SUM_ETIQUETA LIKE "%' + req.body.SUM_ETIQUETA + '%"';
+            if (req.body.MXT_NUMCTRL) {
+              sql += val + ' modxtipu.MXT_NUMCTRL LIKE "%' + req.body.MXT_NUMCTRL + '%"';
               val = ' AND';
             }
 
@@ -76,34 +71,34 @@ var getMenus = /*#__PURE__*/function () {
               sql += req.body.BY;
             }
 
-            _context.next = 14;
+            _context.next = 13;
             return (0, _database.connect)();
 
-          case 14:
+          case 13:
             connection = _context.sent;
-            _context.next = 17;
+            _context.next = 16;
             return connection.query(sql);
 
-          case 17:
+          case 16:
             _yield$connection$que = _context.sent;
             _yield$connection$que2 = (0, _slicedToArray2["default"])(_yield$connection$que, 1);
             rows = _yield$connection$que2[0];
             res.json(rows);
-            _context.next = 27;
+            _context.next = 26;
             break;
 
-          case 23:
-            _context.prev = 23;
+          case 22:
+            _context.prev = 22;
             _context.t0 = _context["catch"](0);
             console.error(_context.t0);
             res.sendStatus(400);
 
-          case 27:
+          case 26:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[0, 23]]);
+    }, _callee, null, [[0, 22]]);
   }));
 
   return function getMenus(_x, _x2) {
@@ -128,7 +123,7 @@ var getMenu = /*#__PURE__*/function () {
           case 3:
             connection = _context2.sent;
             _context2.next = 6;
-            return connection.query('SELECT MEN_NUMCTRL,MEN_CLAVE,MEN_NOMBRE,MEN_ICON,MEN_DESC,MEN_ORDEN,submenu.SUM_NUMCTRL,submenu.SUM_ETIQUETA FROM menu inner join submenu on submenu.SUM_NUMCTRL = menu.SUM_NUMCTRL WHERE MEN_NUMCTRL = ?', [req.params.id]);
+            return connection.query('SELECT menu.MEN_NUMCTRL,menu.MEN_CLAVE,menu.MEN_NOMBRE,menu.MEN_ICON,menu.MEN_DESC,menu.MEN_ORDEN,modxtipu.MXT_NUMCTRL FROM menu inner join modxtipu on modxtipu.MXT_NUMCTRL = menu.MXT_NUMCTRL WHERE MEN_NUMCTRL = ?', [req.params.id]);
 
           case 6:
             _yield$connection$que3 = _context2.sent;
@@ -218,7 +213,7 @@ var createMenu = /*#__PURE__*/function () {
           case 3:
             connection = _context4.sent;
             _context4.next = 6;
-            return connection.query('SELECT * FROM menu WHERE MEN_ORDEN = ? AND SUM_NUMCTRL = ?', [req.body.MEN_ORDEN, req.body.SUM_NUMCTRL]);
+            return connection.query('SELECT * FROM menu WHERE MEN_ORDEN = ? AND MXT_NUMCTRL = ?', [req.body.MEN_ORDEN, req.body.MXT_NUMCTRL]);
 
           case 6:
             _yield$connection$que7 = _context4.sent;
@@ -234,7 +229,7 @@ var createMenu = /*#__PURE__*/function () {
 
           case 11:
             _context4.next = 13;
-            return connection.query("INSERT INTO menu(MEN_CLAVE,MEN_NOMBRE,MEN_ICON,MEN_DESC,MEN_ORDEN,SUM_NUMCTRL) VALUES (?, ?, ?, ?, ?, ?)", [req.body.MEN_CLAVE, req.body.MEN_NOMBRE, req.body.MEN_ICON, req.body.MEN_DESC, req.body.MEN_ORDEN, req.body.SUM_NUMCTRL]);
+            return connection.query("INSERT INTO menu(MEN_CLAVE,MEN_NOMBRE,MEN_ICON,MEN_DESC,MEN_ORDEN,MXT_NUMCTRL) VALUES (?, ?, ?, ?, ?, ?)", [req.body.MEN_CLAVE, req.body.MEN_NOMBRE, req.body.MEN_ICON, req.body.MEN_DESC, req.body.MEN_ORDEN, req.body.MXT_NUMCTRL]);
 
           case 13:
             _yield$connection$que9 = _context4.sent;
@@ -292,7 +287,7 @@ var deleteMenu = /*#__PURE__*/function () {
 
           case 11:
             _context5.next = 13;
-            return connection.query('UPDATE menu SET MEN_ORDEN = MEN_ORDEN - 1 WHERE MEN_ORDEN > ? AND SUM_NUMCTRL = ?', [orden[0].MEN_ORDEN, orden[0].SUM_NUMCTRL]);
+            return connection.query('UPDATE menu SET MEN_ORDEN = MEN_ORDEN - 1 WHERE MEN_ORDEN > ? AND MXT_NUMCTRL = ?', [orden[0].MEN_ORDEN, orden[0].MXT_NUMCTRL]);
 
           case 13:
             _yield$connection$que13 = _context5.sent;
@@ -356,7 +351,7 @@ var updateMenu = /*#__PURE__*/function () {
             }
 
             _context6.next = 13;
-            return connection.query('UPDATE menu SET MEN_ORDEN = MEN_ORDEN - 1 WHERE SUM_NUMCTRL = ? AND MEN_ORDEN > ? AND MEN_ORDEN <= ?', [orden[0].SUM_NUMCTRL, orden[0].MEN_ORDEN, req.body.MEN_ORDEN]);
+            return connection.query('UPDATE menu SET MEN_ORDEN = MEN_ORDEN - 1 WHERE MXT_NUMCTRL = ? AND MEN_ORDEN > ? AND MEN_ORDEN <= ?', [orden[0].MXT_NUMCTRL, orden[0].MEN_ORDEN, req.body.MEN_ORDEN]);
 
           case 13:
             _context6.next = 18;
@@ -369,7 +364,7 @@ var updateMenu = /*#__PURE__*/function () {
             }
 
             _context6.next = 18;
-            return connection.query('UPDATE menu SET MEN_ORDEN = MEN_ORDEN + 1 WHERE SUM_NUMCTRL = ? AND MEN_ORDEN < ? AND MEN_ORDEN >= ?', [orden[0].SUM_NUMCTRL, orden[0].MEN_ORDEN, req.body.MEN_ORDEN]);
+            return connection.query('UPDATE menu SET MEN_ORDEN = MEN_ORDEN + 1 WHERE MXT_NUMCTRL = ? AND MEN_ORDEN < ? AND MEN_ORDEN >= ?', [orden[0].MXT_NUMCTRL, orden[0].MEN_ORDEN, req.body.MEN_ORDEN]);
 
           case 18:
             _context6.next = 20;

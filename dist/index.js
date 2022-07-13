@@ -20,10 +20,6 @@ var _tipousu = _interopRequireDefault(require("./routes/tipousu.js"));
 
 var _proxmen = _interopRequireDefault(require("./routes/proxmen.js"));
 
-var _proxusu = _interopRequireDefault(require("./routes/proxusu.js"));
-
-var _submenu = _interopRequireDefault(require("./routes/submenu.js"));
-
 var _especialidad = _interopRequireDefault(require("./routes/especialidad.js"));
 
 var _mascota = _interopRequireDefault(require("./routes/mascota.js"));
@@ -61,11 +57,9 @@ app.use(_masfoto["default"]);
 app.use(_menu["default"]);
 app.use(_programa["default"]);
 app.use(_proxmen["default"]);
-app.use(_proxusu["default"]);
 app.use(_raza["default"]);
 app.use(_serxmas["default"]);
 app.use(_serxsuc["default"]);
-app.use(_submenu["default"]);
 app.use(_sucxprv["default"]);
 app.use(_tipousu["default"]);
 app.use(_usuario["default"]);
