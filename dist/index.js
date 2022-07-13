@@ -12,6 +12,10 @@ var _usuario = _interopRequireDefault(require("./routes/usuario.js"));
 
 var _menu = _interopRequireDefault(require("./routes/menu.js"));
 
+var _modulo = _interopRequireDefault(require("./routes/modulo.js"));
+
+var _modxtipu = _interopRequireDefault(require("./routes/modxtipu.js"));
+
 var _programa = _interopRequireDefault(require("./routes/programa.js"));
 
 var _raza = _interopRequireDefault(require("./routes/raza.js"));
@@ -55,6 +59,8 @@ app.use(_espxsuc["default"]);
 app.use(_mascota["default"]);
 app.use(_masfoto["default"]);
 app.use(_menu["default"]);
+app.use(_modulo["default"]);
+app.use(_modxtipu["default"]);
 app.use(_programa["default"]);
 app.use(_proxmen["default"]);
 app.use(_raza["default"]);
