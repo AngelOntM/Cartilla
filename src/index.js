@@ -5,6 +5,8 @@ import morgan from "morgan"
 
 import usuario from "./routes/usuario.js"
 import menu from "./routes/menu.js"
+import modulo from "./routes/modulo.js"
+import modxtipu from "./routes/modxtipu.js"
 import programa from "./routes/programa.js"
 import raza from "./routes/raza.js"
 import tipousu from "./routes/tipousu.js"
@@ -39,6 +41,8 @@ app.use(espxsuc)
 app.use(mascota)
 app.use(masfoto)
 app.use(menu)
+app.use(modulo)
+app.use(modxtipu)
 app.use(programa)
 app.use(proxmen)
 app.use(raza)
