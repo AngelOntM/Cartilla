@@ -24,6 +24,10 @@ export const getProgramas = async (req, res) => {
             sql += val + ' PRG_DESC LIKE "%' + req.body.PRG_DESC + '%"'
             val = ' AND'
         }
+        if (req.body.MXT_NUMCTRL) {
+            sql += val + ' MXT_NUMCTRL LIKE "%' + req.body.MXT_NUMCTRL + '%"'
+            val = ' AND'
+        }
         if (req.body.ORDER) {
             sql += ' ORDER BY ' + req.body.ORDER + ' '
         }
@@ -61,10 +65,11 @@ export const countProgramas = async (req, res) => {
 export const createPrograma = async (req, res) => {
     try {
         const connection = await connect()
-        const [rows] = await connection.query("INSERT INTO programa(PRG_CLAVE, PRG_NOMBRE, PRG_RUTA, PRG_DESC) VALUES (?, ?, ?, ?)",
+        const [rows] = await connection.query("INSERT INTO programa(PRG_CLAVE, PRG_NOMBRE, PRG_ORDEN, PRG_RUTA, PRG_DESC) VALUES (?, ?, ?, ?, ?)",
             [
                 req.body.PRG_CLAVE,
                 req.body.PRG_NOMBRE,
+                req.body.PRG_ORDEN,
                 req.body.PRG_RUTA,
                 req.body.PRG_DESC
             ])

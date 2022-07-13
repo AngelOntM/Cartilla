@@ -3,7 +3,7 @@ import { connect } from '../database/database.js'
 export const getMenus = async (req, res) => {
     try {
         var val = ' WHERE'
-        var sql = 'SELECT MEN_NUMCTRL,MEN_CLAVE,MEN_NOMBRE,MEN_ICON,MEN_DESC,MEN_ORDEN,submenu.SUM_NUMCTRL,submenu.SUM_ETIQUETA FROM menu inner join submenu on submenu.SUM_NUMCTRL = menu.SUM_NUMCTRL'
+        var sql = 'SELECT menu.MEN_NUMCTRL,menu.MEN_CLAVE,menu.MEN_NOMBRE,menu.MEN_ICON,menu.MEN_DESC,menu.MEN_ORDEN,modxtipu.MXT_NUMCTRL FROM menu inner join modxtipu on modxtipu.MXT_NUMCTRL = menu.MXT_NUMCTRL'
         if (req.body.MEN_NUMCTRL) {
             sql += val + ' menu.MEN_NUMCTRL LIKE "%' + req.body.MEN_NUMCTRL + '%"'
             val = ' AND'
@@ -24,12 +24,8 @@ export const getMenus = async (req, res) => {
             sql += val + ' menu.MEN_ORDEN LIKE "%' + req.body.MEN_ORDEN + '%"'
             val = ' AND'
         }
-        if (req.body.SUM_NUMCTRL) {
-            sql += val + ' submenu.SUM_NUMCTRL LIKE "%' + req.body.SUM_NUMCTRL + '%"'
-            val = ' AND'
-        }
-        if (req.body.SUM_ETIQUETA) {
-            sql += val + ' submenu.SUM_ETIQUETA LIKE "%' + req.body.SUM_ETIQUETA + '%"'
+        if (req.body.MXT_NUMCTRL) {
+            sql += val + ' modxtipu.MXT_NUMCTRL LIKE "%' + req.body.MXT_NUMCTRL + '%"'
             val = ' AND'
         }
         if (req.body.ORDER) {
@@ -50,7 +46,7 @@ export const getMenus = async (req, res) => {
 export const getMenu = async (req, res) => {
     try {
         const connection = await connect()
-        const [rows] = await connection.query('SELECT MEN_NUMCTRL,MEN_CLAVE,MEN_NOMBRE,MEN_ICON,MEN_DESC,MEN_ORDEN,submenu.SUM_NUMCTRL,submenu.SUM_ETIQUETA FROM menu inner join submenu on submenu.SUM_NUMCTRL = menu.SUM_NUMCTRL WHERE MEN_NUMCTRL = ?', [req.params.id,])
+        const [rows] = await connection.query('SELECT menu.MEN_NUMCTRL,menu.MEN_CLAVE,menu.MEN_NOMBRE,menu.MEN_ICON,menu.MEN_DESC,menu.MEN_ORDEN,modxtipu.MXT_NUMCTRL FROM menu inner join modxtipu on modxtipu.MXT_NUMCTRL = menu.MXT_NUMCTRL WHERE MEN_NUMCTRL = ?', [req.params.id,])
         res.json(rows[0])
     } catch (error) {
         res.sendStatus(400)
@@ -70,20 +66,20 @@ export const countMenus = async (req, res) => {
 export const createMenu = async (req, res) => {
     try {
         const connection = await connect()
-        const [orden] = await connection.query('SELECT * FROM menu WHERE MEN_ORDEN = ? AND SUM_NUMCTRL = ?',
+        const [orden] = await connection.query('SELECT * FROM menu WHERE MEN_ORDEN = ? AND MXT_NUMCTRL = ?',
             [
                 req.body.MEN_ORDEN,
-                req.body.SUM_NUMCTRL
+                req.body.MXT_NUMCTRL
             ])
         if (orden[0] != undefined) { return res.sendStatus(400) }
-        const [rows] = await connection.query("INSERT INTO menu(MEN_CLAVE,MEN_NOMBRE,MEN_ICON,MEN_DESC,MEN_ORDEN,SUM_NUMCTRL) VALUES (?, ?, ?, ?, ?, ?)",
+        const [rows] = await connection.query("INSERT INTO menu(MEN_CLAVE,MEN_NOMBRE,MEN_ICON,MEN_DESC,MEN_ORDEN,MXT_NUMCTRL) VALUES (?, ?, ?, ?, ?, ?)",
             [
                 req.body.MEN_CLAVE,
                 req.body.MEN_NOMBRE,
                 req.body.MEN_ICON,
                 req.body.MEN_DESC,
                 req.body.MEN_ORDEN,
-                req.body.SUM_NUMCTRL
+                req.body.MXT_NUMCTRL
             ])
         res.json({
             id: rows.insertId,
@@ -105,10 +101,10 @@ export const deleteMenu = async (req, res) => {
             [
                 req.params.id
             ])
-        const [up] = await connection.query('UPDATE menu SET MEN_ORDEN = MEN_ORDEN - 1 WHERE MEN_ORDEN > ? AND SUM_NUMCTRL = ?',
+        const [up] = await connection.query('UPDATE menu SET MEN_ORDEN = MEN_ORDEN - 1 WHERE MEN_ORDEN > ? AND MXT_NUMCTRL = ?',
             [
                 orden[0].MEN_ORDEN,
-                orden[0].SUM_NUMCTRL
+                orden[0].MXT_NUMCTRL
             ])
         res.sendStatus(204)
     } catch (error) {
@@ -122,17 +118,17 @@ export const updateMenu = async (req, res) => {
         if (req.body.MEN_ORDEN) {
             const [orden] = await connection.query('SELECT * FROM menu WHERE MEN_NUMCTRL = ?', [req.params.id])
             if (orden[0].MEN_ORDEN < req.body.MEN_ORDEN) {
-                await connection.query('UPDATE menu SET MEN_ORDEN = MEN_ORDEN - 1 WHERE SUM_NUMCTRL = ? AND MEN_ORDEN > ? AND MEN_ORDEN <= ?',
+                await connection.query('UPDATE menu SET MEN_ORDEN = MEN_ORDEN - 1 WHERE MXT_NUMCTRL = ? AND MEN_ORDEN > ? AND MEN_ORDEN <= ?',
                     [
-                        orden[0].SUM_NUMCTRL,
+                        orden[0].MXT_NUMCTRL,
                         orden[0].MEN_ORDEN,
                         req.body.MEN_ORDEN
                     ])
             }
             else if (orden[0].MEN_ORDEN > req.body.MEN_ORDEN) {
-                await connection.query('UPDATE menu SET MEN_ORDEN = MEN_ORDEN + 1 WHERE SUM_NUMCTRL = ? AND MEN_ORDEN < ? AND MEN_ORDEN >= ?',
+                await connection.query('UPDATE menu SET MEN_ORDEN = MEN_ORDEN + 1 WHERE MXT_NUMCTRL = ? AND MEN_ORDEN < ? AND MEN_ORDEN >= ?',
                     [
-                        orden[0].SUM_NUMCTRL,
+                        orden[0].MXT_NUMCTRL,
                         orden[0].MEN_ORDEN,
                         req.body.MEN_ORDEN
                     ])

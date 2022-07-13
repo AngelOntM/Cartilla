@@ -1,11 +1,19 @@
 import { connect } from '../database/database.js'
 
-export const getSubmenus = async (req, res) => {
+export const getModulos = async (req, res) => {
     try {
         var val = ' WHERE'
-        var sql = 'SELECT * FROM Submenu'
-        if (req.body.SUM_ETIQUETA) {
-            sql += val + ' SUM_ETIQUETA LIKE "%' + req.body.SUM_ETIQUETA + '%"'
+        var sql = 'SELECT * FROM modulo'
+        if (req.body.MOD_CLAVE) {
+            sql += val + ' modulo.MOD_CLAVE LIKE "%' + req.body.MOD_CLAVE + '%"'
+            val = ' AND'
+        }
+        if (req.body.MOD_NOMBRE) {
+            sql += val + ' modulo.MOD_NOMBRE LIKE "%' + req.body.MOD_NOMBRE + '%"'
+            val = ' AND'
+        }
+        if (req.body.MOD_DESC) {
+            sql += val + ' modulo.MOD_DESC LIKE "%' + req.body.MOD_DESC + '%"'
             val = ' AND'
         }
         if (req.body.ORDER) {
@@ -22,47 +30,49 @@ export const getSubmenus = async (req, res) => {
     }
 }
 
-export const getSubmenu = async (req, res) => {
+export const getModulo = async (req, res) => {
     try {
         const connection = await connect()
-        const [rows] = await connection.query('SELECT * FROM Submenu WHERE SUM_NUMCTRL = ?', [req.params.id,])
+        const [rows] = await connection.query('SELECT * FROM modulo WHERE MOD_NUMCTRL = ?', [req.params.id,])
         res.json(rows[0])
     } catch (error) {
         res.sendStatus(400)
     }
 }
 
-export const countSubmenus = async (req, res) => {
+export const countModulos = async (req, res) => {
     try {
         const connection = await connect()
-        const [rows] = await connection.query('SELECT COUNT(*) FROM Submenu')
+        const [rows] = await connection.query('SELECT COUNT(*) FROM modulo')
         res.json(rows[0]['COUNT(*)'])
     } catch (error) {
         res.sendStatus(400)
     }
 }
 
-export const createSubmenu = async (req, res) => {
+export const createModulo = async (req, res) => {
     try {
         const connection = await connect()
-        const [rows] = await connection.query("INSERT INTO Submenu(SUM_ETIQUETA) VALUES (?)",
+        const [rows] = await connection.query("INSERT INTO modulo(MOD_CLAVE,MOD_NOMBRE,MOD_ICONO,MOD_DESC) VALUES (?,?,?,?)",
             [
-                req.body.SUM_ETIQUETA
+                req.body.MOD_CLAVE,
+                req.body.MOD_NOMBRE,
+                req.body.MOD_ICONO,
+                req.body.MOD_DESC
             ])
         res.json({
             id: rows.insertId,
             ...req.body
         })
     } catch (error) {
-        console.log(error)
         res.sendStatus(400)
     }
 }
 
-export const deleteSubmenu = async (req, res) => {
+export const deleteModulo = async (req, res) => {
     try {
         const connection = await connect()
-        const [rows] = await connection.query('DELETE FROM Submenu WHERE SUM_NUMCTRL = ?',
+        const [rows] = await connection.query('DELETE FROM modulo WHERE MOD_NUMCTRL = ?',
             [
                 req.params.id
             ])
@@ -72,17 +82,16 @@ export const deleteSubmenu = async (req, res) => {
     }
 }
 
-export const updateSubmenu = async (req, res) => {
+export const updateModulo = async (req, res) => {
     try {
         const connection = await connect()
-        const [rows] = await connection.query('UPDATE Submenu SET ? WHERE SUM_NUMCTRL = ?',
+        const [rows] = await connection.query('UPDATE modulo SET ? WHERE MOD_NUMCTRL = ?',
             [
                 req.body,
                 req.params.id
             ])
         res.json(rows)
     } catch (error) {
-        console.error(error)
         res.sendStatus(400)
     }
 }
