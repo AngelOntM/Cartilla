@@ -783,7 +783,7 @@ exports.updateSupervisor = updateSupervisor;
 
 var loginUsuario = /*#__PURE__*/function () {
   var _ref16 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee16(req, res) {
-    var connection, datos, menus, programas, _yield$connection$que31, _yield$connection$que32, rows, x, _yield$connection$que33, _yield$connection$que34, _yield$connection$que35, _yield$connection$que36;
+    var connection, DATOS, MODULOS, PROGRAMAS, MENUS, rows, _yield$connection$que31, _yield$connection$que32, _yield$connection$que33, _yield$connection$que34, _yield$connection$que35, _yield$connection$que36, x, y;
 
     return _regenerator["default"].wrap(function _callee16$(_context16) {
       while (1) {
@@ -795,178 +795,144 @@ var loginUsuario = /*#__PURE__*/function () {
 
           case 3:
             connection = _context16.sent;
-            datos = null;
-            menus = null;
-            programas = null;
-            _context16.next = 9;
+            DATOS = null;
+            MODULOS = null;
+            PROGRAMAS = null;
+            MENUS = null;
+            rows = [];
+
+            if (!(rows[0] == undefined)) {
+              _context16.next = 15;
+              break;
+            }
+
+            _context16.next = 12;
             return connection.query('SELECT * FROM proveedor WHERE PRV_CORREO = ? AND PRV_CONTRA = ?', [req.body.correo, req.body.password]);
 
-          case 9:
+          case 12:
             _yield$connection$que31 = _context16.sent;
             _yield$connection$que32 = (0, _slicedToArray2["default"])(_yield$connection$que31, 1);
             rows = _yield$connection$que32[0];
 
-            if (!(rows[0] != null)) {
-              _context16.next = 31;
+          case 15:
+            if (!(rows[0] == undefined)) {
+              _context16.next = 21;
               break;
             }
 
-            datos = rows[0];
-            _context16.next = 16;
-            return connection.query('SELECT DISTINCT menu.MEN_NUMCTRL,menu.MEN_CLAVE,menu.MEN_NOMBRE,menu.MEN_ICON,menu.MEN_DESC FROM submenu inner join menu on menu.SUM_NUMCTRL = submenu.SUM_NUMCTRL inner join proxmen on menu.MEN_NUMCTRL = proxmen.MEN_NUMCTRL INNER JOIN programa ON programa.PRG_NUMCTRL = proxmen.PRG_NUMCTRL INNER JOIN proxusu on proxusu.PRG_NUMCTRL = programa.PRG_NUMCTRL INNER JOIN tipousu on tipousu.TIU_NUMCTRL = proxusu.TIU_NUMCTRL WHERE  tipousu.TIU_NUMCTRL = ? AND submenu.SUM_NUMCTRL = ? ORDER BY menu.MEN_ORDEN', [rows[0].TIU_NUMCTRL, rows[0].TIU_NUMCTRL]);
+            _context16.next = 18;
+            return connection.query('SELECT * FROM supervisor WHERE SUP_CORREO = ? AND SUP_CONTRA = ?', [req.body.correo, req.body.password]);
 
-          case 16:
-            rows = _context16.sent;
-            menus = rows[0];
-            x = 0;
-
-          case 19:
-            if (!(x < menus.length)) {
-              _context16.next = 28;
-              break;
-            }
-
-            _context16.next = 22;
-            return connection.query('SELECT programa.PRG_CLAVE, programa.PRG_NOMBRE, programa.PRG_RUTA, programa.PRG_DESC FROM menu inner join proxmen on menu.MEN_NUMCTRL = proxmen.MEN_NUMCTRL INNER JOIN programa ON programa.PRG_NUMCTRL = proxmen.PRG_NUMCTRL INNER JOIN proxusu on proxusu.PRG_NUMCTRL = programa.PRG_NUMCTRL INNER JOIN tipousu on tipousu.TIU_NUMCTRL = proxusu.TIU_NUMCTRL WHERE menu.MEN_NUMCTRL = ? AND proxusu.TIU_NUMCTRL = ?', [menus[x].MEN_NUMCTRL, 1]);
-
-          case 22:
-            rows = _context16.sent;
-            programas = rows[0];
-            menus[x].programas = programas;
-
-          case 25:
-            x++;
-            _context16.next = 19;
-            break;
-
-          case 28:
-            datos = {
-              datos: datos,
-              menus: menus
-            };
-            _context16.next = 77;
-            break;
-
-          case 31:
-            _context16.next = 33;
-            return connection.query('SELECT * FROM propietario WHERE PRO_CORREO = ? AND PRO_CONTRA = ?', [req.body.correo, req.body.password]);
-
-          case 33:
+          case 18:
             _yield$connection$que33 = _context16.sent;
             _yield$connection$que34 = (0, _slicedToArray2["default"])(_yield$connection$que33, 1);
             rows = _yield$connection$que34[0];
 
-            if (!(rows[0] != null)) {
-              _context16.next = 55;
+          case 21:
+            if (!(rows[0] == undefined)) {
+              _context16.next = 27;
               break;
             }
 
-            datos = rows[0];
-            _context16.next = 40;
-            return connection.query('SELECT DISTINCT menu.MEN_NUMCTRL,menu.MEN_CLAVE,menu.MEN_NOMBRE,menu.MEN_ICON,menu.MEN_DESC FROM submenu inner join menu on menu.SUM_NUMCTRL = submenu.SUM_NUMCTRL inner join proxmen on menu.MEN_NUMCTRL = proxmen.MEN_NUMCTRL INNER JOIN programa ON programa.PRG_NUMCTRL = proxmen.PRG_NUMCTRL INNER JOIN proxusu on proxusu.PRG_NUMCTRL = programa.PRG_NUMCTRL INNER JOIN tipousu on tipousu.TIU_NUMCTRL = proxusu.TIU_NUMCTRL WHERE  tipousu.TIU_NUMCTRL = ? AND submenu.SUM_NUMCTRL = ? ORDER BY menu.MEN_ORDEN', [rows[0].TIU_NUMCTRL, rows[0].TIU_NUMCTRL]);
+            _context16.next = 24;
+            return connection.query('SELECT * FROM propietario WHERE PRO_CORREO = ? AND PRO_CONTRA = ?', [req.body.correo, req.body.password]);
 
-          case 40:
-            rows = _context16.sent;
-            menus = rows[0];
-            x = 0;
-
-          case 43:
-            if (!(x < menus.length)) {
-              _context16.next = 52;
-              break;
-            }
-
-            _context16.next = 46;
-            return connection.query('SELECT programa.PRG_CLAVE, programa.PRG_NOMBRE, programa.PRG_RUTA, programa.PRG_DESC FROM menu inner join proxmen on menu.MEN_NUMCTRL = proxmen.MEN_NUMCTRL INNER JOIN programa ON programa.PRG_NUMCTRL = proxmen.PRG_NUMCTRL INNER JOIN proxusu on proxusu.PRG_NUMCTRL = programa.PRG_NUMCTRL INNER JOIN tipousu on tipousu.TIU_NUMCTRL = proxusu.TIU_NUMCTRL WHERE menu.MEN_NUMCTRL = ? AND tipousu.TIU_NUMCTRL = ?', [menus[x].MEN_NUMCTRL, 2]);
-
-          case 46:
-            rows = _context16.sent;
-            programas = rows[0];
-            menus[x].programas = programas;
-
-          case 49:
-            x++;
-            _context16.next = 43;
-            break;
-
-          case 52:
-            datos = {
-              datos: datos,
-              menus: menus
-            };
-            _context16.next = 77;
-            break;
-
-          case 55:
-            _context16.next = 57;
-            return connection.query('SELECT * FROM supervisor WHERE SUP_CORREO = ? AND SUP_CONTRA = ?', [req.body.correo, req.body.password]);
-
-          case 57:
+          case 24:
             _yield$connection$que35 = _context16.sent;
             _yield$connection$que36 = (0, _slicedToArray2["default"])(_yield$connection$que35, 1);
             rows = _yield$connection$que36[0];
 
+          case 27:
             if (!(rows[0] != null)) {
-              _context16.next = 77;
+              _context16.next = 59;
               break;
             }
 
-            datos = rows[0];
-            _context16.next = 64;
-            return connection.query('SELECT DISTINCT menu.MEN_NUMCTRL,menu.MEN_CLAVE,menu.MEN_NOMBRE,menu.MEN_ICON,menu.MEN_DESC FROM submenu inner join menu on menu.SUM_NUMCTRL = submenu.SUM_NUMCTRL inner join proxmen on menu.MEN_NUMCTRL = proxmen.MEN_NUMCTRL INNER JOIN programa ON programa.PRG_NUMCTRL = proxmen.PRG_NUMCTRL INNER JOIN proxusu on proxusu.PRG_NUMCTRL = programa.PRG_NUMCTRL INNER JOIN tipousu on tipousu.TIU_NUMCTRL = proxusu.TIU_NUMCTRL WHERE  tipousu.TIU_NUMCTRL = ? AND submenu.SUM_NUMCTRL = ? ORDER BY menu.MEN_ORDEN', [rows[0].TIU_NUMCTRL, rows[0].TIU_NUMCTRL]);
+            DATOS = rows[0];
+            _context16.next = 31;
+            return connection.query('SELECT modulo.MOD_NUMCTRL,modulo.MOD_CLAVE,modulo.MOD_ICONO,modulo.MOD_DESC,modulo.MOD_NOMBRE, modxtipu.MXT_NUMCTRL FROM modulo INNER JOIN modxtipu ON modxtipu.MOD_NUMCTRL = modulo.MOD_NUMCTRL INNER JOIN tipousu ON modxtipu.TIU_NUMCTRL = tipousu.TIU_NUMCTRL WHERE tipousu.TIU_NUMCTRL = ?', [rows[0].TIU_NUMCTRL]);
 
-          case 64:
+          case 31:
             rows = _context16.sent;
-            menus = rows[0];
+            MODULOS = rows[0];
             x = 0;
 
-          case 67:
-            if (!(x < menus.length)) {
-              _context16.next = 76;
+          case 34:
+            if (!(x < MODULOS.length)) {
+              _context16.next = 58;
               break;
             }
 
-            _context16.next = 70;
-            return connection.query('SELECT programa.PRG_CLAVE, programa.PRG_NOMBRE, programa.PRG_RUTA, programa.PRG_DESC FROM menu inner join proxmen on menu.MEN_NUMCTRL = proxmen.MEN_NUMCTRL INNER JOIN programa ON programa.PRG_NUMCTRL = proxmen.PRG_NUMCTRL INNER JOIN proxusu on proxusu.PRG_NUMCTRL = programa.PRG_NUMCTRL INNER JOIN tipousu on tipousu.TIU_NUMCTRL = proxusu.TIU_NUMCTRL WHERE menu.MEN_NUMCTRL = ? AND tipousu.TIU_NUMCTRL = ?', [menus[x].MEN_NUMCTRL, 3]);
+            _context16.next = 37;
+            return connection.query('SELECT menu.MEN_NUMCTRL,menu.MEN_CLAVE,menu.MEN_NOMBRE,menu.MEN_ICON,menu.MEN_DESC,menu.MEN_ORDEN, menu.MXT_NUMCTRL FROM menu INNER JOIN modxtipu ON modxtipu.MXT_NUMCTRL = menu.MXT_NUMCTRL WHERE modxtipu.TIU_NUMCTRL = ? AND menu.MXT_NUMCTRL = ?', [DATOS.TIU_NUMCTRL, MODULOS[x].MXT_NUMCTRL]);
 
-          case 70:
+          case 37:
             rows = _context16.sent;
-            programas = rows[0];
-            menus[x].programas = programas;
+            MENUS = rows[0];
+            MODULOS[x].MENUS = MENUS;
+            y = 0;
 
-          case 73:
-            x++;
-            _context16.next = 67;
+          case 41:
+            if (!(y < MODULOS[x].MENUS.length)) {
+              _context16.next = 50;
+              break;
+            }
+
+            _context16.next = 44;
+            return connection.query('SELECT programa.PRG_NUMCTRL,programa.PRG_CLAVE,programa.PRG_NOMBRE,programa.PRG_RUTA,programa.PRG_DESC FROM programa INNER JOIN proxmen ON proxmen.PRG_NUMCTRL = programa.PRG_NUMCTRL INNER JOIN menu ON proxmen.MEN_NUMCTRL = menu.MEN_NUMCTRL WHERE menu.MEN_NUMCTRL = ?', [MODULOS[x].MENUS[y].MEN_NUMCTRL]);
+
+          case 44:
+            rows = _context16.sent;
+            PROGRAMAS = rows[0];
+            MODULOS[x].MENUS[y].PROGRAMAS = PROGRAMAS;
+
+          case 47:
+            y++;
+            _context16.next = 41;
             break;
 
-          case 76:
-            datos = {
-              datos: datos,
-              menus: menus
+          case 50:
+            _context16.next = 52;
+            return connection.query('SELECT programa.PRG_NUMCTRL,programa.PRG_CLAVE,programa.PRG_NOMBRE,programa.PRG_RUTA,programa.PRG_ORDEN,programa.PRG_DESC, programa.MXT_NUMCTRL FROM programa INNER JOIN modxtipu ON modxtipu.MXT_NUMCTRL = programa.MXT_NUMCTRL WHERE modxtipu.TIU_NUMCTRL = ? AND programa.MXT_NUMCTRL = ?', [DATOS.TIU_NUMCTRL, MODULOS[x].MXT_NUMCTRL]);
+
+          case 52:
+            rows = _context16.sent;
+            PROGRAMAS = rows[0];
+            MODULOS[x].MENUS.push(PROGRAMAS);
+
+          case 55:
+            x++;
+            _context16.next = 34;
+            break;
+
+          case 58:
+            DATOS = {
+              DATOS: DATOS,
+              MODULOS: MODULOS
             };
 
-          case 77:
-            if (datos != null) {
-              res.json(datos);
+          case 59:
+            if (DATOS != null) {
+              res.json(DATOS);
             } else {
               res.sendStatus(400);
             }
 
-            _context16.next = 84;
+            _context16.next = 66;
             break;
 
-          case 80:
-            _context16.prev = 80;
+          case 62:
+            _context16.prev = 62;
             _context16.t0 = _context16["catch"](0);
-            console.log(_context16.t0.message);
+            console.log(_context16.t0);
             res.sendStatus(400);
 
-          case 84:
+          case 66:
           case "end":
             return _context16.stop();
         }
       }
-    }, _callee16, null, [[0, 80]]);
+    }, _callee16, null, [[0, 62]]);
   }));
 
   return function loginUsuario(_x31, _x32) {

@@ -265,69 +265,59 @@ export const updateSupervisor = async (req, res) => {
 export const loginUsuario = async (req, res) => {
     try {
         const connection = await connect()
-        var datos = null
-        var menus = null
-        var programas = null
-        var [rows] = await connection.query('SELECT * FROM proveedor WHERE PRV_CORREO = ? AND PRV_CONTRA = ?',
-            [
-                req.body.correo,
-                req.body.password
-            ])
-        if (rows[0] != null) {
-            datos = rows[0]
-            rows = await connection.query('SELECT DISTINCT menu.MEN_NUMCTRL,menu.MEN_CLAVE,menu.MEN_NOMBRE,menu.MEN_ICON,menu.MEN_DESC FROM submenu inner join menu on menu.SUM_NUMCTRL = submenu.SUM_NUMCTRL inner join proxmen on menu.MEN_NUMCTRL = proxmen.MEN_NUMCTRL INNER JOIN programa ON programa.PRG_NUMCTRL = proxmen.PRG_NUMCTRL INNER JOIN proxusu on proxusu.PRG_NUMCTRL = programa.PRG_NUMCTRL INNER JOIN tipousu on tipousu.TIU_NUMCTRL = proxusu.TIU_NUMCTRL WHERE  tipousu.TIU_NUMCTRL = ? AND submenu.SUM_NUMCTRL = ? ORDER BY menu.MEN_ORDEN', [rows[0].TIU_NUMCTRL, rows[0].TIU_NUMCTRL])
-            menus = rows[0]
-            for (var x = 0; x < menus.length; x++) {
-                rows = await connection.query('SELECT programa.PRG_CLAVE, programa.PRG_NOMBRE, programa.PRG_RUTA, programa.PRG_DESC FROM menu inner join proxmen on menu.MEN_NUMCTRL = proxmen.MEN_NUMCTRL INNER JOIN programa ON programa.PRG_NUMCTRL = proxmen.PRG_NUMCTRL INNER JOIN proxusu on proxusu.PRG_NUMCTRL = programa.PRG_NUMCTRL INNER JOIN tipousu on tipousu.TIU_NUMCTRL = proxusu.TIU_NUMCTRL WHERE menu.MEN_NUMCTRL = ? AND proxusu.TIU_NUMCTRL = ?', [menus[x].MEN_NUMCTRL, 1])
-                programas = rows[0]
-                menus[x].programas = programas
-            }
-            datos = { datos, menus }
-        }
-        else {
-            [rows] = await connection.query('SELECT * FROM propietario WHERE PRO_CORREO = ? AND PRO_CONTRA = ?',
+        var DATOS = null
+        var MODULOS = null
+        var PROGRAMAS = null
+        var MENUS = null
+        var rows = []
+        if (rows[0] == undefined) {
+            var [rows] = await connection.query('SELECT * FROM proveedor WHERE PRV_CORREO = ? AND PRV_CONTRA = ?',
                 [
                     req.body.correo,
                     req.body.password
                 ])
-            if (rows[0] != null) {
-                datos = rows[0]
-                rows = await connection.query('SELECT DISTINCT menu.MEN_NUMCTRL,menu.MEN_CLAVE,menu.MEN_NOMBRE,menu.MEN_ICON,menu.MEN_DESC FROM submenu inner join menu on menu.SUM_NUMCTRL = submenu.SUM_NUMCTRL inner join proxmen on menu.MEN_NUMCTRL = proxmen.MEN_NUMCTRL INNER JOIN programa ON programa.PRG_NUMCTRL = proxmen.PRG_NUMCTRL INNER JOIN proxusu on proxusu.PRG_NUMCTRL = programa.PRG_NUMCTRL INNER JOIN tipousu on tipousu.TIU_NUMCTRL = proxusu.TIU_NUMCTRL WHERE  tipousu.TIU_NUMCTRL = ? AND submenu.SUM_NUMCTRL = ? ORDER BY menu.MEN_ORDEN', [rows[0].TIU_NUMCTRL, rows[0].TIU_NUMCTRL])
-                menus = rows[0]
-                for (var x = 0; x < menus.length; x++) {
-                    rows = await connection.query('SELECT programa.PRG_CLAVE, programa.PRG_NOMBRE, programa.PRG_RUTA, programa.PRG_DESC FROM menu inner join proxmen on menu.MEN_NUMCTRL = proxmen.MEN_NUMCTRL INNER JOIN programa ON programa.PRG_NUMCTRL = proxmen.PRG_NUMCTRL INNER JOIN proxusu on proxusu.PRG_NUMCTRL = programa.PRG_NUMCTRL INNER JOIN tipousu on tipousu.TIU_NUMCTRL = proxusu.TIU_NUMCTRL WHERE menu.MEN_NUMCTRL = ? AND tipousu.TIU_NUMCTRL = ?', [menus[x].MEN_NUMCTRL, 2])
-                    programas = rows[0]
-                    menus[x].programas = programas
-                }
-                datos = { datos, menus }
-            }
-            else {
-                [rows] = await connection.query('SELECT * FROM supervisor WHERE SUP_CORREO = ? AND SUP_CONTRA = ?',
-                    [
-                        req.body.correo,
-                        req.body.password
-                    ])
-                if (rows[0] != null) {
-                    datos = rows[0]
-                    rows = await connection.query('SELECT DISTINCT menu.MEN_NUMCTRL,menu.MEN_CLAVE,menu.MEN_NOMBRE,menu.MEN_ICON,menu.MEN_DESC FROM submenu inner join menu on menu.SUM_NUMCTRL = submenu.SUM_NUMCTRL inner join proxmen on menu.MEN_NUMCTRL = proxmen.MEN_NUMCTRL INNER JOIN programa ON programa.PRG_NUMCTRL = proxmen.PRG_NUMCTRL INNER JOIN proxusu on proxusu.PRG_NUMCTRL = programa.PRG_NUMCTRL INNER JOIN tipousu on tipousu.TIU_NUMCTRL = proxusu.TIU_NUMCTRL WHERE  tipousu.TIU_NUMCTRL = ? AND submenu.SUM_NUMCTRL = ? ORDER BY menu.MEN_ORDEN', [rows[0].TIU_NUMCTRL, rows[0].TIU_NUMCTRL])
-                    menus = rows[0]
-                    for (var x = 0; x < menus.length; x++) {
-                        rows = await connection.query('SELECT programa.PRG_CLAVE, programa.PRG_NOMBRE, programa.PRG_RUTA, programa.PRG_DESC FROM menu inner join proxmen on menu.MEN_NUMCTRL = proxmen.MEN_NUMCTRL INNER JOIN programa ON programa.PRG_NUMCTRL = proxmen.PRG_NUMCTRL INNER JOIN proxusu on proxusu.PRG_NUMCTRL = programa.PRG_NUMCTRL INNER JOIN tipousu on tipousu.TIU_NUMCTRL = proxusu.TIU_NUMCTRL WHERE menu.MEN_NUMCTRL = ? AND tipousu.TIU_NUMCTRL = ?', [menus[x].MEN_NUMCTRL, 3])
-                        programas = rows[0]
-                        menus[x].programas = programas
-                    }
-                    datos = { datos, menus }
-                }
-            }
         }
-        if (datos != null) {
-            res.json(datos)
+        if (rows[0] == undefined) {
+            var [rows] = await connection.query('SELECT * FROM supervisor WHERE SUP_CORREO = ? AND SUP_CONTRA = ?',
+                [
+                    req.body.correo,
+                    req.body.password
+                ])
+        }
+        if (rows[0] == undefined) {
+            var [rows] = await connection.query('SELECT * FROM propietario WHERE PRO_CORREO = ? AND PRO_CONTRA = ?',
+                [
+                    req.body.correo,
+                    req.body.password
+                ])
+        }
+        if (rows[0] != null) {
+            DATOS = rows[0]
+            rows = await connection.query('SELECT modulo.MOD_NUMCTRL,modulo.MOD_CLAVE,modulo.MOD_ICONO,modulo.MOD_DESC,modulo.MOD_NOMBRE, modxtipu.MXT_NUMCTRL FROM modulo INNER JOIN modxtipu ON modxtipu.MOD_NUMCTRL = modulo.MOD_NUMCTRL INNER JOIN tipousu ON modxtipu.TIU_NUMCTRL = tipousu.TIU_NUMCTRL WHERE tipousu.TIU_NUMCTRL = ?', [rows[0].TIU_NUMCTRL])
+            MODULOS = rows[0]
+            for (var x = 0; x < MODULOS.length; x++) {
+                rows = await connection.query('SELECT menu.MEN_NUMCTRL,menu.MEN_CLAVE,menu.MEN_NOMBRE,menu.MEN_ICON,menu.MEN_DESC,menu.MEN_ORDEN, menu.MXT_NUMCTRL FROM menu INNER JOIN modxtipu ON modxtipu.MXT_NUMCTRL = menu.MXT_NUMCTRL WHERE modxtipu.TIU_NUMCTRL = ? AND menu.MXT_NUMCTRL = ?', [DATOS.TIU_NUMCTRL, MODULOS[x].MXT_NUMCTRL])
+                MENUS = rows[0]
+                MODULOS[x].MENUS = MENUS
+                for (var y = 0; y < MODULOS[x].MENUS.length; y++) {
+                    rows = await connection.query('SELECT programa.PRG_NUMCTRL,programa.PRG_CLAVE,programa.PRG_NOMBRE,programa.PRG_RUTA,programa.PRG_DESC FROM programa INNER JOIN proxmen ON proxmen.PRG_NUMCTRL = programa.PRG_NUMCTRL INNER JOIN menu ON proxmen.MEN_NUMCTRL = menu.MEN_NUMCTRL WHERE menu.MEN_NUMCTRL = ?', [MODULOS[x].MENUS[y].MEN_NUMCTRL])
+                    PROGRAMAS = rows[0]
+                    MODULOS[x].MENUS[y].PROGRAMAS = PROGRAMAS
+                }
+                rows = await connection.query('SELECT programa.PRG_NUMCTRL,programa.PRG_CLAVE,programa.PRG_NOMBRE,programa.PRG_RUTA,programa.PRG_ORDEN,programa.PRG_DESC, programa.MXT_NUMCTRL FROM programa INNER JOIN modxtipu ON modxtipu.MXT_NUMCTRL = programa.MXT_NUMCTRL WHERE modxtipu.TIU_NUMCTRL = ? AND programa.MXT_NUMCTRL = ?', [DATOS.TIU_NUMCTRL, MODULOS[x].MXT_NUMCTRL])
+                PROGRAMAS = rows[0]
+                MODULOS[x].MENUS.push(PROGRAMAS)
+            }
+            DATOS = { DATOS, MODULOS }
+        }
+        if (DATOS != null) {
+            res.json(DATOS)
         }
         else {
             res.sendStatus(400)
         }
     } catch (error) {
-        console.log(error.message)
+        console.log(error)
         res.sendStatus(400)
     }
 }
