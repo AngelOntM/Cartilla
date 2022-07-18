@@ -844,7 +844,7 @@ var loginUsuario = /*#__PURE__*/function () {
 
           case 27:
             if (!(rows[0] != null)) {
-              _context16.next = 59;
+              _context16.next = 60;
               break;
             }
 
@@ -859,7 +859,7 @@ var loginUsuario = /*#__PURE__*/function () {
 
           case 34:
             if (!(x < MODULOS.length)) {
-              _context16.next = 58;
+              _context16.next = 59;
               break;
             }
 
@@ -898,41 +898,46 @@ var loginUsuario = /*#__PURE__*/function () {
           case 52:
             rows = _context16.sent;
             PROGRAMAS = rows[0];
-            MODULOS[x].MENUS.push(PROGRAMAS);
+            PROGRAMAS.forEach(function (PROGRAMA) {
+              MODULOS[x].MENUS.push(PROGRAMA);
+            });
+            MODULOS[x].MENUS.sort(function (a, b) {
+              return a.MEN_ORDEN - b.MEN_ORDEN || a.PRG_ORDEN - b.PRG_ORDEN || a.PRG_ORDEN - b.MEN_ORDEN || a.MEN_ORDEN - b.PRG_ORDEN;
+            });
 
-          case 55:
+          case 56:
             x++;
             _context16.next = 34;
             break;
 
-          case 58:
+          case 59:
             DATOS = {
               DATOS: DATOS,
               MODULOS: MODULOS
             };
 
-          case 59:
+          case 60:
             if (DATOS != null) {
               res.json(DATOS);
             } else {
               res.sendStatus(400);
             }
 
-            _context16.next = 66;
+            _context16.next = 67;
             break;
 
-          case 62:
-            _context16.prev = 62;
+          case 63:
+            _context16.prev = 63;
             _context16.t0 = _context16["catch"](0);
             console.log(_context16.t0);
             res.sendStatus(400);
 
-          case 66:
+          case 67:
           case "end":
             return _context16.stop();
         }
       }
-    }, _callee16, null, [[0, 62]]);
+    }, _callee16, null, [[0, 63]]);
   }));
 
   return function loginUsuario(_x31, _x32) {

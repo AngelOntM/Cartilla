@@ -306,7 +306,12 @@ export const loginUsuario = async (req, res) => {
                 }
                 rows = await connection.query('SELECT programa.PRG_NUMCTRL,programa.PRG_CLAVE,programa.PRG_NOMBRE,programa.PRG_RUTA,programa.PRG_ORDEN,programa.PRG_DESC, programa.MXT_NUMCTRL FROM programa INNER JOIN modxtipu ON modxtipu.MXT_NUMCTRL = programa.MXT_NUMCTRL WHERE modxtipu.TIU_NUMCTRL = ? AND programa.MXT_NUMCTRL = ?', [DATOS.TIU_NUMCTRL, MODULOS[x].MXT_NUMCTRL])
                 PROGRAMAS = rows[0]
-                MODULOS[x].MENUS.push(PROGRAMAS)
+                PROGRAMAS.forEach(PROGRAMA => {
+                    MODULOS[x].MENUS.push(PROGRAMA)
+                });
+                MODULOS[x].MENUS.sort(function (a, b) {
+                    return a.MEN_ORDEN - b.MEN_ORDEN || a.PRG_ORDEN - b.PRG_ORDEN || a.PRG_ORDEN - b.MEN_ORDEN || a.MEN_ORDEN - b.PRG_ORDEN
+                });
             }
             DATOS = { DATOS, MODULOS }
         }
