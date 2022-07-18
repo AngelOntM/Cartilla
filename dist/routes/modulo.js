@@ -7,14 +7,14 @@ exports["default"] = void 0;
 
 var _express = require("express");
 
-var _Modulo = require("../controllers/Modulo.js");
+var _modulo = require("../controllers/modulo.js");
 
 var router = (0, _express.Router)();
-router.post('/modulo', _Modulo.getModulos);
-router.get('/modulo/count', _Modulo.countModulos);
-router.get('/modulo/:id', _Modulo.getModulo);
-router.post('/modulo/create', _Modulo.createModulo);
-router.put('/modulo/:id', _Modulo.updateModulo);
-router["delete"]('/modulo/:id', _Modulo.deleteModulo);
+router.post('/modulo', _modulo.getModulos);
+router.get('/modulo/count', _modulo.countModulos);
+router.get('/modulo/:id', _modulo.getModulo);
+router.post('/modulo/create', _modulo.createModulo);
+router.put('/modulo/:id', _modulo.updateModulo);
+router["delete"]('/modulo/:id', _modulo.deleteModulo);
 var _default = router;
 exports["default"] = _default;
